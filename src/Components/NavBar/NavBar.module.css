@@ -1,0 +1,38 @@
+#nav {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    margin: .7em .4em;
+    align-items: center;
+    background-color: rgb(255, 255, 255);
+    padding: 8px 4em;
+    border-radius: 7px;
+}
+
+#nav > a {
+    font-weight: 500;
+    font-size: 1.2em;
+}
+
+#nav > a > span {
+    font-size: 1.3em;
+    font-weight: 700;
+}
+
+#nav > ul {
+    display: inherit;
+    flex-flow: nowrap;
+}
+
+#nav > ul > li {
+    margin-left: 1em;
+    list-style: none;
+}
+
+.ativo {
+    text-decoration: underline;
+}
+
+path {
+    fill: #25104b;
+}
