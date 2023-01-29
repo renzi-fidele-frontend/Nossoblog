@@ -17,16 +17,16 @@ function App() {
     const auth = getAuth(app);
 
     useEffect(() => {
-        onAuthStateChanged(auth, (user) => {
-            console.log(user);
-            setUser(user);
+        onAuthStateChanged(auth, (usr) => {
+            console.log(`Houve uma mudança de estado, ${usr}`);
+            setUser(usr);
         });
-    }, auth);
+    }, [auth]);
 
     return (
         <div className="App">
             {/*O AuthProvider serve para passar o estado do usuário globalmente pelas rotas*/}
-            <AuthProvider>
+            <AuthProvider value={{ user, setUser }}>
                 <NavBar />
                 <Outlet />
                 <Footer />

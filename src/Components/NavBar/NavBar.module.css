@@ -2,7 +2,7 @@
     display: flex;
     flex-flow: row nowrap;
     justify-content: space-between;
-    margin: .7em .4em;
+    margin: 0.7em 0.4em;
     align-items: center;
     background-color: rgb(255, 255, 255);
     padding: 8px 4em;
@@ -11,12 +11,18 @@
 
 #nav > a {
     font-weight: 500;
-    font-size: 1.2em;
+    font-size: 1.17em;
+    color: #180b47de;
+    display: flex;
+    flex-flow: row;
+    align-items: center;
 }
 
 #nav > a > span {
+    display: inherit;
     font-size: 1.3em;
     font-weight: 700;
+    margin-left: 8px;
 }
 
 #nav > ul {
@@ -25,8 +31,13 @@
 }
 
 #nav > ul > li {
-    margin-left: 1em;
+    margin-inline: 0.8em;
     list-style: none;
+    font-size: 17px;
+}
+
+#nav > ul > li > a {
+    color: black;
 }
 
 .ativo {

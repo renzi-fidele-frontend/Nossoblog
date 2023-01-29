@@ -1,9 +1,17 @@
-import styles from './Footer.module.css'
+import styles from "./Footer.module.css";
 
 const Footer = () => {
-  return (
-    <div>Footer</div>
-  )
-}
+    return (
+        <footer id={styles.footer}>
+            <p>
+                <span>Mini Blog</span> © Copyright 2023
+            </p>
+            <div>
+                <p>Desenvolvedor: </p>
+                <a href="https://anovafase.com/renzi-fidele">Renzi Fidele</a>
+            </div>
+        </footer>
+    );
+};
 
-export default Footer
+export default Footer;
