@@ -35,6 +35,8 @@ const Login = () => {
                     setErroMsg("O email inserido é inválido!");
                 } else if (errorMessage.includes("wrong-password")) {
                     setErroMsg("A senha está incorrecta");
+                } else if (errorMessage.includes("user-not-found")) {
+                    setErroMsg("Este email não possui uma conta neste site!");
                 } else {
                     setErroMsg("O servidor está indisponível, tente mais tarde!");
                 }
