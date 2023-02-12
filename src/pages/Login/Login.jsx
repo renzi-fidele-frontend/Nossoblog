@@ -8,8 +8,8 @@ import { AuthValue } from "../../context/AuthContent";
 
 const Login = () => {
     //  Pegando o valor global do Contexto
-    const { user, setUser } = AuthValue();
-
+    const  {user, setUser1}  = AuthValue();
+    
     //  Hooks do form
     const [email, setEmail] = useState("");
     const [senha, setSenha] = useState("");
@@ -19,12 +19,13 @@ const Login = () => {
 
     const auth = getAuth(app);
 
+    //  Fazendo o login
     async function validar(e) {
         e.preventDefault();
         await signInWithEmailAndPassword(auth, email, senha)
             .then((userCredential) => {
                 console.log("logado com sucesso, o usuário é: ", userCredential);
-                setUser(userCredential);
+                setUser1(userCredential);
             })
             .catch((err) => {
                 console.log(`ops, aconteceu o erro: ${err}`);

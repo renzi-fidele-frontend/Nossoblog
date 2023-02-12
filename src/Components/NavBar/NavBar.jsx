@@ -24,9 +24,8 @@ const NavBar = () => {
     async function deslogar(e) {
         e.preventDefault();
         const res = await signOut(auth)
-            .then((v) => v.json())
-            .then((v) => console.log(v))
-            .catch((err) => console.log(`Ops, não foi possível deslogar`));
+            .then(() => setUser(undefined))        
+            .catch((err) => console.log(`Ops, não foi possível deslogar devido a ${err}`));
     }
 
     return (
