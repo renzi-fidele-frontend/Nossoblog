@@ -1,0 +1,41 @@
+#container {
+    text-align: center;
+    height: 75vh;
+    display: grid;
+    padding-inline: 10%;
+    grid-template-columns: 70% 30%;
+}
+
+#left > h2 {
+    font-size: 2.5em;
+    font-weight: 600;
+    margin-bottom: 0.3em;
+}
+
+#left {
+    text-align: start;
+}
+
+#right > form > input {
+    font-size: 18px;
+}
+
+#right > form > button {
+    font-size: 18px;
+    margin-left: 4px;
+
+}
+
+#right > h3 {
+    margin-top: 2em;
+    margin-bottom: .6em;
+    font-size: 17px;
+    font-weight: 700;
+}
+
+#right {
+    padding-top: 2em;
+    text-align: start;
+    border-left: #e0c6eb 6px dashed;
+    padding-left: 2em;
+}

@@ -3,6 +3,7 @@ import styles from "./CriarPost.module.css";
 import { db } from "../../firebase/config";
 import { collection, addDoc, Timestamp } from "firebase/firestore";
 import { AuthValue } from "../../context/AuthContent";
+import {useNavigate} from "react-router-dom"
 
 
 const CriarPost = () => {
@@ -13,6 +14,8 @@ const CriarPost = () => {
     const [tags, setTags] = useState("");
     const [loading, setLoading] = useState(false);
     const [erroFormulario, setErroFormulario] = useState("");
+
+    const navegar = useNavigate() 
 
     //  Pegando o valor global do Contexto
     const { user } = AuthValue();
@@ -63,6 +66,9 @@ const CriarPost = () => {
                 setImagem("");
                 setConteudo("");
                 setTags([]);
+
+                //  Redirecionando a home
+                navegar("/")
             } else {
                 setErroFormulario("A imagem deve conter uma url válida");
                 setTimeout(() => setErroFormulario(""), 3000);
