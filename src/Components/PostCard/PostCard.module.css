@@ -5,6 +5,19 @@
     margin-right: 15px;
     padding: 7px;
     border-radius: 2%;
+    margin-bottom: 15px;
+    transition: all .5s ease;
+}
+
+#container:hover {
+    transform: translateY(-5px);
+    cursor: pointer;
+    box-shadow: 1px 1px 15px rgb(187, 138, 192);
+}
+
+#left {
+    overflow: hidden;
+    border-radius: 2%;
 }
 
 
@@ -12,15 +25,24 @@
     width: 100%;
     height: 200px;
     border-radius: 2%;
+    transition: all .4s ease-in-out;
+}
+
+#left > img:hover {
+    scale: 1.1;
 }
 
 #right {
     padding-left: 14px;
+    display: flex;
+    flex-flow: column;
+    align-items: start;
+    justify-content: space-between;
 }
 
 #tags {
     font-style: italic;
-    font-size: 15px;
+    font-size: 14px;
     margin-block: 5px;
 }
 
@@ -30,7 +52,7 @@
 }
 
 #descricao {
-    font-size: 15px;
+    font-size: 14px;
     margin-block: 8px;
 }
 

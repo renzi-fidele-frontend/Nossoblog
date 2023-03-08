@@ -1,6 +1,6 @@
 import styles from "./Home.module.css";
 
-import { collection, query, where, getDocs } from "firebase/firestore";
+import { collection, query, orderBy, where, getDocs } from "firebase/firestore";
 import { db } from "../../firebase/config";
 import { useEffect, useState } from "react";
 import HeroContainer from "../../Components/HeroContainer/HeroContainer";
@@ -13,7 +13,7 @@ const Home = () => {
     //  Capturar dados na coleção Posts
     async function capturarPosts() {
         let arr = [];
-        let q = query(collection(db, "Posts"));
+        let q = query(collection(db, "Posts"), orderBy('criadoEm', 'desc'));
 
         let captura = await getDocs(q);
 
@@ -42,6 +42,7 @@ const Home = () => {
                             criadoPor={posts[0].criadoPor}
                             titulo={posts[0].titulo}
                             imagem={posts[0].imagem}
+                            tags={posts[0].tags}
                         ></HeroContainer>
                         <div id={styles.duasCol}>
                             {posts.map((post, id) => {

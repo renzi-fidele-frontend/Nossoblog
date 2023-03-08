@@ -2,8 +2,18 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import styles from "./HeroContainer.module.css";
 
-const HeroContainer = ({ imagem, conteudo, titulo, criadoPor, criadoEm }) => {
+const HeroContainer = ({ imagem, conteudo, titulo, criadoPor, criadoEm, tags }) => {
     const [data, setData] = useState("");
+    const [tagsOrg, setTagsOrg] = useState([])
+
+    //  Orgazizando as tags a mostrar
+    function organizar(tags) {
+        var frase = "";
+        tags.forEach((v) => {
+            frase += `#${v} `;
+        });
+        setTagsOrg(frase);
+    }
 
     //  Convertendo o tempo em segundos para formato de data
     function toDateTime(secs) {
@@ -17,11 +27,10 @@ const HeroContainer = ({ imagem, conteudo, titulo, criadoPor, criadoEm }) => {
         setData(frase);
     }
 
-    
-
     useEffect(() => {
         toDateTime(criadoEm);
-    }, [criadoEm]);
+        organizar(tags)
+    }, [criadoEm, tags]);
 
     return (
         <div id={styles.container}>
@@ -29,7 +38,7 @@ const HeroContainer = ({ imagem, conteudo, titulo, criadoPor, criadoEm }) => {
             <br />
             <Link to={`/post/1`}> {titulo}</Link>
             <p id={styles.data}>
-                {data} - Por {criadoPor}
+                {data} - Por {criadoPor} <span>{tagsOrg}</span>
             </p>
         </div>
     );
