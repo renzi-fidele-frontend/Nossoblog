@@ -1,0 +1,43 @@
+#container {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    background-color: rgb(255, 227, 253);
+    margin-right: 15px;
+    padding: 7px;
+    border-radius: 2%;
+}
+
+
+#left > img {
+    width: 100%;
+    height: 200px;
+    border-radius: 2%;
+}
+
+#right {
+    padding-left: 14px;
+}
+
+#tags {
+    font-style: italic;
+    font-size: 15px;
+    margin-block: 5px;
+}
+
+#right > h4 {
+    font-size: 20px;
+    font-weight: 700;
+}
+
+#descricao {
+    font-size: 15px;
+    margin-block: 8px;
+}
+
+#autor  {
+    font-size: 14px;
+}
+
+#dataCorrigida {
+    margin-top: 2px;
+}

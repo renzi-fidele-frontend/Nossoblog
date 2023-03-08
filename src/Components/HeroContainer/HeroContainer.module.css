@@ -1,0 +1,26 @@
+#container {
+    width: 100%;
+}
+
+#container > img {
+    width: 80%;
+    height: 400px;
+    border-radius: 2%;
+}
+
+#container > a {
+    font-size: 1.7em;
+    margin-left: 5px;
+    color: black;
+    font-weight: 700;
+}
+
+#container > a:hover {
+    text-decoration: underline;
+    color: rgb(51, 24, 66);
+}
+
+#data {
+    font-size: 13px;
+    margin-left: 10px;
+}
