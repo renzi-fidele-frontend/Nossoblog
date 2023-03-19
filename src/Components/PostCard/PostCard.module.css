@@ -29,7 +29,7 @@
 }
 
 #left > img:hover {
-    scale: 1.1;
+    scale: 1.03;
 }
 
 #right {
@@ -47,7 +47,7 @@
 }
 
 #right > h4 {
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 700;
 }
 
