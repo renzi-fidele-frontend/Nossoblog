@@ -8,14 +8,12 @@ import PostCard from "../../Components/PostCard/PostCard";
 import { SiSpinrilla } from "react-icons/si";
 import { useNavigate } from "react-router-dom";
 
+
 const Home = () => {
     const [posts, setPosts] = useState([]);
     const [data, setData] = useState(null);
     const [q, setQ] = useState("");
-    const [semResultados, setSemResultados] = useState(true);
-    const [resposta, setResposta] = useState("Veja os nossos posts mais recentes");
-    const navegar = useNavigate()
-
+    const navegar = useNavigate();
 
     //  Capturar dados na coleção Posts
     async function capturarPosts() {
@@ -37,7 +35,6 @@ const Home = () => {
     }
 
     useEffect(() => {
-        setResposta("Veja os nossos posts mais recentes");
         capturarPosts();
         if (q.length > 0) {
             pesquisar(q);
@@ -50,8 +47,9 @@ const Home = () => {
                 {/*Caso cheguem posts do banco de dados */}
                 {posts.length > 0 ? (
                     <>
-                        <h2>{resposta}</h2>
+                        <h2>Veja os nossos posts mais recentes</h2>
                         <HeroContainer
+                            objecto={posts[0].data}
                             criadoEm={posts[0].data.criadoEm.seconds}
                             criadoPor={posts[0].data.criadoPor}
                             titulo={posts[0].data.titulo}
@@ -64,6 +62,7 @@ const Home = () => {
                                 if (id !== 0) {
                                     return (
                                         <PostCard
+                                            objecto={post.data}
                                             conteudo={post.data.conteudo}
                                             imagem={post.data.imagem}
                                             titulo={post.data.titulo}

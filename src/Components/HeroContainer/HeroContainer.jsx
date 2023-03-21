@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styles from "./HeroContainer.module.css";
 
-const HeroContainer = ({ imagem, conteudo, titulo, criadoPor, criadoEm, tags, id }) => {
+const HeroContainer = ({ imagem, conteudo, titulo, criadoPor, criadoEm, tags, id, objecto }) => {
     const [data, setData] = useState("");
-    const [tagsOrg, setTagsOrg] = useState([])
+    const [tagsOrg, setTagsOrg] = useState([]);
+
+    const navegar = useNavigate();
 
     //  Orgazizando as tags a mostrar
     function organizar(tags) {
@@ -29,14 +31,24 @@ const HeroContainer = ({ imagem, conteudo, titulo, criadoPor, criadoEm, tags, id
 
     useEffect(() => {
         toDateTime(criadoEm);
-        organizar(tags)
+        organizar(tags);
     }, [criadoEm, tags]);
 
     return (
         <div id={styles.container}>
-            <img src={imagem} alt="Imagem do post" />
+            <img
+                src={imagem}
+                onClick={() => {
+                    navegar(`/posts/${id}`, { state: objecto });
+                }}
+                loading="lazy"
+                alt="Imagem do post"
+            />
             <br />
-            <Link to={`/posts/${id}`}> {titulo}</Link>
+            <Link state={objecto} to={`/posts/${id}`}>
+                {" "}
+                {titulo}
+            </Link>
             <p id={styles.data}>
                 {data} - Por {criadoPor} <span>{tagsOrg}</span>
             </p>

@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import styles from "./PostCard.module.css";
 
 
-const PostCard = ({ conteudo, titulo, autor, data, imagem, tagsInical, id }) => {
+const PostCard = ({ objecto, conteudo, titulo, autor, data, imagem, tagsInical, id }) => {
     const [descricao, setDescricao] = useState("");
     const [tags, setTags] = useState("");
     const [dataCorrigida, setDataCorrigida] = useState("")
@@ -43,9 +43,9 @@ const PostCard = ({ conteudo, titulo, autor, data, imagem, tagsInical, id }) => 
     }, [tagsInical, data]);
 
     return (
-        <div id={styles.container} onClick={()=> { navegar(`posts/${id}`) }}>
+        <div id={styles.container} onClick={()=> { navegar(`posts/${id}`, {state: objecto }) }}>
             <div id={styles.left}>
-                <img src={imagem} alt="imagem de post" />
+                <img src={imagem} loading="lazy" alt="imagem de post" />
             </div>
             <div id={styles.right}>
                 <p id={styles.tags}>{tags}</p>

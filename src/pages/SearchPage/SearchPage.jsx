@@ -5,6 +5,7 @@ import { db } from "../../firebase/config";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import { useSearchParams } from "react-router-dom";
 import { SiSpinrilla } from "react-icons/si";
+import PostCard from "../../Components/PostCard/PostCard";
 
 const SearchPage = () => {
     const [posts, setPosts] = useState([]);
@@ -12,7 +13,6 @@ const SearchPage = () => {
     const [q] = useSearchParams();
 
     async function pesquisar(text) {
-        setResposta(`Resultados da pesquisa por: ${text}`);
         setPosts([]);
         let arr = [];
         let q = query(collection(db, "Posts"), where("tags", "array-contains", text));
@@ -29,15 +29,37 @@ const SearchPage = () => {
     }
 
     useEffect(() => {
-        pesquisar(q.get("q"))
-
+        pesquisar(q.get("q"));
     }, [q]);
 
     return (
         <div id={estiloHome.container}>
             <div id={estiloHome.left}>
-                {/*Caso cheguem posts do banco de dados */}
-                {posts.length > 0 ? <h2>Ola</h2> : <SiSpinrilla id={estiloHome.loading}/>}
+                <h2>
+                    Resultados da pesquisa por: <span style={{ textDecoration: "underline" }}>{q.get("q")}</span>
+                </h2>
+                <div id={estiloHome.duasCol}>
+                    {/*Caso cheguem posts do banco de dados */}
+                    {posts.length > 0 ? (
+                        <>
+                            {posts.map((post, id) => {
+                                return (
+                                    <PostCard
+                                        conteudo={post.data.conteudo}
+                                        imagem={post.data.imagem}
+                                        titulo={post.data.titulo}
+                                        data={post.data.criadoEm}
+                                        autor={post.data.criadoPor}
+                                        tagsInical={post.data.tags}
+                                        id={post.id}
+                                    />
+                                );
+                            })}
+                        </>
+                    ) : (
+                        <SiSpinrilla id={estiloHome.loading} />
+                    )}
+                </div>
             </div>
             <div id={estiloHome.right}></div>
         </div>
