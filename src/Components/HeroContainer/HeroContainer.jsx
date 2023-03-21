@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import styles from "./HeroContainer.module.css";
 
-const HeroContainer = ({ imagem, conteudo, titulo, criadoPor, criadoEm, tags }) => {
+const HeroContainer = ({ imagem, conteudo, titulo, criadoPor, criadoEm, tags, id }) => {
     const [data, setData] = useState("");
     const [tagsOrg, setTagsOrg] = useState([])
 
@@ -36,7 +36,7 @@ const HeroContainer = ({ imagem, conteudo, titulo, criadoPor, criadoEm, tags }) 
         <div id={styles.container}>
             <img src={imagem} alt="Imagem do post" />
             <br />
-            <Link to={`/post/1`}> {titulo}</Link>
+            <Link to={`/posts/${id}`}> {titulo}</Link>
             <p id={styles.data}>
                 {data} - Por {criadoPor} <span>{tagsOrg}</span>
             </p>

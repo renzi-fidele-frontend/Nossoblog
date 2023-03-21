@@ -3,10 +3,12 @@
     grid-template-columns: 50% 50%;
     background-color: rgb(255, 227, 253);
     margin-right: 15px;
-    padding: 7px;
+    padding-top: 4px;
+    padding-left: 4px;
     border-radius: 2%;
     margin-bottom: 15px;
     transition: all .5s ease;
+    border: 1px solid black;
 }
 
 #container:hover {
@@ -34,6 +36,7 @@
 
 #right {
     padding-left: 14px;
+    padding-right: 3px;
     display: flex;
     flex-flow: column;
     align-items: start;
@@ -43,17 +46,18 @@
 #tags {
     font-style: italic;
     font-size: 14px;
-    margin-block: 5px;
+    margin-top: 8px;
 }
 
 #right > h4 {
-    font-size: 18px;
+    font-size: 17px;
     font-weight: 700;
+    line-height: 17px;
 }
 
 #descricao {
     font-size: 14px;
-    margin-block: 8px;
+    margin-block: 3px;
 }
 
 #autor  {
@@ -61,5 +65,5 @@
 }
 
 #dataCorrigida {
-    margin-top: 2px;
+margin-bottom: 14px;
 }

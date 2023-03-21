@@ -15,6 +15,8 @@ import { getAuth, onAuthStateChanged } from "firebase/auth";
 //  Context
 import { AuthProvider, AuthValue } from "./context/AuthContent";
 import { useEffect, useState } from "react";
+import PostPage from "./pages/PostPage/PostPage";
+import SearchPage from "./pages/SearchPage/SearchPage";
 
 function App() {
     const [user, setUser] = useState(undefined);
@@ -46,10 +48,8 @@ function App() {
                         <Route path="/entrar" element={user === null ? <Login /> : <Navigate to={"/"} />} />
                         <Route path="/post/novo" element={user !== null ? <CriarPost /> : <Navigate replace to={"/entrar"} />} />
                         <Route path="/dashboard" element={user !== null ? <Dashboard /> : <Navigate to={"/entrar"} />} />
-                        {/*<Route path="/cadastro" element={<Register />} />
-                        <Route path="/entrar" element={<Login />} />
-                        <Route path="/post/novo" element={<CriarPost />} />
-                        <Route path="/dashboard" element={<Dashboard />} />*/}
+                        <Route path="/posts/:id" element={<PostPage />} />
+                        <Route path="/pesquisa" element={<SearchPage />} />
                     </Routes>
                     <Footer />
                 </AuthProvider>

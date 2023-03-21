@@ -44,7 +44,6 @@ const CriarPost = () => {
 
         checkIfImageExists(imagem, async (exists) => {
             if (exists) {
-                console.log(tags.split(",").map((v) => v.trim()));
 
                 //  Adicionando a publicação à base de dados
                 const docRef = await addDoc(collection(db, "Posts"), {
