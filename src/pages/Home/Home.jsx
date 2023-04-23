@@ -70,6 +70,7 @@ const Home = () => {
                                             autor={post.data.criadoPor}
                                             tagsInical={post.data.tags}
                                             id={post.id}
+                                            
                                         />
                                     );
                                 }

@@ -3,8 +3,7 @@ import styles from "./CriarPost.module.css";
 import { db } from "../../firebase/config";
 import { collection, addDoc, Timestamp } from "firebase/firestore";
 import { AuthValue } from "../../context/AuthContent";
-import {useNavigate} from "react-router-dom"
-
+import { useNavigate } from "react-router-dom";
 
 const CriarPost = () => {
     //  Hooks do formulário
@@ -15,7 +14,7 @@ const CriarPost = () => {
     const [loading, setLoading] = useState(false);
     const [erroFormulario, setErroFormulario] = useState("");
 
-    const navegar = useNavigate() 
+    const navegar = useNavigate();
 
     //  Pegando o valor global do Contexto
     const { user } = AuthValue();
@@ -44,7 +43,6 @@ const CriarPost = () => {
 
         checkIfImageExists(imagem, async (exists) => {
             if (exists) {
-
                 //  Adicionando a publicação à base de dados
                 const docRef = await addDoc(collection(db, "Posts"), {
                     titulo: titulo,
@@ -53,6 +51,7 @@ const CriarPost = () => {
                     tags: tags.split(",").map((v) => v.trim()),
                     criadoEm: Timestamp.now(),
                     criadoPor: user.displayName,
+                    uid: user.uid,
                 })
                     .then((v) => {
                         setLoading(false);
@@ -67,7 +66,7 @@ const CriarPost = () => {
                 setTags([]);
 
                 //  Redirecionando a home
-                navegar("/")
+                navegar("/");
             } else {
                 setErroFormulario("A imagem deve conter uma url válida");
                 setTimeout(() => setErroFormulario(""), 3000);
