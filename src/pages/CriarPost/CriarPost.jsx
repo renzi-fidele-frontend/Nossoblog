@@ -4,6 +4,7 @@ import { db } from "../../firebase/config";
 import { collection, addDoc, Timestamp } from "firebase/firestore";
 import { AuthValue } from "../../context/AuthContent";
 import { useNavigate } from "react-router-dom";
+import foto from "../../Images/postalbox.svg";
 
 const CriarPost = () => {
     //  Hooks do formulário
@@ -76,6 +77,7 @@ const CriarPost = () => {
 
     return (
         <section id={styles.container}>
+            <img src={foto} alt="ilustração de criação de post" />
             <h2>Criar post</h2>
             <p>Escreva sobre o que quiser e compartilhe o seu conhecimento!</p>
             <form onSubmit={publicar}>

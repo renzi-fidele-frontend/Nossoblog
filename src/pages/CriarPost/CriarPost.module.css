@@ -5,6 +5,10 @@
     justify-content: center;
 }
 
+#container > img {
+    width: 200px;
+}
+
 #container > h2 {
     margin-bottom: 0.7em;
     font-weight: 600;

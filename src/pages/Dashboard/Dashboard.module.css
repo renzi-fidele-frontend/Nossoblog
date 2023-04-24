@@ -27,3 +27,44 @@
 #userPostsContainer {
     padding-inline: 20%;
 }
+
+#itemLine {
+    border-bottom: rgb(94, 93, 93) 01px dashed;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    padding-inline: 2%;
+    padding-top: .9em;
+    padding-bottom: .6em;
+    transition: all .2s ease-in-out;
+}
+
+#itemLine:hover {
+    background-color: rgba(255, 255, 255, 0.219);
+}
+
+#right > button {
+    margin-inline: 5px;
+    padding-block: 4px;
+    font-size: 15px;
+    font-weight: 600;
+    padding-inline: 25px;
+    border: 1px solid black;
+    transition: all .3s ease-in-out;
+}
+
+#right > button:hover {
+    cursor: pointer;
+    background-color: black;
+    color: white;
+}
+
+#container > img {
+    width: 200px;
+}
+
+#excluir:hover {
+    background-color: red !important;
+    border: red auto auto;
+    color: white;
+}
