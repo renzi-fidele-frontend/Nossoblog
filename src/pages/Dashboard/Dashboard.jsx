@@ -6,13 +6,18 @@ import { collection, getDocs, orderBy, query, where, doc, deleteDoc } from "fire
 import { useEffect, useState } from "react";
 import estiloHome from "../Home/Home.module.css";
 import { SiSpinrilla } from "react-icons/si";
-import foto from '../../Images/user_security_token.svg'
-import {FaRegEye} from "react-icons/fa  "
+import foto from "../../Images/user_security_token.svg";
+import { FaRegEye } from "react-icons/fa  ";
+import { useNavigate } from "react-router-dom";
 
 const Dashboard = () => {
     const [posts, setPosts] = useState(undefined);
 
+    const [removido, setRemovido] = useState(false);
+
     const userID = getAuth(app).currentUser.uid;
+
+    const navegar = useNavigate();
 
     //  Pegando os Posts criados pelo usuário
     async function capturarPosts(uid) {
@@ -33,7 +38,14 @@ const Dashboard = () => {
 
     //  Removendo o Post criado pelo usuário
     async function removePost(postId) {
-        await deleteDoc(doc(db, "Posts", postId)).then(res => console.log('Removido com sucesso'))
+        setPosts(undefined);
+        await deleteDoc(doc(db, "Posts", postId)).then((res) => {
+            capturarPosts(userID);
+            setRemovido(true);
+            setTimeout(() => {
+                setRemovido(false);
+            }, 5000);
+        });
     }
 
     useEffect(() => {
@@ -59,15 +71,28 @@ const Dashboard = () => {
                                     <p>{val.data.titulo}</p>
                                 </div>
                                 <div id={styles.right}>
-                                    <button>Ver</button>
+                                    <button
+                                        onClick={() => {
+                                            navegar(`/posts/${val.id}`, { state: val.data });
+                                        }}
+                                    >
+                                        Ver
+                                    </button>
                                     <button>Editar</button>
-                                    <button id={styles.excluir} onClick={()=> {
-                                        removePost(val.id)
-                                    }}>Excluir</button>
+                                    <button
+                                        id={styles.excluir}
+                                        onClick={() => {
+                                            removePost(val.id);
+                                        }}
+                                    >
+                                        Excluir
+                                    </button>
                                 </div>
                             </div>
                         );
                     })}
+                    {/*Caso o item seja removido com sucesso */}
+                    {removido === true && <p id={styles.removido}>Post removido com sucesso!</p>}
                 </div>
             ) : (
                 <SiSpinrilla id={estiloHome.loading} />
