@@ -45,6 +45,7 @@ const SearchPage = () => {
                             {posts.map((post, id) => {
                                 return (
                                     <PostCard
+                                        linkAtivo={true}
                                         conteudo={post.data.conteudo}
                                         imagem={post.data.imagem}
                                         titulo={post.data.titulo}
@@ -52,6 +53,7 @@ const SearchPage = () => {
                                         autor={post.data.criadoPor}
                                         tagsInical={post.data.tags}
                                         id={post.id}
+                                        objecto={post.data}
                                     />
                                 );
                             })}

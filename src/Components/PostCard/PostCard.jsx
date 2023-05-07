@@ -2,13 +2,12 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./PostCard.module.css";
 
-
-const PostCard = ({ objecto, conteudo, titulo, autor, data, imagem, tagsInical, id }) => {
+const PostCard = ({ linkAtivo = false, objecto, conteudo, titulo, autor, data, imagem, tagsInical, id }) => {
     const [descricao, setDescricao] = useState("");
     const [tags, setTags] = useState("");
-    const [dataCorrigida, setDataCorrigida] = useState("")
+    const [dataCorrigida, setDataCorrigida] = useState("");
 
-    const navegar = useNavigate()
+    const navegar = useNavigate();
 
     //  Convertendo o tempo em segundos para formato de data
     function toDateTime(secs) {
@@ -31,19 +30,28 @@ const PostCard = ({ objecto, conteudo, titulo, autor, data, imagem, tagsInical, 
     function organizar(tags) {
         var frase = "";
         tags.forEach((v) => {
-            frase += `#${v} `
+            frase += `#${v} `;
         });
-        setTags(frase)
+        setTags(frase);
     }
 
     useEffect(() => {
         toDateTime(data.seconds);
         reduzir(conteudo, 70);
-        organizar(tagsInical)
+        organizar(tagsInical);
     }, [tagsInical, data]);
 
     return (
-        <div id={styles.container} onClick={()=> { navegar(`posts/${id}`, {state: objecto }) }}>
+        <div
+            id={styles.container}
+            onClick={() => {
+                if (linkAtivo == false) {
+                    navegar(`posts/${id}`, { state: objecto });
+                } else {
+                    navegar(`/posts/${id}`, { state: objecto });
+                }
+            }}
+        >
             <div id={styles.left}>
                 <img src={imagem} loading="lazy" alt="imagem de post" />
             </div>
@@ -51,9 +59,10 @@ const PostCard = ({ objecto, conteudo, titulo, autor, data, imagem, tagsInical, 
                 <p id={styles.tags}>{tags}</p>
                 <h4>{titulo}</h4>
                 <p id={styles.descricao}>{descricao}</p>
-                <p id={styles.autor}>Por <strong>{autor}</strong></p>
+                <p id={styles.autor}>
+                    Por <strong>{autor}</strong>
+                </p>
                 <p id={styles.dataCorrigida}>{dataCorrigida}</p>
-
             </div>
         </div>
     );
