@@ -8,7 +8,7 @@ import estiloHome from "../Home/Home.module.css";
 import { SiSpinrilla } from "react-icons/si";
 import foto from "../../Images/user_security_token.svg";
 import { FaRegEye } from "react-icons/fa  ";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const Dashboard = () => {
     const [posts, setPosts] = useState(undefined);
@@ -17,7 +17,12 @@ const Dashboard = () => {
 
     const userID = getAuth(app).currentUser.uid;
 
+    const [atualizado, setAtualizado] = useState(false);
+
     const navegar = useNavigate();
+
+    //  Caso o sinal de que o post foi atualizado
+    const foiAtualizado = useLocation().state;
 
     //  Pegando os Posts criados pelo usuário
     async function capturarPosts(uid) {
@@ -52,6 +57,15 @@ const Dashboard = () => {
         capturarPosts(userID);
     }, [userID]);
 
+    useEffect(() => {
+        if (foiAtualizado === true || foiAtualizado === false) {
+            setAtualizado(true);
+            setTimeout(() => {
+                setAtualizado(false);
+            }, 4000);
+        }
+    }, [foiAtualizado]);
+
     return (
         <section id={styles.container}>
             <img src={foto} alt="logo de dashboard" />
@@ -78,7 +92,13 @@ const Dashboard = () => {
                                     >
                                         Ver
                                     </button>
-                                    <button>Editar</button>
+                                    <button
+                                        onClick={() => {
+                                            navegar("editar", { state: val });
+                                        }}
+                                    >
+                                        Editar
+                                    </button>
                                     <button
                                         id={styles.excluir}
                                         onClick={() => {
@@ -93,6 +113,8 @@ const Dashboard = () => {
                     })}
                     {/*Caso o item seja removido com sucesso */}
                     {removido === true && <p id={styles.removido}>Post removido com sucesso!</p>}
+                    {/*Caso um post seja atualizado com sucesso */}
+                    {atualizado === true && <p id={styles.removido}>Post atualizado com sucesso!</p>}
                 </div>
             ) : (
                 <SiSpinrilla id={estiloHome.loading} />

@@ -17,6 +17,7 @@ import { AuthProvider, AuthValue } from "./context/AuthContent";
 import { useEffect, useState } from "react";
 import PostPage from "./pages/PostPage/PostPage";
 import SearchPage from "./pages/SearchPage/SearchPage";
+import EditPost from "./pages/Dashboard/EditPost/EditPost";
 
 function App() {
     const [user, setUser] = useState(undefined);
@@ -50,6 +51,7 @@ function App() {
                         <Route path="/dashboard" element={user !== null ? <Dashboard /> : <Navigate to={"/entrar"} />} />
                         <Route path="/posts/:id" element={<PostPage />} />
                         <Route path="/pesquisa" element={<SearchPage />} />
+                        <Route path="/dashboard/editar" element={<EditPost/>} />
                     </Routes>
                     <Footer />
                 </AuthProvider>

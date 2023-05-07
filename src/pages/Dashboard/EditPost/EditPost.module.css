@@ -1,0 +1,19 @@
+#logo {
+    width: 90px !important;
+    filter: contrast(100);
+}
+
+#preview {
+    width: 250px;
+    margin-top: 9px;
+    border: white 1px solid;
+    box-shadow: 1px 1px 5px;
+}
+
+#botao {
+    background-color: red !important;
+}
+
+#ico {
+    fill: white;
+}
