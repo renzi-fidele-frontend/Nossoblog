@@ -3,12 +3,15 @@ import styles from "./PostPage.module.css";
 import estiloHome from "../Home/Home.module.css";
 import { HiUserCircle } from "react-icons/hi";
 import { useEffect, useState } from "react";
-import {BsCalendar2DateFill} from "react-icons/bs"
-import {AiFillTags} from "react-icons/ai"
+import { BsCalendar2DateFill } from "react-icons/bs";
+import { AiFillTags } from "react-icons/ai";
+import SideBar from "../../Components/SideBar/SideBar";
+import { doc, increment, updateDoc } from "firebase/firestore";
+import { db } from "../../firebase/config";
 
 const PostPage = () => {
     const objecto = useLocation().state;
-    const [TagsOrg, setTagsOrg] = useState("")
+    const [TagsOrg, setTagsOrg] = useState("");
     const [data, setData] = useState("");
 
     //  Orgazizando as tags a mostrar
@@ -32,10 +35,20 @@ const PostPage = () => {
         setData(frase);
     }
 
-    useEffect(()=> {
-        organizar(objecto.tags)
-        toDateTime(objecto.criadoEm.seconds)
-    }, [objecto])
+    //  Aumentando o número de vezes lido
+    async function aumentarLeituras() {
+        await updateDoc(doc(db, "Posts", objecto.id), {
+            vezesLido: increment(objecto.data.vezesLido + 1),
+        })
+            .then(() => console.log("Numero de vezes lidas aumentada!"))
+            .catch((err) => alert(err));
+    }
+
+    useEffect(() => {
+        organizar(objecto.tags);
+        toDateTime(objecto.criadoEm.seconds);
+        aumentarLeituras();
+    }, [objecto]);
 
     return (
         <div id={estiloHome.container}>
@@ -65,7 +78,9 @@ const PostPage = () => {
                     <p id={styles.conteudo} dangerouslySetInnerHTML={{ __html: objecto.conteudo }}></p>
                 </div>
             </div>
-            <div id={estiloHome.right}></div>
+            <div id={estiloHome.right}>
+                <SideBar />
+            </div>
         </div>
     );
 };

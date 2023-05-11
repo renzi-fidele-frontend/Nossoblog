@@ -53,6 +53,7 @@ const CriarPost = () => {
                     criadoEm: Timestamp.now(),
                     criadoPor: user.displayName,
                     uid: user.uid,
+                    vezesLido: 0,
                 })
                     .then((v) => {
                         setLoading(false);

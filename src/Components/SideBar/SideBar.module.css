@@ -1,0 +1,16 @@
+#container > form > input {
+    font-size: 18px;
+}
+
+#container > form > button {
+    font-size: 18px;
+    margin-left: 4px;
+}
+
+#container > h3 {
+    margin-top: 2em;
+    margin-bottom: 0.6em;
+    font-size: 17px;
+    font-weight: 700;
+}
+

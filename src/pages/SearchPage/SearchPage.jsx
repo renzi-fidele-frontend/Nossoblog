@@ -6,6 +6,7 @@ import { collection, getDocs, query, where } from "firebase/firestore";
 import { useSearchParams } from "react-router-dom";
 import { SiSpinrilla } from "react-icons/si";
 import PostCard from "../../Components/PostCard/PostCard";
+import SideBar from "../../Components/SideBar/SideBar";
 
 const SearchPage = () => {
     const [posts, setPosts] = useState([]);
@@ -63,7 +64,9 @@ const SearchPage = () => {
                     )}
                 </div>
             </div>
-            <div id={estiloHome.right}></div>
+            <div id={estiloHome.right}>
+                <SideBar/>
+            </div>
         </div>
     );
 };

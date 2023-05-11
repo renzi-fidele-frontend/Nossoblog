@@ -7,12 +7,12 @@ import HeroContainer from "../../Components/HeroContainer/HeroContainer";
 import PostCard from "../../Components/PostCard/PostCard";
 import { SiSpinrilla } from "react-icons/si";
 import { useNavigate } from "react-router-dom";
+import SideBar from "../../Components/SideBar/SideBar";
 
 
 const Home = () => {
     const [posts, setPosts] = useState([]);
     const [data, setData] = useState(null);
-    const [q, setQ] = useState("");
     const navegar = useNavigate();
 
     //  Capturar dados na coleção Posts
@@ -29,16 +29,10 @@ const Home = () => {
         setPosts(arr);
     }
 
-    //  Pesquisando pela tag em cada documento da coleção
-    function pesquisar(text) {
-        navegar(`pesquisa?q=${text}`);
-    }
+    
 
     useEffect(() => {
         capturarPosts();
-        if (q.length > 0) {
-            pesquisar(q);
-        }
     }, []);
 
     return (
@@ -82,30 +76,7 @@ const Home = () => {
                 )}
             </div>
             <div id={styles.right}>
-                <form
-                    onSubmit={(e) => {
-                        e.preventDefault();
-                        pesquisar(q);
-                    }}
-                >
-                    <input type="text" name="q" onChange={(e) => setQ(e.target.value)} id="query" placeholder="Ou busque por tags" />
-                    <button>Pesquisar</button>
-                </form>
-                <h3>Posts em destaque</h3>
-                <ul>
-                    <li>
-                        <a href="">Amor a primeira vista</a>
-                    </li>
-                    <li>
-                        <a href="">Como andar de biscileta</a>
-                    </li>
-                    <li>
-                        <a href="">Como aprender programação</a>
-                    </li>
-                    <li>
-                        <a href="">Como será a geração de futuro</a>
-                    </li>
-                </ul>
+                <SideBar />
             </div>
         </section>
     );

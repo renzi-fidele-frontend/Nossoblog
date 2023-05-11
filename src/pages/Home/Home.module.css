@@ -34,22 +34,6 @@
     scrollbar-width: none; /* Firefox */
 }
 
-#right > form > input {
-    font-size: 18px;
-}
-
-#right > form > button {
-    font-size: 18px;
-    margin-left: 4px;
-}
-
-#right > h3 {
-    margin-top: 2em;
-    margin-bottom: 0.6em;
-    font-size: 17px;
-    font-weight: 700;
-}
-
 #right {
     padding-top: 2em;
     text-align: start;
@@ -76,11 +60,11 @@
     font-weight: 900;
 }
 
-
 @keyframes girar {
     from {
         transform: rotate(0);
-    } to {
+    }
+    to {
         transform: rotate(360deg);
     }
 }
