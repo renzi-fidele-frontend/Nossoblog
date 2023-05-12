@@ -87,7 +87,7 @@ const Dashboard = () => {
                                 <div id={styles.right}>
                                     <button
                                         onClick={() => {
-                                            navegar(`/posts/${val.id}`, { state: val.data });
+                                            navegar(`/posts/${val.id}`, { state: val });
                                         }}
                                     >
                                         Ver

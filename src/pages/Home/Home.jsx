@@ -9,7 +9,6 @@ import { SiSpinrilla } from "react-icons/si";
 import { useNavigate } from "react-router-dom";
 import SideBar from "../../Components/SideBar/SideBar";
 
-
 const Home = () => {
     const [posts, setPosts] = useState([]);
     const [data, setData] = useState(null);
@@ -29,8 +28,6 @@ const Home = () => {
         setPosts(arr);
     }
 
-    
-
     useEffect(() => {
         capturarPosts();
     }, []);
@@ -43,7 +40,7 @@ const Home = () => {
                     <>
                         <h2>Veja os nossos posts mais recentes</h2>
                         <HeroContainer
-                            objecto={posts[0].data}
+                            objecto={posts[0]}
                             criadoEm={posts[0].data.criadoEm.seconds}
                             criadoPor={posts[0].data.criadoPor}
                             titulo={posts[0].data.titulo}
@@ -56,7 +53,7 @@ const Home = () => {
                                 if (id !== 0) {
                                     return (
                                         <PostCard
-                                            objecto={post.data}
+                                            objecto={post}
                                             conteudo={post.data.conteudo}
                                             imagem={post.data.imagem}
                                             titulo={post.data.titulo}
@@ -64,7 +61,6 @@ const Home = () => {
                                             autor={post.data.criadoPor}
                                             tagsInical={post.data.tags}
                                             id={post.id}
-                                            
                                         />
                                     );
                                 }

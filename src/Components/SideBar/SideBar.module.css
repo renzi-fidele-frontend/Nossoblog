@@ -10,7 +10,8 @@
 #container > h3 {
     margin-top: 2em;
     margin-bottom: 0.6em;
-    font-size: 17px;
-    font-weight: 700;
+    font-size: 22px;
+    font-weight: 600;
+    text-decoration: underline 2px purple;
 }
 

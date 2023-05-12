@@ -36,32 +36,36 @@ const PostPage = () => {
     }
 
     //  Aumentando o número de vezes lido
-    async function aumentarLeituras() {
-        await updateDoc(doc(db, "Posts", objecto.id), {
-            vezesLido: increment(objecto.data.vezesLido + 1),
+    function aumentarViews() {
+        console.log(objecto);
+        updateDoc(doc(db, "Posts", objecto.id), {
+            vezesLido: increment(1),
         })
             .then(() => console.log("Numero de vezes lidas aumentada!"))
             .catch((err) => alert(err));
     }
 
     useEffect(() => {
-        organizar(objecto.tags);
-        toDateTime(objecto.criadoEm.seconds);
-        aumentarLeituras();
+        organizar(objecto.data.tags);
+        toDateTime(objecto.data.criadoEm.seconds);
     }, [objecto]);
+
+    useEffect(()=> {
+        aumentarViews()
+    }, [])
 
     return (
         <div id={estiloHome.container}>
             <div id={estiloHome.left}>
-                <h2 id={styles.tit}>{objecto.titulo}</h2>
+                <h2 id={styles.tit}>{objecto.data.titulo}</h2>
                 <div id={styles.fundo}>
-                    <img src={objecto.imagem} id={styles.img} alt="Imagem de destaque" />
+                    <img src={objecto.data.imagem} id={styles.img} alt="Imagem de destaque" />
 
                     <div id={styles.line}>
                         <div>
                             <HiUserCircle size={23} />
 
-                            <p>{objecto.criadoPor}</p>
+                            <p>{objecto.data.criadoPor}</p>
                         </div>
                         <div>
                             <BsCalendar2DateFill size={23} />
@@ -75,7 +79,7 @@ const PostPage = () => {
                         </div>
                     </div>
 
-                    <p id={styles.conteudo} dangerouslySetInnerHTML={{ __html: objecto.conteudo }}></p>
+                    <p id={styles.conteudo} dangerouslySetInnerHTML={{ __html: objecto.data.conteudo }}></p>
                 </div>
             </div>
             <div id={estiloHome.right}>
