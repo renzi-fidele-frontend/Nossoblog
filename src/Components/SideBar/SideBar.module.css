@@ -29,7 +29,7 @@
     padding-inline: 6px;
     padding-block: 2px;
     border-radius: 10px;
-    transition: all .3s ease-in-out;
+    transition: all 0.3s ease-in-out;
     border: 1px solid black;
 }
 
@@ -41,8 +41,7 @@
 
 #tagsContainer {
     display: flex;
-    flex-flow: row nowrap;
-    
+    flex-flow: row wrap;
 }
 
 #tagsContainer > a {
@@ -53,7 +52,16 @@
     font-size: 17px;
     border: 1px solid black;
     padding-inline: 5px;
+    margin-bottom: 5px;
+    transition: all 0.3s ease-in-out;
 }
+
+#tagsContainer > a:hover {
+    background-color: black;
+    color: white;
+    box-shadow: 1px 1px 1px black;
+}
+
 
 #adsContainer {
     margin-top: 1em;
