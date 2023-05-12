@@ -15,3 +15,46 @@
     text-decoration: underline 2px purple;
 }
 
+#PopularPostsContainer {
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+#PopularPostsContainer > a {
+    margin-bottom: 7px;
+    color: black;
+    font-weight: 500;
+    background-color: pink;
+    width: fit-content;
+    padding-inline: 6px;
+    padding-block: 2px;
+    border-radius: 10px;
+    transition: all .3s ease-in-out;
+    border: 1px solid black;
+}
+
+#PopularPostsContainer > a:hover {
+    background-color: black;
+    color: white;
+    box-shadow: 1px 1px 1px black;
+}
+
+#tagsContainer {
+    display: flex;
+    flex-flow: row nowrap;
+    
+}
+
+#tagsContainer > a {
+    font-style: italic;
+    color: #220120;
+    margin-right: 8px;
+    font-weight: 500;
+    font-size: 17px;
+    border: 1px solid black;
+    padding-inline: 5px;
+}
+
+#adsContainer {
+    margin-top: 1em;
+}

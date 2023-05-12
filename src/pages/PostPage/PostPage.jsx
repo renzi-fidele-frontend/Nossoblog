@@ -42,7 +42,7 @@ const PostPage = () => {
             vezesLido: increment(1),
         })
             .then(() => console.log("Numero de vezes lidas aumentada!"))
-            .catch((err) => alert(err));
+            .catch((err) => console.log(err));
     }
 
     useEffect(() => {
