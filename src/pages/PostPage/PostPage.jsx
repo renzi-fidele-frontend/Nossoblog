@@ -8,6 +8,7 @@ import { AiFillTags } from "react-icons/ai";
 import SideBar from "../../Components/SideBar/SideBar";
 import { doc, increment, updateDoc } from "firebase/firestore";
 import { db } from "../../firebase/config";
+import { motion } from "framer-motion";
 
 const PostPage = () => {
     const objecto = useLocation().state;
@@ -56,7 +57,7 @@ const PostPage = () => {
 
     return (
         <div id={estiloHome.container}>
-            <div id={estiloHome.left}>
+            <motion.div initial={{x: -200, opacity: 0}} transition={{duration: 1}}  animate={{x: 0, opacity: 1}} id={estiloHome.left}>
                 <h2 id={styles.tit}>{objecto.data.titulo}</h2>
                 <div id={styles.fundo}>
                     <img src={objecto.data.imagem} id={styles.img} alt="Imagem de destaque" />
@@ -81,7 +82,7 @@ const PostPage = () => {
 
                     <p id={styles.conteudo} dangerouslySetInnerHTML={{ __html: objecto.data.conteudo }}></p>
                 </div>
-            </div>
+            </motion.div>
             <div id={estiloHome.right}>
                 <SideBar />
             </div>
