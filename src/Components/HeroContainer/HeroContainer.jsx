@@ -46,7 +46,7 @@ const HeroContainer = ({ imagem, conteudo, titulo, criadoPor, criadoEm, tags, id
             ? { WebkitMaskImage: visibleMask, maskImage: visibleMask }
             : { WebkitMaskImage: hiddenMask, maskImage: hiddenMask }
         }
-        transition={{ duration: 1, delay: 1 }}
+        transition={{ duration: 1}}
         viewport={{ once: true }}
         onViewportEnter={() => setIsInView(true)}>
             <img
