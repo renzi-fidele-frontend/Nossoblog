@@ -64,7 +64,7 @@ const SideBar = () => {
                         return <Link to={`/pesquisa?q=${val}`}>#{val}</Link>;
                     })
                 ) : (
-                    <p>Sem nada a mostrar</p>
+                    <p>...</p>
                 )}
             </div>
             {/*Caso cheguem os posts em destaque */}
@@ -79,7 +79,7 @@ const SideBar = () => {
                         );
                     })
                 ) : (
-                    <p>Sem nada a mostrar</p>
+                    <p>...</p>
                 )}
             </div>
 
