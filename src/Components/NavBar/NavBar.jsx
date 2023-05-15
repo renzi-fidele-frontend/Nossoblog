@@ -31,7 +31,7 @@ const NavBar = () => {
     return (
         <nav id={styles.nav}>
             <NavLink to="/">
-                Mini{" "}
+                Nosso{" "}
                 <span>
                     Bl
                     <HiGlobeEuropeAfrica size={25} />g
