@@ -21,6 +21,7 @@ const CriarPost = () => {
     const { user } = AuthValue();
 
     async function publicar(e) {
+        console.log(user)
         e.preventDefault();
         setLoading(true);
 
