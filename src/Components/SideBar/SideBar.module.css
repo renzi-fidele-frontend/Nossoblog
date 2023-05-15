@@ -1,10 +1,21 @@
 #container > form > input {
     font-size: 18px;
+    padding: 3px;
+}
+
+#container > form {
+    display: flex;
+    flex-flow: row nowrap;
 }
 
 #container > form > button {
-    font-size: 18px;
     margin-left: 4px;
+    padding-inline: 5px;
+    font-size: 20px;
+}
+
+#container > form > button:hover {
+    cursor: pointer;
 }
 
 #container > h3 {
@@ -62,7 +73,25 @@
     box-shadow: 1px 1px 1px black;
 }
 
-
 #adsContainer {
     margin-top: 1em;
+}
+
+#btn {
+    background-color: transparent;
+    border: none;
+    color: white;
+}
+
+#ico > path {
+    fill: white;
+}
+
+#ico {
+    font-size: 27px;
+    transition: transform .4s ease-in-out;
+}
+
+#ico:hover {
+    transform: rotateZ(360deg);
 }

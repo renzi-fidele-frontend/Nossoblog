@@ -1,5 +1,4 @@
 import styles from "./Dashboard.module.css";
-import hand from "../../Images/empty-hand.svg";
 import { getAuth } from "firebase/auth";
 import { app, db } from "../../firebase/config";
 import { collection, getDocs, orderBy, query, where, doc, deleteDoc } from "firebase/firestore";
@@ -7,7 +6,6 @@ import { useEffect, useState } from "react";
 import estiloHome from "../Home/Home.module.css";
 import { SiSpinrilla } from "react-icons/si";
 import foto from "../../Images/user_security_token.svg";
-import { FaRegEye } from "react-icons/fa  ";
 import { useLocation, useNavigate } from "react-router-dom";
 
 const Dashboard = () => {

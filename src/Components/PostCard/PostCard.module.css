@@ -67,3 +67,9 @@
 #dataCorrigida {
 margin-bottom: 14px;
 }
+
+@media screen and (max-width: 1316px) {
+    #right > h4 {
+        font-size: 15px;
+    }
+}

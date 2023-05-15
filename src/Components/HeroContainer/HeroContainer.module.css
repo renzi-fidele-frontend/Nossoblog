@@ -34,3 +34,13 @@
 #data > span {
     margin-left: 1em;
 }
+
+@media screen and (max-width: 1436px) {
+    #container > img {
+        width: 92%;
+    }
+
+    #container > a {
+        font-size: 1.4em;
+    }
+}
