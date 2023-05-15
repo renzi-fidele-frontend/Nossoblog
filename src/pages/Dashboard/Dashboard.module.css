@@ -37,10 +37,12 @@
     padding-top: 0.9em;
     padding-bottom: 0.6em;
     transition: all 0.2s ease-in-out;
+    
 }
 
 #itemLine:hover {
     background-color: rgba(255, 255, 255, 0.219);
+    border-inline: rgb(94, 93, 93) 01px dashed;
 }
 
 #right > button {
