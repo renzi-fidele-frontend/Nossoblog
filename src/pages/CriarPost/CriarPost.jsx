@@ -17,12 +17,15 @@ const CriarPost = () => {
 
     const navegar = useNavigate();
 
+
+    //  Pegando o valor global do Contexto
+    const { user } = AuthValue();
+
+
     useEffect(()=> {
         console.log(user)
     }, [])
 
-    //  Pegando o valor global do Contexto
-    const { user } = AuthValue();
 
     async function publicar(e) {
         e.preventDefault();
