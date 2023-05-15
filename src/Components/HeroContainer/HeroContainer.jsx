@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 const hiddenMask = `repeating-linear-gradient(to right, rgba(0,0,0,0) 0px, rgba(0,0,0,0) 30px, rgba(0,0,0,1) 30px, rgba(0,0,0,1) 30px)`;
 const visibleMask = `repeating-linear-gradient(to right, rgba(0,0,0,0) 0px, rgba(0,0,0,0) 0px, rgba(0,0,0,1) 0px, rgba(0,0,0,1) 30px)`;
 
-const HeroContainer = ({ imagem, conteudo, titulo, criadoPor, criadoEm, tags, id, objecto }) => {
+const HeroContainer = ({ imagem, titulo, criadoPor, criadoEm, tags, id, objecto }) => {
     const [data, setData] = useState("");
     const [tagsOrg, setTagsOrg] = useState([]);
 
@@ -40,15 +40,18 @@ const HeroContainer = ({ imagem, conteudo, titulo, criadoPor, criadoEm, tags, id
     }, [criadoEm, tags]);
 
     return (
-        <motion.div id={styles.container} initial={false}
-        animate={
-          isLoaded && isInView
-            ? { WebkitMaskImage: visibleMask, maskImage: visibleMask }
-            : { WebkitMaskImage: hiddenMask, maskImage: hiddenMask }
-        }
-        transition={{ duration: 1}}
-        viewport={{ once: true }}
-        onViewportEnter={() => setIsInView(true)}>
+        <motion.div
+            id={styles.container}
+            initial={false}
+            animate={
+                isLoaded && isInView
+                    ? { WebkitMaskImage: visibleMask, maskImage: visibleMask }
+                    : { WebkitMaskImage: hiddenMask, maskImage: hiddenMask }
+            }
+            transition={{ duration: 1 }}
+            viewport={{ once: true }}
+            onViewportEnter={() => setIsInView(true)}
+        >
             <img
                 src={imagem}
                 onLoad={() => setIsLoaded(true)}

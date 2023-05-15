@@ -5,7 +5,6 @@ import { getAuth, signOut } from "firebase/auth";
 import { AuthValue } from "../../context/AuthContent";
 import { HiGlobeEuropeAfrica } from "react-icons/hi2";
 
-
 const NavBar = () => {
     //  Pegando o valor global do Contexto
     const { user, setUser } = AuthValue();
@@ -24,7 +23,7 @@ const NavBar = () => {
     async function deslogar(e) {
         e.preventDefault();
         const res = await signOut(auth)
-            .then(() => setUser(undefined))        
+            .then(() => setUser(undefined))
             .catch((err) => console.log(`Ops, não foi possível deslogar devido a ${err}`));
     }
 

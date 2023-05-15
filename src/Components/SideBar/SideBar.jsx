@@ -3,7 +3,7 @@ import styles from "./SideBar.module.css";
 import { Link, useNavigate } from "react-router-dom";
 import { collection, getDocs, limit, orderBy, query } from "firebase/firestore";
 import { db } from "../../firebase/config";
-import {FaSearch} from "react-icons/fa"
+import { FaSearch } from "react-icons/fa";
 
 const SideBar = () => {
     const [q, setQ] = useState("");
@@ -54,7 +54,9 @@ const SideBar = () => {
                 }}
             >
                 <input type="text" name="q" required onChange={(e) => setQ(e.target.value)} id="query" placeholder="Ou busque por tags" />
-                <button id={styles.btn}><FaSearch color="red" id={styles.ico} path="white" title="pesquisar"/></button>
+                <button id={styles.btn}>
+                    <FaSearch color="red" id={styles.ico} path="white" title="pesquisar" />
+                </button>
             </form>
             {/*Caso cheguem as tags populares */}
             <h3>Tags populares</h3>

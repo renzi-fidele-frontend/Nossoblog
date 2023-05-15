@@ -65,7 +65,7 @@ const SearchPage = () => {
                 </div>
             </div>
             <div id={estiloHome.right}>
-                <SideBar/>
+                <SideBar />
             </div>
         </div>
     );

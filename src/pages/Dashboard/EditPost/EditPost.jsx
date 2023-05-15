@@ -32,7 +32,7 @@ const EditPost = () => {
     const navegar = useNavigate();
 
     async function Atualizar(e) {
-        e.preventDefault()
+        e.preventDefault();
         // Verificando se o link da imagem existe
         function checkIfImageExists(url, callback) {
             const img = new Image();
@@ -128,7 +128,7 @@ const EditPost = () => {
                         value={conteudo}
                         onChange={(e) => setConteudo(e.target.value)}
                         required
-                    />                    
+                    />
                 </fieldset>
                 <fieldset>
                     <label htmlFor="tags">Tags</label>
@@ -142,11 +142,16 @@ const EditPost = () => {
                     />
                 </fieldset>
                 <button>Salvar</button>
-                <button id={styles.botao} onClick={(e)=> {
-                    e.preventDefault()
-                    navegar("/dashboard")
-                }}>Cancelar</button>
-                
+                <button
+                    id={styles.botao}
+                    onClick={(e) => {
+                        e.preventDefault();
+                        navegar("/dashboard");
+                    }}
+                >
+                    Cancelar
+                </button>
+
                 {/*Caso a senha de confirmação não coincida com a senha */}
                 {erroFormulario.length > 0 ? (
                     <p style={{ color: "red", position: "absolute", marginTop: "4px", fontWeight: "600" }}>{erroFormulario}</p>

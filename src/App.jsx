@@ -51,7 +51,7 @@ function App() {
                         <Route path="/dashboard" element={user !== null ? <Dashboard /> : <Navigate to={"/entrar"} />} />
                         <Route path="/posts/:id" element={<PostPage />} />
                         <Route path="/pesquisa" element={<SearchPage />} />
-                        <Route path="/dashboard/editar" element={<EditPost/>} />
+                        <Route path="/dashboard/editar" element={<EditPost />} />
                     </Routes>
                     <Footer />
                 </AuthProvider>
