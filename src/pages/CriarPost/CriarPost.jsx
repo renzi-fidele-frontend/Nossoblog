@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./CriarPost.module.css";
 import { db } from "../../firebase/config";
 import { collection, addDoc, Timestamp } from "firebase/firestore";
@@ -17,11 +17,14 @@ const CriarPost = () => {
 
     const navegar = useNavigate();
 
+    useEffect(()=> {
+        console.log(user)
+    }, [])
+
     //  Pegando o valor global do Contexto
     const { user } = AuthValue();
 
     async function publicar(e) {
-        console.log(user)
         e.preventDefault();
         setLoading(true);
 
