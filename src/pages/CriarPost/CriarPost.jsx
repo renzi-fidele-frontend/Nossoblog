@@ -5,6 +5,7 @@ import { collection, addDoc, Timestamp } from "firebase/firestore";
 import { AuthValue } from "../../context/AuthContent";
 import { useNavigate } from "react-router-dom";
 import foto from "../../Images/postalbox.svg";
+import { motion } from "framer-motion";
 
 const CriarPost = () => {
     //  Hooks do formulário
@@ -17,15 +18,12 @@ const CriarPost = () => {
 
     const navegar = useNavigate();
 
-
     //  Pegando o valor global do Contexto
     const { user } = AuthValue();
 
-
-    useEffect(()=> {
-        console.log(user)
-    }, [user])
-
+    useEffect(() => {
+        console.log(user);
+    }, [user]);
 
     async function publicar(e) {
         e.preventDefault();
@@ -84,7 +82,12 @@ const CriarPost = () => {
     }
 
     return (
-        <section id={styles.container}>
+        <motion.section
+            initial={{ opacity: 0, scale: 0 }}
+            transition={{ duration: 0.4 }}
+            animate={{ opacity: 1, scale: 1 }}
+            id={styles.container}
+        >
             <img src={foto} alt="ilustração de criação de post" />
             <h2>Criar post</h2>
             <p>Escreva sobre o que quiser e compartilhe o seu conhecimento!</p>
@@ -138,7 +141,7 @@ const CriarPost = () => {
                     <p style={{ color: "red", position: "absolute", marginTop: "4px", fontWeight: "600" }}>{erroFormulario}</p>
                 ) : undefined}
             </form>
-        </section>
+        </motion.section>
     );
 };
 

@@ -27,7 +27,7 @@
 
 #left > img {
     width: 60%;
-    border: 15px solid rgb(156, 17, 255);
+    border: 15px dashed rgb(156, 17, 255);
     transition: border ease-in-out .2s;
 
 }

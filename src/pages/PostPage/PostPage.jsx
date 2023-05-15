@@ -51,13 +51,13 @@ const PostPage = () => {
         toDateTime(objecto.data.criadoEm.seconds);
     }, [objecto]);
 
-    useEffect(()=> {
-        aumentarViews()
-    }, [])
+    useEffect(() => {
+        aumentarViews();
+    }, []);
 
     return (
         <div id={estiloHome.container}>
-            <motion.div initial={{x: -200, opacity: 0}} transition={{duration: 1}}  animate={{x: 0, opacity: 1}} id={estiloHome.left}>
+            <motion.div initial={{ x: -200, opacity: 0 }} transition={{ duration: 1 }} animate={{ x: 0, opacity: 1 }} id={estiloHome.left}>
                 <h2 id={styles.tit}>{objecto.data.titulo}</h2>
                 <div id={styles.fundo}>
                     <img src={objecto.data.imagem} id={styles.img} alt="Imagem de destaque" />

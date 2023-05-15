@@ -3,6 +3,7 @@ import icon from "../../Images/register.svg";
 import { useState } from "react";
 import { getAuth, createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { app } from "../../firebase/config";
+import { motion } from "framer-motion";
 
 const Register = () => {
     const [nome, setNome] = useState("");
@@ -61,7 +62,12 @@ const Register = () => {
     }
 
     return (
-        <section id={styles.container}>
+        <motion.section
+            initial={{ opacity: 0, scale: 0 }}
+            transition={{ duration: 0.4 }}
+            animate={{ opacity: 1, scale: 1 }}
+            id={styles.container}
+        >
             <h2>Cadastre-se para postar</h2>
 
             <p>Crie seu usuário e compartilhe suas histórias</p>
@@ -130,7 +136,7 @@ const Register = () => {
                 </form>
                 <img src={icon} alt="icone" />
             </div>
-        </section>
+        </motion.section>
     );
 };
 

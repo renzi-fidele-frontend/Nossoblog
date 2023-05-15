@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import estiloHome from "../Home/Home.module.css";
 import logo from "../../Images/about.svg";
 import me from "../../Images/me.png";
+import { motion } from "framer-motion";
 
 const About = () => {
     //  Pegando o valor global do contexto
@@ -14,7 +15,7 @@ const About = () => {
     }, []);
 
     return (
-        <div id={styles.container}>
+        <motion.div initial={{ opacity: 0, scale: 0 }} transition={{ duration: 0.4 }} animate={{ opacity: 1, scale: 1 }} id={styles.container}>
             <img src={logo} alt="Logo que descreve a secção Sobre" />
             <h2>Sobre</h2>
             <div id={styles.linha}>
@@ -46,7 +47,7 @@ const About = () => {
                     </p>
                 </div>
             </div>
-        </div>
+        </motion.div>
     );
 };
 

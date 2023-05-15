@@ -5,11 +5,12 @@ import estilo from "../Register/Register.module.css";
 import { useState } from "react";
 import icon from "../../Images/undraw_secure_login_pdn4.svg";
 import { AuthValue } from "../../context/AuthContent";
+import { motion } from "framer-motion";
 
 const Login = () => {
     //  Pegando o valor global do Contexto
-    const  {user, setUser1}  = AuthValue();
-    
+    const { user, setUser1 } = AuthValue();
+
     //  Hooks do form
     const [email, setEmail] = useState("");
     const [senha, setSenha] = useState("");
@@ -48,7 +49,12 @@ const Login = () => {
     }
 
     return (
-        <section id={estilo.container}>
+        <motion.section
+            initial={{ opacity: 0, scale: 0 }}
+            transition={{ duration: 0.4 }}
+            animate={{ opacity: 1, scale: 1 }}
+            id={styles.container}
+        >
             <h2>Entrar</h2>
             <p>Faça o login para poder utilizar o sistema</p>
 
@@ -84,7 +90,7 @@ const Login = () => {
                 </form>
                 <img id={styles.imagem} src={icon} alt="Imagem ilustrativa de login" />
             </div>
-        </section>
+        </motion.section>
     );
 };
 
