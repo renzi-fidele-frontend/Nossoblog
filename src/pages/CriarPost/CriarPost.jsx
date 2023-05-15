@@ -24,7 +24,7 @@ const CriarPost = () => {
 
     useEffect(()=> {
         console.log(user)
-    }, [])
+    }, [user])
 
 
     async function publicar(e) {
