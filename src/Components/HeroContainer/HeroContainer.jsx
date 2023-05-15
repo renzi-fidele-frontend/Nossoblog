@@ -19,11 +19,9 @@ const HeroContainer = ({ imagem, conteudo, titulo, criadoPor, criadoEm, tags, id
 
     //  Convertendo o tempo em segundos para formato de data
     function toDateTime(secs) {
-        let t = new Date(1970, 0, 1); // Epoch
-        t.setSeconds(secs);
-        setData(t);
+        let t = new Date(secs * 1000); // Epoch
         let dd = t.getDate();
-        let mm = t.getMonth();
+        let mm = t.getMonth() + 1;
         let yyyy = t.getFullYear();
         let frase = `${dd}/${mm}/${yyyy}`;
         setData(frase);
