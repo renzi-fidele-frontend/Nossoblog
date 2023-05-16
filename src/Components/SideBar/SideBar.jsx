@@ -31,7 +31,7 @@ const SideBar = () => {
         let ar = [];
         arr.map((val) => {
             val.data.tags.filter((v) => {
-                if (v in ar) {
+                if (v in ar === true) {
                     return false;
                 } else {
                     ar.push(v);
