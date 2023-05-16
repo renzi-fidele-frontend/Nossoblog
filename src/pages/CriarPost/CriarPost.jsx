@@ -6,7 +6,6 @@ import { AuthValue } from "../../context/AuthContent";
 import { useNavigate } from "react-router-dom";
 import foto from "../../Images/postalbox.svg";
 import { motion } from "framer-motion";
-import TextEditor from "../../Components/TextEditor/TextEditor";
 
 const CriarPost = () => {
     //  Hooks do formulário
@@ -136,7 +135,7 @@ const CriarPost = () => {
                         required
                     />
                 </fieldset>
-                <TextEditor/>
+
                 <button>Publicar</button>
                 {/*Caso a senha de confirmação não coincida com a senha */}
                 {erroFormulario.length > 0 ? (
