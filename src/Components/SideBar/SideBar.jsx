@@ -30,7 +30,7 @@ const SideBar = () => {
 
         let ar = [];
         arr.map((val) => {
-            val.data.tags.filter((v) => {
+            val.data.tags.map((v) => {
                 if (v in ar === true) {
                     return false;
                 } else {
