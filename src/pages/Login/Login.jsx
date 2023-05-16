@@ -53,7 +53,7 @@ const Login = () => {
             initial={{ opacity: 0, scale: 0 }}
             transition={{ duration: 0.4 }}
             animate={{ opacity: 1, scale: 1 }}
-            id={styles.container}
+            id={estilo.container}
         >
             <h2>Entrar</h2>
             <p>Faça o login para poder utilizar o sistema</p>
