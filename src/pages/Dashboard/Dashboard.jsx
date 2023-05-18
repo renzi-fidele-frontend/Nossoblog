@@ -33,7 +33,6 @@ const Dashboard = () => {
             arr.push({ data: doc.data(), id: doc.id });
         });
 
-        console.log(arr);
         if (arr.length > 0) {
             setPosts(arr);
         }

@@ -22,7 +22,6 @@ const CriarPost = () => {
     const { user } = AuthValue();
 
     useEffect(() => {
-        console.log(user);
     }, [user]);
 
     async function publicar(e) {

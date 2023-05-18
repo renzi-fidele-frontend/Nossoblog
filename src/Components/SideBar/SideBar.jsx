@@ -36,7 +36,6 @@ const SideBar = () => {
                 }
             });
         });
-        console.log(ar);
         setTagsPopulares(ar.slice(0, 5));
     }
 
