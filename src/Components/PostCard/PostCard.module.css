@@ -68,8 +68,21 @@
 margin-bottom: 14px;
 }
 
-@media screen and (max-width: 1316px) {
+@media screen and (max-width: 1364px) {
     #right > h4 {
         font-size: 15px;
     }
+
+    #tags {
+        font-size: 13px;
+    }
+
+    #descricao {
+        font-size: 13px;
+    }
+
+    #autor {
+        font-size: 13px;
+    }
+    
 }

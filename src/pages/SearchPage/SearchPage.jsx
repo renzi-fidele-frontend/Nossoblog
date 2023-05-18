@@ -1,4 +1,3 @@
-import styles from "./SearchPage.module.css";
 import estiloHome from "../Home/Home.module.css";
 import { useEffect, useState } from "react";
 import { db } from "../../firebase/config";
@@ -7,13 +6,16 @@ import { useSearchParams } from "react-router-dom";
 import { SiSpinrilla } from "react-icons/si";
 import PostCard from "../../Components/PostCard/PostCard";
 import SideBar from "../../Components/SideBar/SideBar";
+import styles from "./SearchPage.module.css"
 
 const SearchPage = () => {
     const [posts, setPosts] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     const [q] = useSearchParams();
 
     async function pesquisar(text) {
+        setLoading(true)
         setPosts([]);
         let arr = [];
         let q = query(collection(db, "Posts"), where("tags", "array-contains", text));
@@ -27,6 +29,7 @@ const SearchPage = () => {
         console.log(arr);
 
         setPosts(arr);
+        setLoading(false)
     }
 
     useEffect(() => {
@@ -41,7 +44,7 @@ const SearchPage = () => {
                 </h2>
                 <div id={estiloHome.duasCol}>
                     {/*Caso cheguem posts do banco de dados */}
-                    {posts.length > 0 ? (
+                    {posts.length > 0 && (
                         <>
                             {posts.map((post, id) => {
                                 return (
@@ -59,9 +62,14 @@ const SearchPage = () => {
                                 );
                             })}
                         </>
-                    ) : (
-                        <SiSpinrilla id={estiloHome.loading} />
                     )}
+                    {/*Caso os posts estejam sendo carregados */}
+                    {loading === true && <SiSpinrilla id={estiloHome.loading} />}
+                    {/*Caso não haja nenhum resultado */}
+                    {(loading === false && posts.length === 0) && (
+                        <p id={styles.notfound}>Nenhum resultado foi encontrado</p>
+                    )}
+        
                 </div>
             </div>
             <div id={estiloHome.right}>

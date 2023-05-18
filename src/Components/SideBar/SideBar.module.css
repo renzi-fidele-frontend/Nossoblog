@@ -89,9 +89,23 @@
 
 #ico {
     font-size: 27px;
-    transition: transform .4s ease-in-out;
+    transition: transform 0.4s ease-in-out;
 }
 
 #ico:hover {
     transform: rotateZ(360deg);
+}
+
+@media screen and (max-width: 1214px) {
+    #container > h3 {
+        font-size: 18px;
+    }
+
+    #PopularPostsContainer > a {
+        font-size: 14px;
+    }
+
+    #tagsContainer > a {
+        font-size: 14px;
+    }
 }

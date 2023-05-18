@@ -10,7 +10,7 @@
 }
 
 #container > img:hover {
-    opacity: .9;
+    opacity: 0.9;
     cursor: pointer;
 }
 
@@ -37,10 +37,18 @@
 
 @media screen and (max-width: 1436px) {
     #container > img {
-        width: 92%;
+        width: 80%;
+        height: 430px;
     }
 
     #container > a {
         font-size: 1.4em;
+    }
+}
+
+
+@media screen and (max-width: 1214px) {
+    #container > img {
+        height: 380px;
     }
 }
