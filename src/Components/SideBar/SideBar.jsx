@@ -29,15 +29,14 @@ const SideBar = () => {
         setPostsDestacados(arr);
 
         let ar = [];
-        arr.map((val) => {
-            val.data.tags.map((v) => {
-                if (v in ar === true) {
-                    return false;
-                } else {
+        arr.forEach((val) => {
+            val.data.tags.forEach((v) => {
+                if (ar.includes(v) === false) {
                     ar.push(v);
                 }
             });
         });
+        console.log(ar);
         setTagsPopulares(ar.slice(0, 5));
     }
 
