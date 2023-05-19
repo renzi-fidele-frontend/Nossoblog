@@ -22,12 +22,12 @@
     line-height: 1.4em;
 }
 
-#line  {
+#line {
     display: flex;
     flex-flow: row nowrap;
     align-items: center;
     margin-left: 1.5em;
-    margin-top: .5em;
+    margin-top: 0.5em;
 }
 
 #line > div {
@@ -41,4 +41,16 @@
     font-size: 21px;
     margin-left: 5px;
     font-size: 17px;
+}
+
+#tagsOrg > a {
+    color: rgb(61, 4, 49);
+    margin-right: 4px;
+    transition: .1s all ease-in-out;
+}
+
+#tagsOrg > a:hover {
+    color: rgb(231, 45, 138);
+    font-weight: 700;
+    text-decoration: underline;
 }

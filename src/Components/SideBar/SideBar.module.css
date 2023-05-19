@@ -1,10 +1,13 @@
 #container > form > input {
     font-size: 18px;
     padding: 3px;
-    border: 2px #ae2acf solid;
+    border-radius: 2px;
+    border: 1px #e692f7 solid;
+    transition: all .5s ease-in-out;
 }
 
-#container > form > input {
+#container > form > input:focus {
+    background-color: pink;
 }
 
 #container > form {

@@ -1,4 +1,4 @@
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import styles from "./PostPage.module.css";
 import estiloHome from "../Home/Home.module.css";
 import { HiUserCircle } from "react-icons/hi";
@@ -16,13 +16,13 @@ const PostPage = () => {
     const [data, setData] = useState("");
 
     //  Orgazizando as tags a mostrar
-    function organizar(tags) {
+    /*function organizar(tags) {
         var frase = "";
         tags.forEach((v) => {
             frase += `#${v} `;
         });
         setTagsOrg(frase);
-    }
+    }*/
 
     //  Convertendo o tempo em segundos para formato de data
     function toDateTime(secs) {
@@ -44,7 +44,6 @@ const PostPage = () => {
     }
 
     useEffect(() => {
-        organizar(objecto.data.tags);
         toDateTime(objecto.data.criadoEm.seconds);
     }, [objecto]);
 
@@ -72,7 +71,16 @@ const PostPage = () => {
                         </div>
                         <div>
                             <AiFillTags size={23} />
-
+                            <div id={styles.tagsOrg}>
+                                {objecto.data.tags.map((v, id) => {
+                                    return (
+                                        <Link id={id} to={`/pesquisa/?q=${v}`}>
+                                            #{v}
+                                        </Link>
+                                    );
+                                })}
+                                
+                            </div>
                             <p>{TagsOrg}</p>
                         </div>
                     </div>
