@@ -7,9 +7,12 @@ import estiloHome from "../Home/Home.module.css";
 import { SiSpinrilla } from "react-icons/si";
 import foto from "../../Images/user_security_token.svg";
 import { useLocation, useNavigate } from "react-router-dom";
+import ft from "../../Images/Interdit.svg";
 
 const Dashboard = () => {
     const [posts, setPosts] = useState(undefined);
+
+    const [loading, setLoading] = useState(true);
 
     const [removido, setRemovido] = useState(false);
 
@@ -36,6 +39,7 @@ const Dashboard = () => {
         if (arr.length > 0) {
             setPosts(arr);
         }
+        setLoading(false);
     }
 
     //  Removendo o Post criado pelo usuário
@@ -67,54 +71,64 @@ const Dashboard = () => {
         <section id={styles.container}>
             <img src={foto} alt="logo de dashboard" />
             <h2>Dashboard</h2>
-            <p>Gerencie os seus Posts</p>
             {/*Caso Hajam posts criados pelo administrador da conta */}
-            {posts ? (
-                <div id={styles.userPostsContainer}>
-                    <div id={styles.linha}>
-                        <p>Título</p>
-                        <p>Ações</p>
+            {posts && (
+                <>
+                    <p>Gerencie os seus Posts</p>
+
+                    <div id={styles.userPostsContainer}>
+                        <div id={styles.linha}>
+                            <p>Título</p>
+                            <p>Ações</p>
+                        </div>
+                        {posts.map((val) => {
+                            return (
+                                <div id={styles.itemLine}>
+                                    <div id={styles.left}>
+                                        <p>{val.data.titulo}</p>
+                                    </div>
+                                    <div id={styles.right}>
+                                        <button
+                                            onClick={() => {
+                                                navegar(`/posts/${val.id}`, { state: val });
+                                            }}
+                                        >
+                                            Ver
+                                        </button>
+                                        <button
+                                            onClick={() => {
+                                                navegar("editar", { state: val });
+                                            }}
+                                        >
+                                            Editar
+                                        </button>
+                                        <button
+                                            id={styles.excluir}
+                                            onClick={() => {
+                                                removePost(val.id);
+                                            }}
+                                        >
+                                            Excluir
+                                        </button>
+                                    </div>
+                                </div>
+                            );
+                        })}
+                        {/*Caso o item seja removido com sucesso */}
+                        {removido === true && <p id={styles.removido}>Post removido com sucesso!</p>}
+                        {/*Caso um post seja atualizado com sucesso */}
+                        {atualizado === true && <p id={styles.removido}>Post atualizado com sucesso!</p>}
                     </div>
-                    {posts.map((val) => {
-                        return (
-                            <div id={styles.itemLine}>
-                                <div id={styles.left}>
-                                    <p>{val.data.titulo}</p>
-                                </div>
-                                <div id={styles.right}>
-                                    <button
-                                        onClick={() => {
-                                            navegar(`/posts/${val.id}`, { state: val });
-                                        }}
-                                    >
-                                        Ver
-                                    </button>
-                                    <button
-                                        onClick={() => {
-                                            navegar("editar", { state: val });
-                                        }}
-                                    >
-                                        Editar
-                                    </button>
-                                    <button
-                                        id={styles.excluir}
-                                        onClick={() => {
-                                            removePost(val.id);
-                                        }}
-                                    >
-                                        Excluir
-                                    </button>
-                                </div>
-                            </div>
-                        );
-                    })}
-                    {/*Caso o item seja removido com sucesso */}
-                    {removido === true && <p id={styles.removido}>Post removido com sucesso!</p>}
-                    {/*Caso um post seja atualizado com sucesso */}
-                    {atualizado === true && <p id={styles.removido}>Post atualizado com sucesso!</p>}
-                </div>
-            ) : (
-                <SiSpinrilla id={estiloHome.loading} />
+                </>
+            )}
+            {/*Caso esteja caregando a informação */}
+            {loading === true && <SiSpinrilla id={estiloHome.loading} />}
+            {/*Caso não haja nenhum post feito pelo usuário */}
+            {posts === undefined && loading === false && (
+                <>
+                    <img id={styles.negacao} src={ft} alt="Ilustracao representando nenhum post" />
+                    <p>Nenhum post foi criado...</p>
+                </>
             )}
         </section>
     );
