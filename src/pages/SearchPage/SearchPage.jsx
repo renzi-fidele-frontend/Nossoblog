@@ -7,7 +7,7 @@ import { SiSpinrilla } from "react-icons/si";
 import PostCard from "../../Components/PostCard/PostCard";
 import SideBar from "../../Components/SideBar/SideBar";
 import styles from "./SearchPage.module.css";
-import ft from "../../Images/interdit.svg";
+import ft from "../../Images/Interdit.svg";
 
 const SearchPage = () => {
     const [posts, setPosts] = useState([]);
