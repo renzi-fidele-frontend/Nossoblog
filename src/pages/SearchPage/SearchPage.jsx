@@ -44,7 +44,7 @@ const SearchPage = () => {
                     Resultados da pesquisa por: <span style={{ textDecoration: "underline" }}>{q.get("q")}</span>
                 </h2>
                 <div id={estiloHome.duasCol}>
-                    {/*Caso cheguem posts do banco de dados */}
+                    {/*Caso cheguem posts do banco de dadosd */}
                     {posts.length > 0 && (
                         <>
                             {posts.map((post, id) => {
