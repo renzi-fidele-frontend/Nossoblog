@@ -66,15 +66,14 @@ const SearchPage = () => {
                     )}
                     {/*Caso os posts estejam sendo carregados */}
                     {loading === true && <SiSpinrilla id={estiloHome.loading} />}
-                    {/*Caso não haja nenhum resultado */}
-                    {loading === false && posts.length === 0 && (
-                    <div>
+                </div>
+                {/*Caso não haja nenhum resultado */}
+                {loading === false && posts.length === 0 && (
+                    <>
                         <img id={styles.notFoundImg} src={ft} alt="icone respresentando erro de pesquisa" />
                         <p id={styles.notfound}>Nenhum resultado foi encontrado</p>
-                    </div>
+                    </>
                 )}
-
-                </div>
             </div>
             <div id={estiloHome.right}>
                 <SideBar />
