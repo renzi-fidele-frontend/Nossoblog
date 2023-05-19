@@ -70,7 +70,7 @@ const SearchPage = () => {
                 </div>
                 {loading === false && posts.length === 0 && (
                     <>
-                        <img id={styles.notFoundImg} src={ft} alt="icone respresentando 0 resultados" />
+                        <img id={styles.notFoundImg} src={ft} alt="icone respresentando erro de pesquisa" />
                         <p id={styles.notfound}>Nenhum resultado foi encontrado</p>
                     </>
                 )}
