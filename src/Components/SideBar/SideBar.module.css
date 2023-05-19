@@ -1,6 +1,10 @@
 #container > form > input {
     font-size: 18px;
     padding: 3px;
+    border: 2px #ae2acf solid;
+}
+
+#container > form > input {
 }
 
 #container > form {
