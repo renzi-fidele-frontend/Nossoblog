@@ -69,10 +69,10 @@ const SearchPage = () => {
                     {/*Caso não haja nenhum resultado */}
                 </div>
                 {loading === false && posts.length === 0 && (
-                    <>
+                    <div>
                         <img id={styles.notFoundImg} src={ft} alt="icone respresentando erro de pesquisa" />
                         <p id={styles.notfound}>Nenhum resultado foi encontrado</p>
-                    </>
+                    </div>
                 )}
             </div>
             <div id={estiloHome.right}>
