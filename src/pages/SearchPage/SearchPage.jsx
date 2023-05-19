@@ -6,7 +6,8 @@ import { useSearchParams } from "react-router-dom";
 import { SiSpinrilla } from "react-icons/si";
 import PostCard from "../../Components/PostCard/PostCard";
 import SideBar from "../../Components/SideBar/SideBar";
-import styles from "./SearchPage.module.css"
+import styles from "./SearchPage.module.css";
+import ft from "../../Images/interdit.svg";
 
 const SearchPage = () => {
     const [posts, setPosts] = useState([]);
@@ -15,7 +16,7 @@ const SearchPage = () => {
     const [q] = useSearchParams();
 
     async function pesquisar(text) {
-        setLoading(true)
+        setLoading(true);
         setPosts([]);
         let arr = [];
         let q = query(collection(db, "Posts"), where("tags", "array-contains", text));
@@ -29,7 +30,7 @@ const SearchPage = () => {
         console.log(arr);
 
         setPosts(arr);
-        setLoading(false)
+        setLoading(false);
     }
 
     useEffect(() => {
@@ -66,11 +67,13 @@ const SearchPage = () => {
                     {/*Caso os posts estejam sendo carregados */}
                     {loading === true && <SiSpinrilla id={estiloHome.loading} />}
                     {/*Caso não haja nenhum resultado */}
-                    {(loading === false && posts.length === 0) && (
-                        <p id={styles.notfound}>Nenhum resultado foi encontrado</p>
-                    )}
-        
                 </div>
+                {loading === false && posts.length === 0 && (
+                    <>
+                        <img id={styles.notFoundImg} src={ft} alt="icone respresentando 0 resultados" />
+                        <p id={styles.notfound}>Nenhum resultado foi encontrado</p>
+                    </>
+                )}
             </div>
             <div id={estiloHome.right}>
                 <SideBar />
