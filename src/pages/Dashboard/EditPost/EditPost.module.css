@@ -30,6 +30,7 @@
     font-size: 13px;
     color: black;
     transition: all 0.6s ease-in-out;
+    padding-inline: 6px;
 }
 
 .demoEditor:hover, .demoEditor:focus {

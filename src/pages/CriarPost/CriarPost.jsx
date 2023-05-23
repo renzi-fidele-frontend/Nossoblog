@@ -87,6 +87,7 @@ const CriarPost = () => {
         });
     }
 
+    const [estiloEditor, setEstiloEditor] = useState({undefined})
 
     return (
         <motion.section
@@ -124,6 +125,7 @@ const CriarPost = () => {
                 <fieldset>
                     <label htmlFor="conteudo">Conteúdo</label>
                     <Editor
+                        onFocus={()=> setEstiloEditor({backgroundColor: "pink"})}
                         toolbarStyle={{
                             background: "rgb(179, 140, 171)",
                             border: "none",
@@ -144,6 +146,7 @@ const CriarPost = () => {
                             setConteudoHTML(draftToHtml(convertToRaw(newState.getCurrentContent())));
                             console.log(conteudoHTML);
                         }}
+                        editorStyle={estiloEditor}
                         wrapperClassName={styles.demoWrapper}
                         editorClassName={styles.demoEditor}
                     />

@@ -20,18 +20,14 @@ const EditPost = () => {
     const [editorState, seteditorState] = useState(EditorState.createEmpty());
     const [conteudoHTML, setConteudoHTML] = useState("");
 
-    
-
     useEffect(() => {
         setTitulo(objeto.data.titulo);
         setImagem(objeto.data.imagem);
         let conteudoPuro = htmlToDraft(objeto.data.conteudo);
-        let contentState = ContentState.createFromBlockArray(conteudoPuro)
-        let _editorState = EditorState.createWithContent(contentState)
+        let contentState = ContentState.createFromBlockArray(conteudoPuro);
+        let _editorState = EditorState.createWithContent(contentState);
 
-        seteditorState(_editorState)
-
-
+        seteditorState(_editorState);
 
         let frase = "";
         objeto.data.tags.map((v) => {
@@ -103,8 +99,10 @@ const EditPost = () => {
         });
     }
 
+    const [estiloEditor, setEstiloEditor] = useState({ backgroundColor: "initial" });
+
     return (
-        <div id={estiloCriarPost.container} >
+        <div id={estiloCriarPost.container}>
             <img src={foto} id={styles.logo} alt="ilustração de icone de edição" />
             <h2>Edição de Post</h2>
             <form onSubmit={Atualizar} id={styles.form}>
@@ -137,6 +135,8 @@ const EditPost = () => {
                 <fieldset>
                     <label htmlFor="conteudo">Conteúdo</label>
                     <Editor
+                        onFocus={() => setEstiloEditor({ backgroundColor: "pink" })}
+                        editorStyle={estiloEditor}
                         toolbarStyle={{
                             background: "rgb(179, 140, 171)",
                             border: "none",
