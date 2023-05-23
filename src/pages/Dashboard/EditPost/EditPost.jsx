@@ -23,6 +23,7 @@ const EditPost = () => {
     useEffect(() => {
         setTitulo(objeto.data.titulo);
         setImagem(objeto.data.imagem);
+        setConteudoHTML(objeto.data.conteudo);
         let conteudoPuro = htmlToDraft(objeto.data.conteudo);
         let contentState = ContentState.createFromBlockArray(conteudoPuro);
         let _editorState = EditorState.createWithContent(contentState);

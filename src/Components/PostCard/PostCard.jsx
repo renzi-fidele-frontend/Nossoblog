@@ -19,9 +19,15 @@ const PostCard = ({ linkAtivo = false, objecto, conteudo, titulo, autor, data, i
         setDataCorrigida(frase);
     }
 
+    function convertHtmtoString(str) {
+        let element = document.createElement("div")
+        element.innerHTML = str
+        return element.innerText
+    }
+
     //  Reduzindo o texto do conteúdo do post
     function reduzir(str, maxlength) {
-        setDescricao(str.length > maxlength ? str.slice(0, maxlength - 1) + "…" : str);
+        setDescricao(convertHtmtoString(str.length > maxlength ? str.slice(0, maxlength - 1) + "…" : str));
     }
 
     //  Orgazizando as tags a mostrar
