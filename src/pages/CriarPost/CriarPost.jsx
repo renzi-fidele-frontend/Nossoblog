@@ -6,6 +6,14 @@ import { AuthValue } from "../../context/AuthContent";
 import { useNavigate } from "react-router-dom";
 import foto from "../../Images/postalbox.svg";
 import { motion } from "framer-motion";
+import { EditorState, convertToRaw } from "draft-js";
+import draftToHtml from "draftjs-to-html";
+import "../../../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
+import "../../../node_modules/@draft-js-plugins/image/lib/plugin.css";
+import createImagePlugin from "@draft-js-plugins/image";
+import EditorPlugin from "@draft-js-plugins/editor";
+import { Editor } from "react-draft-wysiwyg";
+import "../../../node_modules/draft-js/dist/Draft.css";
 
 const CriarPost = () => {
     //  Hooks do formulário
@@ -15,15 +23,14 @@ const CriarPost = () => {
     const [tags, setTags] = useState("");
     const [loading, setLoading] = useState(false);
     const [erroFormulario, setErroFormulario] = useState("");
-
-    const navegar = useNavigate();
+    const [editorState, seteditorState] = useState(EditorState.createEmpty());
+    const [conteudoHTML, setConteudoHTML] = useState("");
+        const navegar = useNavigate();
 
     //  Pegando o valor global do Contexto
     const { user } = AuthValue();
 
-    useEffect(() => {
-    }, [user]);
-
+    useEffect(() => {}, [user]);
     async function publicar(e) {
         e.preventDefault();
         setLoading(true);
@@ -52,7 +59,7 @@ const CriarPost = () => {
                 const docRef = await addDoc(collection(db, "Posts"), {
                     titulo: titulo,
                     imagem: imagem,
-                    conteudo: conteudo,
+                    conteudo: conteudoHTML,
                     tags: tags.split(",").map((v) => v.trim()),
                     criadoEm: Timestamp.now(),
                     criadoPor: user.displayName,
@@ -79,6 +86,7 @@ const CriarPost = () => {
             }
         });
     }
+
 
     return (
         <motion.section
@@ -115,12 +123,29 @@ const CriarPost = () => {
                 </fieldset>
                 <fieldset>
                     <label htmlFor="conteudo">Conteúdo</label>
-                    <textarea
-                        name="conteudo"
+                    <Editor
+                        toolbarStyle={{
+                            background: "rgb(179, 140, 171)",
+                            border: "none",
+                        }}
                         placeholder="Insira o conteúdo do post"
-                        value={conteudo}
-                        onChange={(e) => setConteudo(e.target.value)}
-                        required
+                        
+                        toolbar={{
+                            options: ["inline", "blockType", "fontSize", "list", "textAlign", "embedded", "image"],
+                            inline: {
+                                options: ["bold", "italic", "underline"],
+                            },
+                            list: { options: ["unordered", "ordered"] },
+                            fontSize: { options: [10, 12, 14, 16, 18, 24, 30] },
+                        }}
+                        editorState={editorState}
+                        onEditorStateChange={(newState) => {
+                            seteditorState(newState);
+                            setConteudoHTML(draftToHtml(convertToRaw(newState.getCurrentContent())));
+                            console.log(conteudoHTML);
+                        }}
+                        wrapperClassName={styles.demoWrapper}
+                        editorClassName={styles.demoEditor}
                     />
                 </fieldset>
                 <fieldset>

@@ -6,7 +6,7 @@
 }
 
 #container > img {
-    width: 200px;
+    width: 120px;
 }
 
 #container > h2 {
@@ -21,7 +21,7 @@
 
 #container > form {
     text-align: start;
-    width: 30%;
+    width: 40%;
 }
 
 #container > form > fieldset {
@@ -44,7 +44,13 @@
     border-top: none;
     border-inline: none;
     font-size: 13px;
-    transition: 0.6s;
+    transition: 0.6s ease-in-out;
+}
+
+#container > form > fieldset > input:hover,
+#container > form > fieldset > input:focus, #container > form > fieldset > textarea:hover,
+#container > form > fieldset > textarea:focus {
+    background-color: pink;
 }
 
 #container > form > button {
@@ -75,19 +81,33 @@
     vertical-align: baseline;
     width: auto;
 }
-
 #container > form > button:hover,
 #container > form > button:focus {
     background-color: #63469b;
     box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
 }
-
 #container > form > button:hover {
     transform: translateY(-3px);
 }
-
 #container > form > button:active {
     background-color: #c85000;
     box-shadow: rgba(0, 0, 0, 0.06) 0 2px 4px;
     transform: translateY(0);
+}
+
+/* Wysiwng Editor */
+.demoEditor {
+    border-bottom: 2.5px #e3e3e3 solid;
+    font-size: 13px;
+    color: black;
+    padding-inline: 6px;
+    transition: all 0.6s ease-in-out;
+}
+
+.demoEditor:hover, .demoEditor:focus {
+    background-color: pink !important;
+}
+
+.demoWrapper {
+    margin-top: 10px;
 }

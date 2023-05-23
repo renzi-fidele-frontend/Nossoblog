@@ -85,7 +85,7 @@ const PostPage = () => {
                         </div>
                     </div>
 
-                    <p id={styles.conteudo} dangerouslySetInnerHTML={{ __html: objecto.data.conteudo }}></p>
+                    <div id={styles.conteudo} dangerouslySetInnerHTML={{ __html: objecto.data.conteudo }}></div>
                 </div>
             </motion.div>
             <div id={estiloHome.right}>

@@ -5,20 +5,34 @@ import foto from "../../../Images/ftkedit.svg";
 import { useLocation, useNavigate } from "react-router-dom";
 import { db } from "../../../firebase/config";
 import { doc, updateDoc } from "firebase/firestore";
+import draftToHtml from "draftjs-to-html";
+import { EditorState, convertToRaw, ContentState } from "draft-js";
+import { Editor } from "react-draft-wysiwyg";
+import { FaSave } from "react-icons/fa";
+import htmlToDraft from "html-to-draftjs";
 
 const EditPost = () => {
+    const objeto = useLocation().state;
     const [titulo, setTitulo] = useState("");
     const [imagem, setImagem] = useState("");
-    const [conteudo, setConteudo] = useState("");
     const [tags, setTags] = useState("");
     const [erroFormulario, setErroFormulario] = useState("");
+    const [editorState, seteditorState] = useState(EditorState.createEmpty());
+    const [conteudoHTML, setConteudoHTML] = useState("");
 
-    const objeto = useLocation().state;
+    
 
     useEffect(() => {
         setTitulo(objeto.data.titulo);
         setImagem(objeto.data.imagem);
-        setConteudo(objeto.data.conteudo);
+        let conteudoPuro = htmlToDraft(objeto.data.conteudo);
+        let contentState = ContentState.createFromBlockArray(conteudoPuro)
+        let _editorState = EditorState.createWithContent(contentState)
+
+        seteditorState(_editorState)
+
+
+
         let frase = "";
         objeto.data.tags.map((v) => {
             frase += v + ", ";
@@ -57,7 +71,7 @@ const EditPost = () => {
                 const docRef = await updateDoc(doc(db, "Posts", objeto.id), {
                     titulo: titulo,
                     imagem: imagem,
-                    conteudo: conteudo,
+                    conteudo: conteudoHTML,
                     tags: tags
                         .split(",")
                         .map((text) => text.trim())
@@ -77,7 +91,7 @@ const EditPost = () => {
                 //  Resetando os campos do formulário
                 setTitulo("");
                 setImagem("");
-                setConteudo("");
+                setConteudoHTML("");
                 setTags([]);
 
                 //  Redirecionando a dashboard
@@ -90,10 +104,10 @@ const EditPost = () => {
     }
 
     return (
-        <div id={estiloCriarPost.container}>
+        <div id={estiloCriarPost.container} >
             <img src={foto} id={styles.logo} alt="ilustração de icone de edição" />
             <h2>Edição de Post</h2>
-            <form onSubmit={Atualizar}>
+            <form onSubmit={Atualizar} id={styles.form}>
                 <fieldset>
                     <label htmlFor="titulo">Título</label>
                     <input
@@ -122,12 +136,28 @@ const EditPost = () => {
                 </fieldset>
                 <fieldset>
                     <label htmlFor="conteudo">Conteúdo</label>
-                    <textarea
-                        name="conteudo"
+                    <Editor
+                        toolbarStyle={{
+                            background: "rgb(179, 140, 171)",
+                            border: "none",
+                        }}
                         placeholder="Insira o conteúdo do post"
-                        value={conteudo}
-                        onChange={(e) => setConteudo(e.target.value)}
-                        required
+                        toolbar={{
+                            options: ["inline", "blockType", "fontSize", "list", "textAlign", "embedded", "image"],
+                            inline: {
+                                options: ["bold", "italic", "underline"],
+                            },
+                            list: { options: ["unordered", "ordered"] },
+                            fontSize: { options: [10, 12, 14, 16, 18, 24, 30] },
+                        }}
+                        editorState={editorState}
+                        onEditorStateChange={(newState) => {
+                            seteditorState(newState);
+                            setConteudoHTML(draftToHtml(convertToRaw(newState.getCurrentContent())));
+                            console.log(conteudoHTML);
+                        }}
+                        wrapperClassName={styles.demoWrapper}
+                        editorClassName={styles.demoEditor}
                     />
                 </fieldset>
                 <fieldset>

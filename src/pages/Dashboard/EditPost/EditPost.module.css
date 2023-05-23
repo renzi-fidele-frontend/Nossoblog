@@ -3,6 +3,8 @@
     filter: contrast(100);
 }
 
+
+
 #preview {
     width: 250px;
     margin-top: 9px;
@@ -14,6 +16,27 @@
     background-color: red !important;
 }
 
+#form {
+    width: 40% !important;
+}
+
 #ico {
     fill: white;
+}
+
+/* Wysiwng Editor */
+.demoEditor {
+    border-bottom: 2.5px #e3e3e3 solid;
+    font-size: 13px;
+    color: black;
+    transition: all 0.6s ease-in-out;
+}
+
+.demoEditor:hover, .demoEditor:focus {
+    background-color: pink !important;
+}
+
+
+.demoWrapper {
+    margin-top: 10px;
 }
