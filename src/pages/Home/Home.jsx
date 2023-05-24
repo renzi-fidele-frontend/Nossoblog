@@ -8,6 +8,8 @@ import PostCard from "../../Components/PostCard/PostCard";
 import { SiSpinrilla } from "react-icons/si";
 import { useNavigate } from "react-router-dom";
 import SideBar from "../../Components/SideBar/SideBar";
+import { BsReverseLayoutTextSidebarReverse } from "react-icons/bs";
+import { FcSearch } from "react-icons/fc";
 
 const Home = () => {
     const [posts, setPosts] = useState([]);
@@ -72,7 +74,11 @@ const Home = () => {
                 )}
             </div>
             <div id={styles.right}>
-                <SideBar />
+                <SideBar customClass={styles.sidebar} />
+                <div id={styles.iconsContainer}>
+                    <BsReverseLayoutTextSidebarReverse className={styles.btn} />
+                    <FcSearch className={styles.searchBtn} />
+                </div>
             </div>
         </section>
     );

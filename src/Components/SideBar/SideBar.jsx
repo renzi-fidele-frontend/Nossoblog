@@ -5,7 +5,7 @@ import { collection, getDocs, limit, orderBy, query } from "firebase/firestore";
 import { db } from "../../firebase/config";
 import { FaSearch } from "react-icons/fa";
 
-const SideBar = () => {
+const SideBar = ({customClass}) => {
     const [q, setQ] = useState("");
     const [tagsPopulares, setTagsPopulares] = useState(undefined);
     const [postsDestacados, setPostsDestacados] = useState(undefined);
@@ -44,7 +44,7 @@ const SideBar = () => {
     }, []);
 
     return (
-        <section id={styles.container}>
+        <section id={styles.container} className={customClass}>
             <form
                 onSubmit={(e) => {
                     e.preventDefault();

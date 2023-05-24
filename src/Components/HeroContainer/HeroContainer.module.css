@@ -52,4 +52,8 @@
     #container > img {
         height: 380px;
     }
+    #container > a {
+        font-size: 1.3em;
+    }
+
 }
