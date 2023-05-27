@@ -64,6 +64,31 @@
     font-weight: 900;
 }
 
+.btn {
+    font-size: 40px;
+    background-color: pink;
+}
+
+.btn:hover,
+.searchBtn:hover {
+    cursor: pointer;
+}
+
+.searchBtn {
+    color: pink;
+    font-size: 40px;
+    margin-top: 0.6em;
+}
+
+.searchBtn > path {
+    fill: rgb(255, 255, 255);
+}
+
+#iconsContainer {
+    display: flex;
+    flex-direction: column;
+}
+
 @keyframes girar {
     from {
         transform: rotate(0);
@@ -132,29 +157,17 @@
     }
 }
 
-.btn {
-    font-size: 40px;
-    background-color: pink;
+@media screen and (max-width: 1008px) {
+    #left {
+        padding-left: 0.4em;
+    }
 }
 
-.btn:hover,
-.searchBtn:hover {
-    cursor: pointer;
+@media screen and (max-width: 980px) {
+    #duasCol {
+    }
+
+    #left {
+        padding-inline: 1.4em;
+    }
 }
-
-.searchBtn {
-    color: pink;
-    font-size: 40px;
-    margin-top: .6em;
-}
-
-.searchBtn > path {
-    fill: rgb(255, 255, 255);
-}
-
-#iconsContainer {
-    display: flex;
-    flex-direction: column;
-}
-
-

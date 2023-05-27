@@ -49,7 +49,7 @@ const Home = () => {
                             imagem={posts[0].data.imagem}
                             tags={posts[0].data.tags}
                             id={posts[0].id}
-                        ></HeroContainer>
+                        />
                         <div id={styles.duasCol}>
                             {posts.map((post, id) => {
                                 if (id !== 0) {
