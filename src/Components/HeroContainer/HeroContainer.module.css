@@ -55,5 +55,10 @@
     #container > a {
         font-size: 1.3em;
     }
+}
 
+@media screen and (max-width: 854px) {
+#container > img {
+    height: 320px;
+}   
 }

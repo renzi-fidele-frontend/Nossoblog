@@ -4,6 +4,9 @@ import { app } from "../../firebase/config";
 import { getAuth, signOut } from "firebase/auth";
 import { AuthValue } from "../../context/AuthContent";
 import { HiGlobeEuropeAfrica } from "react-icons/hi2";
+import { useRef } from "react";
+import { FaBars } from "react-icons/fa";
+import {ImCross} from "react-icons/im"
 
 const NavBar = () => {
     //  Pegando o valor global do Contexto
@@ -27,9 +30,15 @@ const NavBar = () => {
             .catch((err) => console.log(`Ops, não foi possível deslogar devido a ${err}`));
     }
 
+    const navRef = useRef();
+
+    function mostrarNav() {
+        navRef.current.classList.toggle(styles.responsivo);
+    }
+
     return (
-        <nav id={styles.nav}>
-            <NavLink to="/">
+        <header  ref={navRef} id={styles.nav}>
+            <NavLink  to="/">
                 Nosso{" "}
                 <span>
                     Bl
@@ -89,7 +98,9 @@ const NavBar = () => {
                     </>
                 )}
             </ul>
-        </nav>
+            <FaBars className={styles.bars} onClick={mostrarNav} />
+            <ImCross className={styles.closeBtn} onClick={mostrarNav}/>
+        </header>
     );
 };
 
