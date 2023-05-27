@@ -98,3 +98,15 @@ path {
         display: inline;
     }
 }
+
+@media screen and (max-width: 800px) {
+    #nav {
+        padding-inline: 2em;
+    }
+}
+
+@media screen and (max-width: 682px) {
+    #nav > a {
+        font-size: 15px;
+    }
+}

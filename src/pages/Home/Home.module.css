@@ -175,6 +175,7 @@
     }
 }
 
+
 @media screen and (max-width: 734px) {
     #left {
         padding-left: .1em;
@@ -186,4 +187,9 @@
     #left {
         padding-right: 0;
     }
+}
+
+
+@media screen and (max-width: 594px) {
+    
 }
