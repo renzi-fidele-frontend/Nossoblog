@@ -17,7 +17,7 @@
     margin-top: 0.5em;
     margin-bottom: 1em;
     background: #ffe3fd;
-    width: max-content;
+    width: fit-content;
     padding: 0.1em 1em;
     border-radius: 3px;
 }
@@ -121,13 +121,19 @@
     }
 }
 
+@media screen and (max-width: 1284px) {
+    #right {
+        padding-left: 0.5em;
+    }
+}
+
 @media screen and (max-width: 1214px) {
     #left > h2 {
         font-size: 28px;
     }
 }
 
-@media screen and (max-width: 1148px) {
+@media screen and (max-width: 1080px) {
     .sidebar {
         display: none;
     }
@@ -164,10 +170,20 @@
 }
 
 @media screen and (max-width: 980px) {
-    #duasCol {
-    }
-
     #left {
         padding-inline: 1.4em;
+    }
+}
+
+@media screen and (max-width: 734px) {
+    #left {
+        padding-left: .1em;
+    }
+
+}
+
+@media screen and (max-width: 632px) {
+    #left {
+        padding-right: 0;
     }
 }

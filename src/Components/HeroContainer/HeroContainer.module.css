@@ -62,3 +62,9 @@
     height: 320px;
 }   
 }
+
+@media screen and (max-width: 734px) {
+    #container > img {
+        height: 280px;
+    }
+    }
