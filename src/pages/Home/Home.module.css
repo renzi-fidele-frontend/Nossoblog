@@ -105,9 +105,8 @@
 }
 
 @media screen and (max-width: 1080px) {
-
     #container {
-        grid-template-columns: 92% 10%;
+        grid-template-columns: 90% 10%;
     }
     #left {
         padding-left: 1.4em;
@@ -137,6 +136,11 @@
     }
 }
 
+@media screen and (max-width: 690px) {
+    #container {
+    }
+}
+
 @media screen and (max-width: 674px) {
     #left {
         padding-right: 0;
@@ -149,7 +153,26 @@
     }
 }
 
+@media screen and (max-width: 646px) {
+    #left > h2 {
+        font-size: 23px;
+    }
+}
 
-@media screen and (max-width: 640px) {
-    
+@media screen and (max-width: 584px) {
+    #container {
+        grid-template-columns: 85% 15%;
+    }
+}
+
+@media screen and (max-width: 566px) {
+    #left > h2 {
+        margin-right: 5%;
+    }
+}
+
+@media screen and (max-width: 530px) {
+    #left > h2 {
+        font-size: 20px;
+    }
 }
