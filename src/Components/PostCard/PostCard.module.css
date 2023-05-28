@@ -15,6 +15,9 @@
     transform: translateY(-5px);
     cursor: pointer;
     box-shadow: 1px 1px 15px rgb(187, 138, 192);
+    background-image: url("/src//Images/low-poly-grid-haikei.svg");
+    background-blend-mode: color-burn;
+    background-color: rgb(255, 204, 213);
 }
 
 #left {
@@ -109,7 +112,6 @@
     #dataCorrigida {
         font-size: 13px;
     }
-
 
     #right > h4 {
         font-size: 15px;
