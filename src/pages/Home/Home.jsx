@@ -75,10 +75,6 @@ const Home = () => {
             </div>
             <div id={styles.right}>
                 <SideBar customClass={styles.sidebar} />
-                <div id={styles.iconsContainer}>
-                    <BsReverseLayoutTextSidebarReverse className={styles.btn} />
-                    <FcSearch className={styles.searchBtn} />
-                </div>
             </div>
         </section>
     );

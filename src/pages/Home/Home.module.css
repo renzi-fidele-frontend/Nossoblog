@@ -5,10 +5,6 @@
     padding-inline: 5%;
     grid-template-columns: 70% 30%;
 }
-.btn,
-.searchBtn {
-    display: none;
-}
 
 #left > h2 {
     font-size: 2.5em;
@@ -64,31 +60,6 @@
     font-weight: 900;
 }
 
-.btn {
-    font-size: 40px;
-    background-color: pink;
-}
-
-.btn:hover,
-.searchBtn:hover {
-    cursor: pointer;
-}
-
-.searchBtn {
-    color: pink;
-    font-size: 40px;
-    margin-top: 0.6em;
-}
-
-.searchBtn > path {
-    fill: rgb(255, 255, 255);
-}
-
-#iconsContainer {
-    display: flex;
-    flex-direction: column;
-}
-
 @keyframes girar {
     from {
         transform: rotate(0);
@@ -134,14 +105,6 @@
 }
 
 @media screen and (max-width: 1080px) {
-    .sidebar {
-        display: none;
-    }
-
-    .btn,
-    .searchBtn {
-        display: initial;
-    }
 
     #container {
         grid-template-columns: 92% 10%;
@@ -149,17 +112,10 @@
     #left {
         padding-left: 1.4em;
     }
-
     #right {
         padding: 0 !important;
         border: none !important;
         background-image: url("/src/Images/low-poly-grid-haikei.svg");
-    }
-
-    #iconsContainer {
-        align-items: center;
-        justify-content: center;
-        margin-top: 1em;
     }
 }
 
@@ -175,21 +131,25 @@
     }
 }
 
-
 @media screen and (max-width: 734px) {
     #left {
-        padding-left: .1em;
+        padding-left: 0.1em;
     }
-
 }
 
-@media screen and (max-width: 632px) {
+@media screen and (max-width: 674px) {
     #left {
         padding-right: 0;
     }
 }
 
+@media screen and (max-width: 652px) {
+    #duasCol {
+        grid-template-columns: auto;
+    }
+}
 
-@media screen and (max-width: 594px) {
+
+@media screen and (max-width: 640px) {
     
 }

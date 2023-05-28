@@ -47,7 +47,6 @@
     }
 }
 
-
 @media screen and (max-width: 1214px) {
     #container > img {
         height: 380px;
@@ -58,13 +57,20 @@
 }
 
 @media screen and (max-width: 854px) {
-#container > img {
-    height: 320px;
-}   
+    #container > img {
+        height: 320px;
+    }
 }
 
 @media screen and (max-width: 734px) {
     #container > img {
         height: 280px;
     }
+}
+
+@media screen and (max-width: 734px) {
+    #container > img {
+        height: 240px;
+        width: 90%;
     }
+}
