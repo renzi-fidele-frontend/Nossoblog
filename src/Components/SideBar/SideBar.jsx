@@ -5,7 +5,7 @@ import { collection, getDocs, limit, orderBy, query } from "firebase/firestore";
 import { db } from "../../firebase/config";
 import { FaSearch } from "react-icons/fa";
 import { FcSearch } from "react-icons/fc";
-import { BsReverseLayoutTextSidebarReverse } from "react-icons/bs";
+import { BsLayoutTextSidebarReverse } from "react-icons/bs";
 import { ImCross } from "react-icons/im";
 
 const SideBar = ({ customClass }) => {
@@ -116,7 +116,7 @@ const SideBar = ({ customClass }) => {
                 <ImCross onClick={ToggleClass} className={styles.fechar} />
             </section>
             <div id={styles.iconsContainer}>
-                <BsReverseLayoutTextSidebarReverse onClick={ToggleClass} className={styles.btn} />
+                <BsLayoutTextSidebarReverse onClick={ToggleClass} className={styles.btn} />
                 <FcSearch onClick={ToggleClass} className={styles.searchBtn} />
             </div>
         </>

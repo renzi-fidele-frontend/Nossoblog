@@ -136,11 +136,6 @@
     }
 }
 
-@media screen and (max-width: 690px) {
-    #container {
-    }
-}
-
 @media screen and (max-width: 674px) {
     #left {
         padding-right: 0;
