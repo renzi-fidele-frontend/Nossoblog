@@ -64,34 +64,35 @@
 
 @media screen and (max-width: 734px) {
     #container > img {
-        height: 280px;
+        height: 240px;
+        width: 90%;
     }
-
     #data {
         font-size: 14px;
     }
 }
 
-@media screen and (max-width: 734px) {
-    #container > img {
-        height: 240px;
-        width: 90%;
-    }
-}
-
 @media screen and (max-width: 612px) {
     #container > a {
-        font-size: 18px;
+        font-size: 17px;
+        margin-left: 0;
+        line-height: 1px;
     }
 
     #data {
-        font-size: 13px;
+        font-size: 12px;
+        margin-left: 3px;
+        margin-top: 5px;
+    }
+
+    #data > span {
+        margin-left: 0.4em;
     }
 }
 
 @media screen and (max-width: 460px) {
     #container > img {
         height: 210px;
-        width: 90%;
+        width: 98%;
     }
 }
