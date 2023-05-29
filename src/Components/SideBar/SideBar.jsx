@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styles from "./SideBar.module.css";
 import { Link, useNavigate } from "react-router-dom";
 import { collection, getDocs, limit, orderBy, query } from "firebase/firestore";
@@ -6,6 +6,7 @@ import { db } from "../../firebase/config";
 import { FaSearch } from "react-icons/fa";
 import { FcSearch } from "react-icons/fc";
 import { BsReverseLayoutTextSidebarReverse } from "react-icons/bs";
+import { ImCross } from "react-icons/im";
 
 const SideBar = ({ customClass }) => {
     const [q, setQ] = useState("");
@@ -45,9 +46,16 @@ const SideBar = ({ customClass }) => {
         pegarPosts();
     }, []);
 
+    const divRef = useRef();
+
+    //  Tornar sideBar responsivo
+    function ToggleClass() {
+        divRef.current.classList.toggle(styles.responsivo);
+    }
+
     return (
         <>
-            <section id={styles.container} className={customClass}>
+            <section id={styles.container} ref={divRef} className={customClass}>
                 <form
                     onSubmit={(e) => {
                         e.preventDefault();
@@ -104,10 +112,12 @@ const SideBar = ({ customClass }) => {
                     ></ins>
                     <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
                 </div>
+
+                <ImCross onClick={ToggleClass} className={styles.fechar} />
             </section>
             <div id={styles.iconsContainer}>
-                <BsReverseLayoutTextSidebarReverse className={styles.btn} />
-                <FcSearch className={styles.searchBtn} />
+                <BsReverseLayoutTextSidebarReverse onClick={ToggleClass} className={styles.btn} />
+                <FcSearch onClick={ToggleClass} className={styles.searchBtn} />
             </div>
         </>
     );
