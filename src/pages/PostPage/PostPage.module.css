@@ -107,3 +107,21 @@
         margin-right: 2%;
     }
 }
+@media screen and (max-width: 485px) {
+    #img {
+        height: 260px;
+    }
+}
+
+@media screen and (max-width: 441px) {
+    #img {
+        height: 220px;
+    }
+}
+
+@media screen and (max-width: 387px) {
+    #img {
+        height: 190px;
+    }
+}
+
