@@ -111,10 +111,30 @@
         margin-bottom: 2%;
         border-radius: 50%;
         border: 2px dashed rgb(156, 17, 255);
-
     }
 
     #right {
         padding-inline: 8%;
+    }
+}
+
+@media screen and (max-width: 780px) {
+    #container > img {
+        width: 50px;
+    }
+}
+
+@media screen and (max-width: 564px) {
+    #left > img {
+        width: 30%;
+    }
+
+    #container > h2 {
+        font-size: 1.6em;
+    }
+
+    #linha {
+        margin-bottom: 3%;
+        padding-inline: 4%;
     }
 }
