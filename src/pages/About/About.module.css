@@ -137,4 +137,7 @@
         margin-bottom: 3%;
         padding-inline: 4%;
     }
+    #right {
+        padding-inline: 0;
+    }
 }
