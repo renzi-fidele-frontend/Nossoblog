@@ -56,6 +56,11 @@
     transition: 0.6s;
 }
 
+#container > div > form > fieldset > input:focus,
+#container > div > form > fieldset > input:hover {
+    background-color: pink;
+}
+
 #container > div > form > button {
     align-items: center;
     background-clip: padding-box;
@@ -99,4 +104,87 @@
     background-color: #c85000;
     box-shadow: rgba(0, 0, 0, 0.06) 0 2px 4px;
     transform: translateY(0);
+}
+
+@media screen and (max-width: 1742px) {
+    #container > div {
+        margin-inline: 29%;
+    }
+
+    #container > div > form > fieldset > input {
+        font-size: 14px;
+    }
+}
+
+@media screen and (max-width: 1634px) {
+    #container > div {
+        margin-inline: 24%;
+    }
+}
+
+@media screen and (max-width: 1300px) {
+    #container > div {
+        margin-inline: 19%;
+    }
+
+    #container > div > form > fieldset > label {
+        font-size: 0.9em;
+    }
+
+    #container > h2 {
+        font-size: 1.9em;
+    }
+}
+
+@media screen and (max-width: 1300px) {
+    #container > div {
+        margin-inline: 14%;
+    }
+}
+
+@media screen and (max-width: 824px) {
+    #container > div {
+        margin-inline: 9%;
+    }
+}
+
+@media screen and (max-width: 712px) {
+    #container > div {
+        margin-inline: 9%;
+    }
+}
+
+@media screen and (max-width: 638px) {
+    #container > div {
+        margin-inline: 3%;
+    }
+
+    #container > div > form {
+        margin-right: 0.4em;
+    }
+}
+
+@media screen and (max-width: 548px) {
+    #container > div {
+        flex-direction: column-reverse;
+        margin-top: 1em;
+    }
+
+    #container > h2 {
+        font-size: 1.4em;
+    }
+
+    #container > p {
+        font-size: 0.9em;
+    }
+
+    #container > div > img {
+        height: auto;
+        width: 150px;
+    }
+
+    #container > div > form {
+        display: flex;
+        flex-flow: column;
+    }
 }
