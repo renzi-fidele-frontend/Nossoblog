@@ -27,6 +27,19 @@
     color: #180b47de;
 }
 
+@media screen and (max-width: 1120px) {
+    #footer p,
+    #footer a {
+        font-size: 0.8em;
+    }
+}
+
+@media screen and (max-width: 814px) {
+    #footer {
+        padding-inline: 3%;
+    }
+}
+
 @media screen and (max-width: 676px) {
     #footer {
         padding-inline: 1em;
@@ -37,6 +50,7 @@
     #footer {
         flex-flow: column;
         padding-inline: 0;
+        padding-block: .5em;
     }
 
     #footer > div {
