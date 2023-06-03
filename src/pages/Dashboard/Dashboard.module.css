@@ -109,6 +109,14 @@
     #userPostsContainer {
         padding-inline: 10%;
     }
+
+    #container > h2 {
+        font-size: 1.6em;
+    }
+
+    #container > p {
+        font-size: 16px;
+    }
 }
 
 @media screen and (max-width: 922px) {
@@ -117,4 +125,50 @@
     }
 }
 
+@media screen and (max-width: 765px) {
+    #userPostsContainer {
+        padding-inline: 1%;
+    }
+}
 
+@media screen and (max-width: 765px) {
+    #right > button {
+        padding-inline: 6px;
+    }
+}
+
+@media screen and (max-width: 597px) {
+    #itemLine {
+        flex-direction: column;
+    }
+
+    #right > button {
+        margin-top: 5px;
+        padding-inline: 16px;
+        margin-inline: 3px;
+    }
+
+    #linha {
+        display: none;
+    }
+
+    #userPostsContainer {
+        border-top: 2px solid black;
+    }
+
+
+}
+
+@media screen and (max-width: 487px) {
+    #container > h2 {
+        font-size: 1.3em;
+    }
+
+    #container > p {
+        font-size: 14px;
+    }
+
+    #container > img {
+        width: 70px;
+    }
+}
