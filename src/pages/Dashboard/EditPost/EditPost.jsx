@@ -106,7 +106,7 @@ const EditPost = () => {
         <div id={estiloCriarPost.container}>
             <img src={foto} id={styles.logo} alt="ilustração de icone de edição" />
             <h2>Edição de Post</h2>
-            <form onSubmit={Atualizar} id={styles.form}>
+            <form onSubmit={Atualizar} >
                 <fieldset>
                     <label htmlFor="titulo">Título</label>
                     <input
