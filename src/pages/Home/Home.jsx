@@ -38,37 +38,37 @@ const Home = () => {
         <section id={styles.container}>
             <div id={styles.left}>
                 {/*Caso cheguem posts do banco de dados */}
-                {posts.length > 0 ? (
-                    <>
-                        <h2>Veja os nossos posts mais recentes</h2>
-                        <HeroContainer
-                            objecto={posts[0]}
-                            criadoEm={posts[0].data.criadoEm.seconds}
-                            criadoPor={posts[0].data.criadoPor}
-                            titulo={posts[0].data.titulo}
-                            imagem={posts[0].data.imagem}
-                            tags={posts[0].data.tags}
-                            id={posts[0].id}
-                        />
-                        <div id={styles.duasCol}>
-                            {posts.map((post, id) => {
-                                if (id !== 0) {
-                                    return (
-                                        <PostCard
-                                            objecto={post}
-                                            conteudo={post.data.conteudo}
-                                            imagem={post.data.imagem}
-                                            titulo={post.data.titulo}
-                                            data={post.data.criadoEm}
-                                            autor={post.data.criadoPor}
-                                            tagsInical={post.data.tags}
-                                            id={post.id}
-                                        />
-                                    );
-                                }
-                            })}
-                        </div>
-                    </>
+
+                <>
+                    <h2>Veja os nossos posts mais recentes</h2>
+                    <HeroContainer
+                        objecto={posts[0]}
+                        criadoEm={posts[0].data.criadoEm.seconds}
+                        criadoPor={posts[0].data.criadoPor}
+                        titulo={posts[0].data.titulo}
+                        imagem={posts[0].data.imagem}
+                        tags={posts[0].data.tags}
+                        id={posts[0].id}
+                    />
+                    <div id={styles.duasCol}>
+                        {posts.map((post, id) => {
+                            if (id !== 0) {
+                                return (
+                                    <PostCard
+                                        objecto={post}
+                                        conteudo={post.data.conteudo}
+                                        imagem={post.data.imagem}
+                                        titulo={post.data.titulo}
+                                        data={post.data.criadoEm}
+                                        autor={post.data.criadoPor}
+                                        tagsInical={post.data.tags}
+                                        id={post.id}
+                                    />
+                                );
+                            }
+                        })}
+                    </div>
+                </>
                 ) : (
                     <SiSpinrilla id={styles.loading} />
                 )}
