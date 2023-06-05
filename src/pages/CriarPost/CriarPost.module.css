@@ -21,7 +21,9 @@
     margin-inline: 2%;
 }
 
-
+#container > form {
+    width: 40%;
+}
 
 #container > form > fieldset {
     border: none;

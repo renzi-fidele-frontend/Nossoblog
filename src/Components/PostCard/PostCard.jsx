@@ -20,9 +20,9 @@ const PostCard = ({ linkAtivo = false, objecto, conteudo, titulo, autor, data, i
     }
 
     function convertHtmtoString(str) {
-        let element = document.createElement("div")
-        element.innerHTML = str
-        return element.innerText
+        let element = document.createElement("div");
+        element.innerHTML = str;
+        return element.innerText;
     }
 
     //  Reduzindo o texto do conteúdo do post

@@ -10,8 +10,6 @@ import { EditorState, convertToRaw } from "draft-js";
 import draftToHtml from "draftjs-to-html";
 import "../../../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import "../../../node_modules/@draft-js-plugins/image/lib/plugin.css";
-import createImagePlugin from "@draft-js-plugins/image";
-import EditorPlugin from "@draft-js-plugins/editor";
 import { Editor } from "react-draft-wysiwyg";
 import "../../../node_modules/draft-js/dist/Draft.css";
 
