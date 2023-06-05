@@ -17,6 +17,8 @@
 
 #container > p {
     margin-bottom: 2em;
+    text-align: center;
+    margin-inline: 2%;
 }
 
 #container > form {
@@ -110,4 +112,72 @@
 
 .demoWrapper {
     margin-top: 10px;
+}
+
+@media screen and (max-width: 1665px) {
+    #container > form {
+        width: 50%;
+    }    
+}
+
+@media screen and (max-width: 1375px) {
+    #container > form {
+        width: 60%;
+    }    
+
+    #container > h2 {
+        font-size: 2em;
+        margin-bottom: .4em;
+    }
+
+    #container > img {
+        width: 90px;
+    }
+}
+
+@media screen and (max-width: 1119px) {
+    #container > form {
+        width: 70%;
+    }    
+}
+
+@media screen and (max-width: 887px) {
+    #container > form {
+        width: 80%;
+    }    
+
+    #container > h2 {
+        font-size: 1.7em;
+    }
+}
+
+@media screen and (max-width: 701px) {
+    #container > form {
+        width: 90%;
+    }    
+}
+
+@media screen and (max-width: 629px) {
+    #container > form {
+        width: 96%;
+    }    
+}
+
+@media screen and (max-width: 629px) {
+    #container > form {
+        width: 97%;
+        display: flex;
+        flex-flow: column nowrap;
+    }    
+}
+
+@media screen and (max-width: 475px) {
+    #container > p {
+        font-size: 14px;
+    }
+
+    #container > h2 {
+        margin-bottom: .2em
+    }
+    
 }
