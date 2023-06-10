@@ -1,15 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styles from "./EditPost.module.css";
 import estiloCriarPost from "../../CriarPost/CriarPost.module.css";
 import foto from "../../../Images/ftkedit.svg";
 import { useLocation, useNavigate } from "react-router-dom";
-import { db } from "../../../firebase/config";
+import { db, storage } from "../../../firebase/config";
 import { doc, updateDoc } from "firebase/firestore";
 import draftToHtml from "draftjs-to-html";
 import { EditorState, convertToRaw, ContentState } from "draft-js";
 import { Editor } from "react-draft-wysiwyg";
 import { FaSave } from "react-icons/fa";
 import htmlToDraft from "html-to-draftjs";
+import { v4 } from "uuid";
+import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 
 const EditPost = () => {
     const objeto = useLocation().state;
@@ -19,6 +21,8 @@ const EditPost = () => {
     const [erroFormulario, setErroFormulario] = useState("");
     const [editorState, seteditorState] = useState(EditorState.createEmpty());
     const [conteudoHTML, setConteudoHTML] = useState("");
+    const [imgUpload, setImgUpload] = useState(null);
+    const inputRef = useRef();
 
     useEffect(() => {
         setTitulo(objeto.data.titulo);
@@ -63,27 +67,38 @@ const EditPost = () => {
         }
 
         checkIfImageExists(imagem, async (exists) => {
-            if (exists) {
-                //  Atualizando os dados da publicação
-                const docRef = await updateDoc(doc(db, "Posts", objeto.id), {
-                    titulo: titulo,
-                    imagem: imagem,
-                    conteudo: conteudoHTML,
-                    tags: tags
-                        .split(",")
-                        .map((text) => text.trim())
-                        .filter((t) => {
-                            if (t === "") {
-                                return false;
-                            } else {
-                                return true;
-                            }
-                        }),
-                })
-                    .then((v) => {
-                        console.log(v);
-                    })
-                    .catch((err) => console.log(`Ops, Não foi possível fazer a publicação. ${err}`));
+            if (exists || imgUpload !== null) {
+                if (imgUpload !== null) {
+                    let lext = `Imagens/${imgUpload.name + v4()}`;
+                    //  Adicionando a imagem a base de dados
+                    const imageRef = ref(storage, lext);
+
+                    //  Adicionando a imagem ao DB
+                    uploadBytes(imageRef, imgUpload).then((v) => {
+                        getDownloadURL(v.ref).then(async (link) => {
+                            //  Atualizando os dados da publicação
+                            const docRef = await updateDoc(doc(db, "Posts", objeto.id), {
+                                titulo: titulo,
+                                imagem: link,
+                                conteudo: conteudoHTML,
+                                tags: tags
+                                    .split(",")
+                                    .map((text) => text.trim())
+                                    .filter((t) => {
+                                        if (t === "") {
+                                            return false;
+                                        } else {
+                                            return true;
+                                        }
+                                    }),
+                            })
+                                .then((v) => {
+                                    console.log(v);
+                                })
+                                .catch((err) => console.log(`Ops, Não foi possível fazer a publicação. ${err}`));
+                        });
+                    });
+                }
 
                 //  Resetando os campos do formulário
                 setTitulo("");
@@ -106,7 +121,7 @@ const EditPost = () => {
         <div id={estiloCriarPost.container}>
             <img src={foto} id={styles.logo} alt="ilustração de icone de edição" />
             <h2>Edição de Post</h2>
-            <form onSubmit={Atualizar} >
+            <form onSubmit={Atualizar}>
                 <fieldset>
                     <label htmlFor="titulo">Título</label>
                     <input
@@ -121,12 +136,23 @@ const EditPost = () => {
                 <fieldset>
                     <label htmlFor="imgUrl">URL da imagem</label>
                     <input
+                        type="file"
+                        name=""
+                        id="imagem"
+                        accept="image/*"
+                        onChange={(e) => {
+                            setImgUpload(e.target.files[0]);
+                            inputRef.current.disabled = true;
+                        }}
+                    />
+
+                    <input
                         type="text"
+                        ref={inputRef}
                         placeholder="Insira uma imagem que representa o seu post"
                         name="imgUrl"
                         value={imagem}
                         onChange={(e) => setImagem(e.target.value)}
-                        required
                     />
                 </fieldset>
                 <fieldset>

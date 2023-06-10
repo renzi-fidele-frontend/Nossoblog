@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import styles from "./CriarPost.module.css";
-import { db } from "../../firebase/config";
+import { db, storage } from "../../firebase/config";
 import { collection, addDoc, Timestamp } from "firebase/firestore";
 import { AuthValue } from "../../context/AuthContent";
 import { useNavigate } from "react-router-dom";
@@ -12,6 +12,8 @@ import "../../../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import "../../../node_modules/@draft-js-plugins/image/lib/plugin.css";
 import { Editor } from "react-draft-wysiwyg";
 import "../../../node_modules/draft-js/dist/Draft.css";
+import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
+import { v4 } from "uuid";
 
 const CriarPost = () => {
     //  Hooks do formulário
@@ -23,7 +25,8 @@ const CriarPost = () => {
     const [erroFormulario, setErroFormulario] = useState("");
     const [editorState, seteditorState] = useState(EditorState.createEmpty());
     const [conteudoHTML, setConteudoHTML] = useState("");
-        const navegar = useNavigate();
+    const navegar = useNavigate();
+    const [imgUpload, setImgUpload] = useState(null);
 
     //  Pegando o valor global do Contexto
     const { user } = AuthValue();
@@ -52,23 +55,34 @@ const CriarPost = () => {
         }
 
         checkIfImageExists(imagem, async (exists) => {
-            if (exists) {
-                //  Adicionando a publicação à base de dados
-                const docRef = await addDoc(collection(db, "Posts"), {
-                    titulo: titulo,
-                    imagem: imagem,
-                    conteudo: conteudoHTML,
-                    tags: tags.split(",").map((v) => v.trim()),
-                    criadoEm: Timestamp.now(),
-                    criadoPor: user.displayName,
-                    uid: user.uid,
-                    vezesLido: 0,
-                })
-                    .then((v) => {
-                        setLoading(false);
-                        console.log(v);
-                    })
-                    .catch((err) => console.log(`Ops, Não foi possível fazer a publicação. ${err}`));
+            if (exists || imgUpload !== null) {
+                if (imgUpload !== null) {
+                    let lext = `Imagens/${imgUpload.name + v4()}`;
+                    //  Adicionando a imagem a base de dados
+                    const imageRef = ref(storage, lext);
+
+                    //  Adicionando a imagem ao DB
+                    uploadBytes(imageRef, imgUpload).then((v) => {
+                        getDownloadURL(v.ref).then(async (link) => {
+                            //  Adicionando a publicação à base de dados
+                            const docRef = await addDoc(collection(db, "Posts"), {
+                                titulo: titulo,
+                                imagem: link,
+                                conteudo: conteudoHTML,
+                                tags: tags.split(",").map((v) => v.trim()),
+                                criadoEm: Timestamp.now(),
+                                criadoPor: user.displayName,
+                                uid: user.uid,
+                                vezesLido: 0,
+                            })
+                                .then((v) => {
+                                    setLoading(false);
+                                    console.log(v);
+                                })
+                                .catch((err) => console.log(`Ops, Não foi possível fazer a publicação. ${err}`));
+                        });
+                    });
+                }
 
                 //  Resetando os campos do formulário
                 setTitulo("");
@@ -85,7 +99,9 @@ const CriarPost = () => {
         });
     }
 
-    const [estiloEditor, setEstiloEditor] = useState({undefined})
+    const [estiloEditor, setEstiloEditor] = useState({ undefined });
+
+    const inputRef = useRef();
 
     return (
         <motion.section
@@ -112,24 +128,33 @@ const CriarPost = () => {
                 <fieldset>
                     <label htmlFor="imgUrl">URL da imagem</label>
                     <input
+                        type="file"
+                        name=""
+                        id="imagem"
+                        accept="image/*"
+                        onChange={(e) => {
+                            setImgUpload(e.target.files[0]);
+                            inputRef.current.disabled = true;
+                        }}
+                    />
+                    <input
                         type="text"
                         placeholder="Insira uma imagem que representa o seu post"
+                        ref={inputRef}
                         name="imgUrl"
                         value={imagem}
                         onChange={(e) => setImagem(e.target.value)}
-                        required
                     />
                 </fieldset>
                 <fieldset>
                     <label htmlFor="conteudo">Conteúdo</label>
                     <Editor
-                        onFocus={()=> setEstiloEditor({backgroundColor: "pink"})}
+                        onFocus={() => setEstiloEditor({ backgroundColor: "pink" })}
                         toolbarStyle={{
                             background: "rgb(179, 140, 171)",
                             border: "none",
                         }}
                         placeholder="Insira o conteúdo do post"
-                        
                         toolbar={{
                             options: ["inline", "blockType", "fontSize", "list", "textAlign", "embedded", "image"],
                             inline: {
