@@ -93,21 +93,18 @@ const EditPost = () => {
                                     }),
                             })
                                 .then((v) => {
-                                    console.log(v);
+                                    //  Resetando os campos do formulário
+                                    setTitulo("");
+                                    setImagem("");
+                                    setConteudoHTML("");
+                                    setTags([]);
+                                    //  Redirecionando a dashboard
+                                    navegar("/dashboard", { state: true });
                                 })
                                 .catch((err) => console.log(`Ops, Não foi possível fazer a publicação. ${err}`));
                         });
                     });
                 }
-
-                //  Resetando os campos do formulário
-                setTitulo("");
-                setImagem("");
-                setConteudoHTML("");
-                setTags([]);
-
-                //  Redirecionando a dashboard
-                navegar("/dashboard", { state: true });
             } else {
                 setErroFormulario("A imagem deve conter uma url válida");
                 setTimeout(() => setErroFormulario(""), 3000);

@@ -78,20 +78,19 @@ const CriarPost = () => {
                                 .then((v) => {
                                     setLoading(false);
                                     console.log(v);
+                                    //  Resetando os campos do formulário
+                                    setTitulo("");
+                                    setImagem("");
+                                    setConteudo("");
+                                    setTags([]);
+
+                                    //  Redirecionando a home
+                                    navegar("/");
                                 })
                                 .catch((err) => console.log(`Ops, Não foi possível fazer a publicação. ${err}`));
                         });
                     });
                 }
-
-                //  Resetando os campos do formulário
-                setTitulo("");
-                setImagem("");
-                setConteudo("");
-                setTags([]);
-
-                //  Redirecionando a home
-                navegar("/");
             } else {
                 setErroFormulario("A imagem deve conter uma url válida");
                 setTimeout(() => setErroFormulario(""), 3000);
