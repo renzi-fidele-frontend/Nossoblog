@@ -3,7 +3,7 @@ import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 import { getStorage } from "firebase/storage";
 
-// Your web app's Firebase configuration
+    // Your web app's Firebase configuration
 const firebaseConfig = {
     apiKey: "AIzaSyCJcS1fLGe2J6gwLamNeGzDBuyhiUwVL-M",
     authDomain: "miniblog-c5fa5.firebaseapp.com",

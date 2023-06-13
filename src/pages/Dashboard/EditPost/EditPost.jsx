@@ -12,6 +12,7 @@ import { FaSave } from "react-icons/fa";
 import htmlToDraft from "html-to-draftjs";
 import { v4 } from "uuid";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
+import { RichUtils } from "draft-js";
 
 const EditPost = () => {
     const objeto = useLocation().state;
@@ -92,7 +93,7 @@ const EditPost = () => {
                                         }
                                     }),
                             })
-                                .then((v) => {
+                                .then(() => {
                                     //  Resetando os campos do formulário
                                     setTitulo("");
                                     setImagem("");
@@ -159,6 +160,13 @@ const EditPost = () => {
                 <fieldset>
                     <label htmlFor="conteudo">Conteúdo</label>
                     <Editor
+                        /*handleReturn={(e) => {
+                            if (e.shiftKey) {
+                                seteditorState(RichUtils.insertSoftNewline(editorState));
+                                return "handled";
+                            }
+                            return "not-handled";
+                        }}*/
                         onFocus={() => setEstiloEditor({ backgroundColor: "pink" })}
                         editorStyle={estiloEditor}
                         toolbarStyle={{
