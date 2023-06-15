@@ -99,18 +99,18 @@ const SideBar = ({ customClass }) => {
                     <script
                         async
                         src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5665219260825839"
-                        crossOrigin="anonymous"
+                        crossorigin="anonymous"
                     ></script>
-
+                    {/*Ads 0*/}
                     <ins
-                        className="adsbygoogle"
-                        style={{ display: "block" }}
+                        class="adsbygoogle"
+                        style="display:block"
                         data-ad-client="ca-pub-5665219260825839"
-                        data-ad-slot="5562695478"
+                        data-ad-slot="7844556496"
                         data-ad-format="auto"
                         data-full-width-responsive="true"
                     ></ins>
-                    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>{" "}
                 </div>
 
                 <ImCross onClick={ToggleClass} className={styles.fechar} />
