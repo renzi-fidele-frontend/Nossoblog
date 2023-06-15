@@ -103,8 +103,8 @@ const SideBar = ({ customClass }) => {
                     ></script>
                     {/*Ads 0*/}
                     <ins
-                        class="adsbygoogle"
-                        style="display:block"
+                        className="adsbygoogle"
+                        style={{display: "block"}}
                         data-ad-client="ca-pub-5665219260825839"
                         data-ad-slot="7844556496"
                         data-ad-format="auto"
