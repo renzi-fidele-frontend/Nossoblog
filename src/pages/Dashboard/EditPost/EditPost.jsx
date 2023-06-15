@@ -8,11 +8,9 @@ import { doc, updateDoc } from "firebase/firestore";
 import draftToHtml from "draftjs-to-html";
 import { EditorState, convertToRaw, ContentState } from "draft-js";
 import { Editor } from "react-draft-wysiwyg";
-import { FaSave } from "react-icons/fa";
 import htmlToDraft from "html-to-draftjs";
 import { v4 } from "uuid";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
-import { RichUtils } from "draft-js";
 
 const EditPost = () => {
     const objeto = useLocation().state;
@@ -105,6 +103,33 @@ const EditPost = () => {
                                 .catch((err) => console.log(`Ops, Não foi possível fazer a publicação. ${err}`));
                         });
                     });
+                } else {
+                    //  Atualizando os dados da publicação
+                    const docRef = await updateDoc(doc(db, "Posts", objeto.id), {
+                        titulo: titulo,
+                        imagem: imagem,
+                        conteudo: conteudoHTML,
+                        tags: tags
+                            .split(",")
+                            .map((text) => text.trim())
+                            .filter((t) => {
+                                if (t === "") {
+                                    return false;
+                                } else {
+                                    return true;
+                                }
+                            }),
+                    })
+                        .then(() => {
+                            //  Resetando os campos do formulário
+                            setTitulo("");
+                            setImagem("");
+                            setConteudoHTML("");
+                            setTags([]);
+                            //  Redirecionando a dashboard
+                            navegar("/dashboard", { state: true });
+                        })
+                        .catch((err) => console.log(`Ops, Não foi possível fazer a publicação. ${err}`));
                 }
             } else {
                 setErroFormulario("A imagem deve conter uma url válida");
