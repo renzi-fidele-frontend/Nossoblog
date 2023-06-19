@@ -48,12 +48,14 @@ path {
     fill: #25104b;
 }
 
-.bars, .closeBtn {
+.bars,
+.closeBtn {
     display: none;
     font-size: 24px;
 }
 
-.bars:hover, .closeBtn:hover {
+.bars:hover,
+.closeBtn:hover {
     cursor: pointer;
 }
 
@@ -70,7 +72,18 @@ path {
         top: 0;
         z-index: 3;
         justify-content: center !important;
-        
+        animation: deslizar 0.6s ease-in-out;
+    }
+
+    @keyframes deslizar {
+        from {
+            opacity: 0;
+            transform: translateY(-1000px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
     }
 
     .responsivo > ul {
@@ -82,7 +95,8 @@ path {
         text-align: center;
     }
 
-    .responsivo > a, .responsivo > svg{
+    .responsivo > a,
+    .responsivo > svg {
         display: none !important;
     }
 
@@ -93,7 +107,7 @@ path {
         right: 3%;
         font-size: 24px;
     }
-    
+
     .bars {
         display: inline;
     }
