@@ -2,7 +2,6 @@ import { useEffect, useState, useRef } from "react";
 import styles from "./CriarPost.module.css";
 import { db, storage } from "../../firebase/config";
 import { collection, addDoc, Timestamp } from "firebase/firestore";
-import { AuthValue } from "../../context/AuthContent";
 import { useNavigate } from "react-router-dom";
 import foto from "../../Images/postalbox.svg";
 import { motion } from "framer-motion";

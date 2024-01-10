@@ -4,7 +4,6 @@ import styles from "./Login.module.css";
 import estilo from "../Register/Register.module.css";
 import { useState } from "react";
 import icon from "../../Images/undraw_secure_login_pdn4.svg";
-import { AuthValue } from "../../context/AuthContent";
 import { motion } from "framer-motion";
 
 const Login = () => {
