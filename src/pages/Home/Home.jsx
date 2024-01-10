@@ -1,7 +1,7 @@
 import styles from "./Home.module.css";
 import { collection, query, orderBy, getDocs } from "firebase/firestore";
 import { db } from "../../firebase/config";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import HeroContainer from "../../Components/HeroContainer/HeroContainer";
 import PostCard from "../../Components/PostCard/PostCard";
 import { SiSpinrilla } from "react-icons/si";
