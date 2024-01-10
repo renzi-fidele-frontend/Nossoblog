@@ -23,27 +23,22 @@ const Login = () => {
    //  Fazendo o login
    async function validar(e) {
       e.preventDefault();
-      await signInWithEmailAndPassword(auth, email, senha)
-         .then((userCredential) => {
-            dispatch(setUser(userCredential));
-         })
-         .catch((err) => {
-            console.log(`ops, aconteceu o erro: ${err}`);
-            let errorMessage = err.message;
-            //  Tratando os erros do firebase
-            if (errorMessage.includes("invalid-email")) {
-               setErroMsg("O email inserido é inválido!");
-            } else if (errorMessage.includes("wrong-password")) {
-               setErroMsg("A senha está incorrecta");
-            } else if (errorMessage.includes("user-not-found")) {
-               setErroMsg("Este email não possui uma conta neste site!");
-            } else {
-               setErroMsg("O servidor está indisponível, tente mais tarde!");
-            }
-            setTimeout(() => {
-               setErroMsg("");
-            }, 4000);
-         });
+      await signInWithEmailAndPassword(auth, email, senha).catch((err) => {
+         let errorMessage = err.message;
+         //  Tratando os erros do firebase
+         if (errorMessage.includes("invalid-email")) {
+            setErroMsg("O email inserido é inválido!");
+         } else if (errorMessage.includes("wrong-password")) {
+            setErroMsg("A senha está incorrecta");
+         } else if (errorMessage.includes("user-not-found")) {
+            setErroMsg("Este email não possui uma conta neste site!");
+         } else {
+            setErroMsg("O servidor está indisponível, tente mais tarde!");
+         }
+         setTimeout(() => {
+            setErroMsg("");
+         }, 4000);
+      });
    }
 
    return (

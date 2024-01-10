@@ -30,7 +30,7 @@ const NavBar = () => {
    async function deslogar(e) {
       e.preventDefault();
       const res = await signOut(auth)
-         .then(() => dispatch(setUser(undefined)))
+         .then(() => dispatch(setUser(null)))
          .catch((err) => console.log(`Ops, não foi possível deslogar devido a ${err}`));
    }
 
