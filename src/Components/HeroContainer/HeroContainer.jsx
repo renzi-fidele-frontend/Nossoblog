@@ -80,7 +80,6 @@ const HeroContainer = ({ imagem, titulo, criadoPor, criadoEm, tags, id, objecto 
                <br />
                <Esqueleto tipo={"data"} />
                <Esqueleto tipo={"data"} />
-            
             </div>
          )}
       </>

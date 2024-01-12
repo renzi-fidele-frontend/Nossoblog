@@ -58,27 +58,25 @@ const PostCard = ({ linkAtivo = false, objecto, conteudo, titulo, autor, data, i
          }}
       >
          <div id={styles.left}>{imagem ? <img src={imagem} loading="lazy" alt="imagem de post" /> : <Esqueleto tipo={"thumbnail"} />}</div>
-         <div id={styles.right}>
-            {tags && titulo && descricao && autor && dataCorrigida ? (
-               <>
-                  <p id={styles.tags}>{tags}</p>
-                  <h4>{titulo}</h4>
-                  <p id={styles.descricao}>{descricao}</p>
-                  <p id={styles.autor}>
-                     Por <strong>{autor}</strong>
-                  </p>
-                  <p id={styles.dataCorrigida}>{dataCorrigida}</p>
-               </>
-            ) : (
-               <>
-                  <Esqueleto tipo={""} />
-                  <Esqueleto tipo={""} />
-                  <Esqueleto tipo={""} />
-                  <Esqueleto tipo={""} />
-                  <Esqueleto tipo={""} />
-               </>
-            )}
-         </div>
+         {tags && titulo && descricao && autor && dataCorrigida ? (
+            <div id={styles.right}>
+               <p id={styles.tags}>{tags}</p>
+               <h4>{titulo}</h4>
+               <p id={styles.descricao}>{descricao}</p>
+               <p id={styles.autor}>
+                  Por <strong>{autor}</strong>
+               </p>
+               <p id={styles.dataCorrigida}>{dataCorrigida}</p>
+            </div>
+         ) : (
+            <div id={styles.rightEsqueleto}>
+               <Esqueleto tipo={"tagsCard"} />
+               <Esqueleto tipo={"tituloCard"} />
+               <Esqueleto tipo={"textoCard"} />
+               <Esqueleto tipo={"textoCard"} />
+               <Esqueleto tipo={"criadoPorCard"} />
+            </div>
+         )}
       </div>
    );
 };

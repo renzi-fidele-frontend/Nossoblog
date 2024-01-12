@@ -1,134 +1,139 @@
 #container {
-    display: grid;
-    grid-template-columns: 50% 50%;
-    background-color: rgb(255, 227, 253);
-    margin-right: 15px;
-    padding-top: 4px;
-    padding-left: 4px;
-    border-radius: 2%;
-    margin-bottom: 15px;
-    transition: all 0.3s ease-out;
-    border: 1px solid black;
+   display: grid;
+   grid-template-columns: 50% 50%;
+   background-color: rgb(255, 227, 253);
+   margin-right: 15px;
+   padding-top: 4px;
+   padding-left: 4px;
+   border-radius: 2%;
+   margin-bottom: 15px;
+   transition: all 0.3s ease-out;
+   border: 1px solid black;
 }
 
 #container:hover {
-    transform: translateY(-5px);
-    cursor: pointer;
-    box-shadow: 1px 1px 15px rgb(187, 138, 192);
-    background-image: url("/src//Images/low-poly-grid-haikei.svg");
-    background-blend-mode: overlay;
-    background-color: #efc0fd;
+   transform: translateY(-5px);
+   cursor: pointer;
+   box-shadow: 1px 1px 15px rgb(187, 138, 192);
+   background-image: url("/src//Images/low-poly-grid-haikei.svg");
+   background-blend-mode: overlay;
+   background-color: #efc0fd;
 }
 
 #left {
-    overflow: hidden;
-    border-radius: 2%;
+   overflow: hidden;
+   border-radius: 2%;
 }
 
 #left > img {
-    width: 100%;
-    height: 200px;
-    border-radius: 2%;
-    transition: all 0.4s ease-in-out;
+   width: 100%;
+   height: 200px;
+   border-radius: 2%;
+   transition: all 0.4s ease-in-out;
 }
 
 #left > img:hover {
-    scale: 1.03;
+   scale: 1.03;
 }
 
 #right {
-    padding-left: 14px;
-    padding-right: 3px;
-    display: flex;
-    flex-flow: column;
-    align-items: start;
-    justify-content: space-between;
+   padding-left: 14px;
+   padding-right: 3px;
+   display: flex;
+   flex-flow: column;
+   align-items: start;
+   justify-content: space-between;
+}
+
+#rightEsqueleto {
+   display: flex;
+   flex-flow: column;
+   padding-inline: 8px;
 }
 
 #tags {
-    font-style: italic;
-    font-size: 14px;
-    margin-top: 8px;
+   font-style: italic;
+   font-size: 14px;
+   margin-top: 8px;
 }
 
 #right > h4 {
-    font-size: 17px;
-    font-weight: 700;
-    line-height: 17px;
+   font-size: 17px;
+   font-weight: 700;
+   line-height: 17px;
 }
 
 #descricao {
-    font-size: 14px;
-    margin-block: 3px;
+   font-size: 14px;
+   margin-block: 3px;
 }
 
 #autor {
-    font-size: 14px;
+   font-size: 14px;
 }
 
 #dataCorrigida {
-    margin-bottom: 5px;
+   margin-bottom: 5px;
 }
 
 @media screen and (max-width: 1364px) {
-    #right > h4 {
-        font-size: 15px;
-    }
+   #right > h4 {
+      font-size: 15px;
+   }
 
-    #tags {
-        font-size: 13px;
-    }
+   #tags {
+      font-size: 13px;
+   }
 
-    #descricao {
-        font-size: 13px;
-    }
+   #descricao {
+      font-size: 13px;
+   }
 
-    #autor {
-        font-size: 13px;
-    }
+   #autor {
+      font-size: 13px;
+   }
 }
 
 @media screen and (max-width: 1278px) {
-    #container {
-        grid-template-columns: auto;
-        grid-template-rows: 50% auto;
-        padding: 2px;
-    }
+   #container {
+      grid-template-columns: auto;
+      grid-template-rows: 50% auto;
+      padding: 2px;
+   }
 
-    #right {
-        padding-inline: 7px;
-    }
+   #right {
+      padding-inline: 7px;
+   }
 
-    #right > h4 {
-        font-size: 17px;
-    }
+   #right > h4 {
+      font-size: 17px;
+   }
 
-    #dataCorrigida {
-        margin-bottom: 2px;
-    }
+   #dataCorrigida {
+      margin-bottom: 2px;
+   }
 }
 
 @media screen and (max-width: 802px) {
-    #dataCorrigida {
-        font-size: 13px;
-    }
+   #dataCorrigida {
+      font-size: 13px;
+   }
 
-    #right > h4 {
-        font-size: 15px;
-    }
+   #right > h4 {
+      font-size: 15px;
+   }
 }
 
 @media screen and (max-width: 652px) {
-    #container {
-        grid-template-columns: 50% 50%;
-        grid-template-rows: auto;
-    }
+   #container {
+      grid-template-columns: 50% 50%;
+      grid-template-rows: auto;
+   }
 }
 
 @media screen and (max-width: 522px) {
-    #container {
-        grid-template-columns: auto;
-        grid-template-rows: auto 50%;
-    }
-
+   #container {
+      grid-template-columns: auto;
+      grid-template-rows: auto 50%;
+   }
 }

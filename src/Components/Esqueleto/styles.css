@@ -58,3 +58,28 @@
    width: 300px;
    margin-right: 1em;
 }
+
+.sk.tagsCard {
+   margin-top: 10px;
+   height: 15px;
+   width: 60%;
+   margin-bottom: 22px;
+}
+
+.sk.tituloCard {
+   height: 27px;
+   width: 70%;
+   margin-bottom: 22px;
+}
+
+.sk.textoCard {
+   height: 16px;
+   width: 100%;
+   margin-bottom: 5px;
+}
+
+.sk.criadoPorCard {
+   height: 15px;
+   width: 60%;
+   margin-top: 22px;
+}
