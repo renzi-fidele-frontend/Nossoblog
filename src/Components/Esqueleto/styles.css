@@ -17,7 +17,7 @@
    transform: translateX(-100%);
    background: rgb(90, 70, 116);
    background: linear-gradient(180deg, rgba(213, 168, 240, 0.353) 0%, rgba(205, 153, 226, 0.2) 100%);
-   animation: shimmer 2s infinite linear alternate-reverse;
+   animation: shimmer 3s infinite linear alternate-reverse;
    content: "";
 }
 
@@ -82,4 +82,9 @@
    height: 15px;
    width: 60%;
    margin-top: 22px;
+}
+
+.sk.singleTag {
+   width: 90px;
+   height: 20px;
 }

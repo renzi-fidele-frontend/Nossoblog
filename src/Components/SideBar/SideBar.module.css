@@ -1,232 +1,238 @@
 #container > form > input {
-    font-size: 18px;
-    padding: 3px;
-    border-radius: 2px;
-    border: 2px #000000 solid;
-    transition: all 0.5s ease-in-out;
+   font-size: 18px;
+   padding: 3px;
+   border-radius: 2px;
+   border: 2px #000000 solid;
+   transition: all 0.5s ease-in-out;
 }
 
 #container > form > input:focus {
-    background-color: pink;
+   background-color: pink;
 }
 
 #container > form {
-    display: flex;
-    flex-flow: row nowrap;
+   display: flex;
+   flex-flow: row nowrap;
 }
 
 #container > form > button {
-    margin-left: 4px;
-    padding-inline: 5px;
-    font-size: 20px;
+   margin-left: 4px;
+   padding-inline: 5px;
+   font-size: 20px;
 }
 
 #container > form > button:hover {
-    cursor: pointer;
+   cursor: pointer;
 }
 
 #container > h3 {
-    margin-top: 2em;
-    margin-bottom: 0.6em;
-    font-size: 22px;
-    font-weight: 600;
-    text-decoration: underline 2px purple;
+   margin-top: 2em;
+   margin-bottom: 0.6em;
+   font-size: 22px;
+   font-weight: 600;
+   text-decoration: underline 2px purple;
 }
 
 #PopularPostsContainer {
-    display: flex;
-    flex-flow: column nowrap;
+   display: flex;
+   flex-flow: column nowrap;
 }
 
 #PopularPostsContainer > a {
-    margin-bottom: 7px;
-    color: black;
-    font-weight: 500;
-    background-color: pink;
-    width: fit-content;
-    padding-inline: 6px;
-    padding-block: 2px;
-    border-radius: 10px;
-    transition: all 0.3s ease-in-out;
-    border: 1px solid black;
+   margin-bottom: 7px;
+   color: black;
+   font-weight: 500;
+   background-color: pink;
+   width: fit-content;
+   padding-inline: 6px;
+   padding-block: 2px;
+   border-radius: 10px;
+   transition: all 0.3s ease-in-out;
+   border: 1px solid black;
 }
 
 .fechar {
-    display: none;
+   display: none;
 }
 
 #PopularPostsContainer > a:hover {
-    background-color: black;
-    color: white;
-    box-shadow: 1px 1px 1px black;
+   background-color: black;
+   color: white;
+   box-shadow: 1px 1px 1px black;
 }
 
 #tagsContainer {
-    display: flex;
-    flex-flow: row wrap;
+   display: flex;
+   flex-flow: row wrap;
 }
 
 #tagsContainer > a {
-    font-style: italic;
-    color: #220120;
-    margin-right: 8px;
-    font-weight: 500;
-    font-size: 17px;
-    border: 1px solid black;
-    padding-inline: 5px;
-    margin-bottom: 5px;
-    transition: all 0.3s ease-in-out;
+   font-style: italic;
+   color: #220120;
+   margin-right: 8px;
+   font-weight: 500;
+   font-size: 17px;
+   border: 1px solid black;
+   padding-inline: 5px;
+   margin-bottom: 5px;
+   transition: all 0.3s ease-in-out;
+}
+
+#tagsEsqueleto {
+   display: flex;
+   flex-flow: row wrap;
+   gap: 1em;
 }
 
 #tagsContainer > a:hover {
-    background-color: black;
-    color: white;
-    box-shadow: 1px 1px 1px black;
+   background-color: black;
+   color: white;
+   box-shadow: 1px 1px 1px black;
 }
 
 #adsContainer {
-    margin-top: 1em;
+   margin-top: 1em;
 }
 
 #btn {
-    background-color: transparent;
-    border: none;
-    color: white;
+   background-color: transparent;
+   border: none;
+   color: white;
 }
 
 .btn {
-    background-color: pink;
-    border-radius: 5px;
+   background-color: pink;
+   border-radius: 5px;
 }
 
 #ico > path {
-    fill: white;
+   fill: white;
 }
 
 #ico {
-    font-size: 27px;
-    transition: transform 0.4s ease-in-out;
+   font-size: 27px;
+   transition: transform 0.4s ease-in-out;
 }
 
 #ico:hover {
-    transform: rotateZ(360deg);
+   transform: rotateZ(360deg);
 }
 
 .btn,
 .searchBtn {
-    display: none;
+   display: none;
 }
 
 @media screen and (max-width: 1214px) {
-    #container > h3 {
-        font-size: 18px;
-    }
+   #container > h3 {
+      font-size: 18px;
+   }
 
-    #PopularPostsContainer > a {
-        font-size: 14px;
-    }
+   #PopularPostsContainer > a {
+      font-size: 14px;
+   }
 
-    #tagsContainer > a {
-        font-size: 14px;
-    }
+   #tagsContainer > a {
+      font-size: 14px;
+   }
 }
 
 @media screen and (max-width: 1080px) {
-    .btn,
-    .searchBtn {
-        display: initial !important;
-    }
+   .btn,
+   .searchBtn {
+      display: initial !important;
+   }
 
-    #container {
-        display: none;
-    }
+   #container {
+      display: none;
+   }
 
-    #iconsContainer {
-        align-items: center;
-        justify-content: center;
-        margin-top: 1em;
-    }
+   #iconsContainer {
+      align-items: center;
+      justify-content: center;
+      margin-top: 1em;
+   }
 
-    .btn {
-        font-size: 40px;
-    }
+   .btn {
+      font-size: 40px;
+   }
 
-    .btn:hover,
-    .searchBtn:hover {
-        cursor: pointer;
-    }
+   .btn:hover,
+   .searchBtn:hover {
+      cursor: pointer;
+   }
 
-    .searchBtn {
-        color: pink;
-        font-size: 40px;
-        margin-top: 0.6em;
-    }
+   .searchBtn {
+      color: pink;
+      font-size: 40px;
+      margin-top: 0.6em;
+   }
 
-    .searchBtn > path {
-        fill: rgb(255, 255, 255);
-    }
+   .searchBtn > path {
+      fill: rgb(255, 255, 255);
+   }
 
-    #iconsContainer {
-        display: flex;
-        flex-direction: column;
-    }
+   #iconsContainer {
+      display: flex;
+      flex-direction: column;
+   }
 }
 
 .responsivo {
-    display: flex !important;
-    position: fixed;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    left: 0;
-    text-align: center !important;
-    flex-flow: column nowrap;
-    justify-content: center;
-    align-items: center;
-    z-index: 3;
-    background-color: pink;
-    animation: deslizar .7s ease-in-out;
+   display: flex !important;
+   position: fixed;
+   top: 0;
+   width: 100%;
+   height: 100%;
+   left: 0;
+   text-align: center !important;
+   flex-flow: column nowrap;
+   justify-content: center;
+   align-items: center;
+   z-index: 3;
+   background-color: pink;
+   animation: deslizar 0.7s ease-in-out;
 }
 
 @keyframes deslizar {
-    from {
-        opacity: 0;
-        transform: translateX(1000px);
-    }
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
+   from {
+      opacity: 0;
+      transform: translateX(1000px);
+   }
+   to {
+      opacity: 1;
+      transform: translateX(0);
+   }
 }
 
-
 .responsivo > #PopularPostsContainer {
-    align-items: center;
+   align-items: center;
 }
 
 .responsivo > #PopularPostsContainer > a {
-    background-color: rgb(163, 127, 221);
+   background-color: rgb(163, 127, 221);
 }
 
 .responsivo > .fechar {
-    display: initial;
-    position: absolute;
-    top: 3%;
-    right: 3%;
-    font-size: 24px;
+   display: initial;
+   position: absolute;
+   top: 3%;
+   right: 3%;
+   font-size: 24px;
 }
 
 .responsivo > .fechar:hover {
-    cursor: pointer;
+   cursor: pointer;
 }
 
 .responsivo > #tagsContainer {
-    align-items: center;
-    justify-content: center;
+   align-items: center;
+   justify-content: center;
 }
 
 @media screen and (max-width: 575px) {
-    .btn, .searchBtn {
-        font-size: 30px;
-    }
+   .btn,
+   .searchBtn {
+      font-size: 30px;
+   }
 }

@@ -15,6 +15,7 @@ import { FaSearch } from "react-icons/fa";
 import { FcSearch } from "react-icons/fc";
 import { BsLayoutTextSidebarReverse } from "react-icons/bs";
 import { ImCross } from "react-icons/im";
+import Esqueleto from "../Esqueleto/Esqueleto";
 
 const SideBar = ({ customClass }) => {
    const { postsEmDestaque, tagsPopulares } = useSelector((state) => state.sidebar);
@@ -78,15 +79,20 @@ const SideBar = ({ customClass }) => {
             </form>
             {/*Caso cheguem as tags populares */}
             <h3>Tags populares</h3>
-            <div id={styles.tagsContainer}>
-               {tagsPopulares ? (
-                  tagsPopulares.map((val, ind) => {
+            {tagsPopulares.length > 0 ? (
+               <div id={styles.tagsContainer}>
+                  {tagsPopulares.map((val, ind) => {
                      return <Link to={`/pesquisa?q=${val}`}>#{val}</Link>;
-                  })
-               ) : (
-                  <p>...</p>
-               )}
-            </div>
+                  })}
+               </div>
+            ) : (
+               <div id={styles.tagsEsqueleto}>
+                  {[1, 2, 3, 4, 5].map((v, k) => (
+                     <Esqueleto key={k} tipo={"singleTag"} />
+                  ))}
+               </div>
+            )}
+
             {/*Caso cheguem os posts em destaque */}
             <h3>Posts em destaque</h3>
             <div id={styles.PopularPostsContainer}>
