@@ -1,191 +1,193 @@
 #container {
-    text-align: center;
-    display: grid;
-    height: 85vh;
-    padding-inline: 5%;
-    grid-template-columns: 70% 30%;
+   text-align: center;
+   display: grid;
+   height: 85vh;
+   padding-inline: 5%;
+   grid-template-columns: 70% 30%;
 }
 
 #left > h2 {
-    font-size: 2.5em;
-    font-style: italic;
-    font-weight: 600;
-    margin-top: 0.5em;
-    margin-bottom: 1em;
-    background: #ffe3fd;
-    margin-right: 2em;
-    width: fit-content;
-    padding: 0.1em 1em;
-    border-radius: 3px;
+   font-size: 2.5em;
+   font-weight: 700;
+   margin-top: 0.5em;
+   margin-bottom: 1em;
+   background: #ffe3fd;
+   margin-right: 2em;
+   width: fit-content;
+   padding: 0.1em 1em;
+   border-radius: 3px;
 }
 
 #left {
-    overflow-y: scroll;
-    text-align: start;
+   overflow-y: scroll;
+   padding-bottom: 4em;
+   text-align: start;
+   -webkit-mask-image: linear-gradient(to top, transparent 0, transparent 21px, #000 47px, #000 100%);
+   mask-image: linear-gradient(to top, transparent 0, transparent 21px, #000 47px, #000 100%);
 }
 
 /* Hide scrollbar for Chrome, Safari and Opera */
 #left::-webkit-scrollbar {
-    display: none;
+   display: none;
 }
 
 /* Hide scrollbar for IE, Edge and Firefox */
 #left {
-    -ms-overflow-style: none; /* IE and Edge */
-    scrollbar-width: none; /* Firefox */
+   -ms-overflow-style: none; /* IE and Edge */
+   scrollbar-width: none; /* Firefox */
 }
 
 #right {
-    padding-top: 2em;
-    text-align: start;
-    border-left: #e0c6eb 6px dashed;
-    padding-left: 2em;
-    position: sticky;
+   padding-top: 2em;
+   text-align: start;
+   border-left: #e0c6eb 6px dashed;
+   padding-left: 2em;
+   position: sticky;
 }
 
 #hero {
-    width: 100%;
+   width: 100%;
 }
 
 #duasCol {
-    display: grid;
-    grid-template-columns: 50% 50%;
-    padding-right: 3.7em;
-    margin-top: 2.2em;
+   display: grid;
+   grid-template-columns: 50% 50%;
+   padding-right: 3.7em;
+   margin-top: 2.2em;
 }
 
 #loading {
-    font-size: 30px;
-    margin-top: 1em;
-    animation: girar 1s infinite linear;
-    font-weight: 900;
+   font-size: 30px;
+   margin-top: 1em;
+   animation: girar 1s infinite linear;
+   font-weight: 900;
 }
 
 @keyframes girar {
-    from {
-        transform: rotate(0);
-    }
-    to {
-        transform: rotate(360deg);
-    }
+   from {
+      transform: rotate(0);
+   }
+   to {
+      transform: rotate(360deg);
+   }
 }
 
 @media screen and (max-width: 1516px) {
-    #container {
-        padding-inline: 1%;
-        grid-template-columns: 60% 40%;
-    }
-    #duasCol {
-        padding-right: 0.5em;
-    }
-    #container {
-        grid-template-columns: 70% 30%;
-    }
+   #container {
+      padding-inline: 1%;
+      grid-template-columns: 60% 40%;
+   }
+   #duasCol {
+      padding-right: 0.5em;
+   }
+   #container {
+      grid-template-columns: 70% 30%;
+   }
 
-    #left > h2 {
-        margin-top: 0.5em;
-    }
+   #left > h2 {
+      margin-top: 0.5em;
+   }
 
-    #loading {
-        margin-left: 3%;
-    }
+   #loading {
+      margin-left: 3%;
+   }
 }
 
 @media screen and (max-width: 1462px) {
-    #left > h2 {
-        font-size: 2.2em;
-    }
+   #left > h2 {
+      font-size: 2.2em;
+   }
 }
 
 @media screen and (max-width: 1284px) {
-    #right {
-        padding-left: 0.5em;
-    }
+   #right {
+      padding-left: 0.5em;
+   }
 }
 
 @media screen and (max-width: 1214px) {
-    #left > h2 {
-        font-size: 28px;
-    }
+   #left > h2 {
+      font-size: 28px;
+   }
 }
 
 @media screen and (max-width: 1080px) {
-    #container {
-        grid-template-columns: 90% 10%;
-    }
-    #left {
-        padding-left: 1.4em;
-    }
-    #right {
-        padding: 0 !important;
-        border: none !important;
-        background-image: url("/src/Images/low-poly-grid-haikei.svg");
-    }
+   #container {
+      grid-template-columns: 90% 10%;
+   }
+   #left {
+      padding-left: 1.4em;
+   }
+   #right {
+      padding: 0 !important;
+      border: none !important;
+      background-image: url("/src/Images/low-poly-grid-haikei.svg");
+   }
 }
 
 @media screen and (max-width: 1008px) {
-    #left {
-        padding-left: 0.4em;
-    }
+   #left {
+      padding-left: 0.4em;
+   }
 }
 
 @media screen and (max-width: 980px) {
-    #left {
-        padding-inline: 1.4em;
-    }
+   #left {
+      padding-inline: 1.4em;
+   }
 }
 
 @media screen and (max-width: 734px) {
-    #left {
-        padding-left: 0.1em;
-    }
+   #left {
+      padding-left: 0.1em;
+   }
 }
 
 @media screen and (max-width: 674px) {
-    #left {
-        padding-right: 0;
-    }
+   #left {
+      padding-right: 0;
+   }
 }
 
 @media screen and (max-width: 652px) {
-    #duasCol {
-        grid-template-columns: auto;
-    }
+   #duasCol {
+      grid-template-columns: auto;
+   }
 }
 
 @media screen and (max-width: 646px) {
-    #left > h2 {
-        font-size: 23px;
-    }
+   #left > h2 {
+      font-size: 23px;
+   }
 }
 
 @media screen and (max-width: 584px) {
 }
 
 @media screen and (max-width: 566px) {
-    #left > h2 {
-        margin-right: 5%;
-    }
+   #left > h2 {
+      margin-right: 5%;
+   }
 }
 
 @media screen and (max-width: 530px) {
-    #left > h2 {
-        font-size: 20px;
-    }
+   #left > h2 {
+      font-size: 20px;
+   }
 }
 
 @media screen and (max-width: 421px) {
-    #container {
-        grid-template-columns: 88% 12%;
-    }
+   #container {
+      grid-template-columns: 88% 12%;
+   }
 
-    #loading {
-        margin-left: 5%;
-    }
+   #loading {
+      margin-left: 5%;
+   }
 }
 
 @media screen and (max-width: 343px) {
-    #container {
-        grid-template-columns: 86% 14%;
-    }
+   #container {
+      grid-template-columns: 86% 14%;
+   }
 }

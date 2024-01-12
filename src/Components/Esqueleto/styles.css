@@ -174,3 +174,9 @@
       height: 150px;
    }
 }
+
+@media screen and (max-width: 330px) {
+   .sk.singlePopularPost {
+      width: 300px;
+   }
+}
