@@ -1,0 +1,60 @@
+.sk {
+   background-color: #b498c8;
+   border-radius: 5px;
+   display: inline-block;
+   max-width: 100%;
+   position: relative;
+   overflow: hidden;
+   animation: piscar 0.7s alternate-reverse infinite ease-in-out;
+}
+
+.sk::after {
+   position: absolute;
+   top: 0;
+   right: 0;
+   bottom: 0;
+   left: 0;
+   transform: translateX(-100%);
+   background: rgb(90, 70, 116);
+   background: linear-gradient(180deg, rgba(213, 168, 240, 0.353) 0%, rgba(205, 153, 226, 0.2) 100%);
+   animation: shimmer 2s infinite linear alternate-reverse;
+   content: "";
+}
+
+@keyframes shimmer {
+   100% {
+      transform: translateX(100%);
+   }
+}
+
+@keyframes piscar {
+   from {
+      opacity: 0.4;
+   }
+   to {
+      opacity: 1;
+   }
+}
+
+.sk.thumbnail {
+   height: 200px;
+   width: 277px;
+}
+
+.sk.heroImg {
+   width: 950px;
+   height: 465px;
+   margin-bottom: 10px;
+}
+
+.sk.tituloHero {
+   width: 70%;
+   height: 35px;
+   margin-bottom: 6px;
+}
+
+.sk.data {
+   height: 15px;
+   width: 300px;
+   margin-right: 1em;
+}

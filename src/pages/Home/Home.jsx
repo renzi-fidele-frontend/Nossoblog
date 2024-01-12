@@ -67,7 +67,15 @@ const Home = () => {
                   </div>
                </>
             ) : (
-               <SiSpinrilla id={styles.loading} />
+               <>
+                  <h2>Veja os nossos posts mais recentes</h2>
+                  <HeroContainer />
+                  <div id={styles.duasCol}>
+                     {[1, 2, 3, 4, 5, 6, 7, 8].map((v, k) => (
+                        <PostCard key={k} />
+                     ))}
+                  </div>
+               </>
             )}
          </div>
          <div id={styles.right}>
