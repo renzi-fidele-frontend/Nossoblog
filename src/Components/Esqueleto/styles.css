@@ -42,7 +42,7 @@
 }
 
 .sk.heroImg {
-   width: 950px;
+   width: 80%;
    height: 465px;
    margin-bottom: 10px;
 }
@@ -87,4 +87,90 @@
 .sk.singleTag {
    width: 90px;
    height: 20px;
+}
+
+.sk.singlePopularPost {
+   width: 390px;
+   height: 17px;
+}
+
+@media screen and (max-width: 1600px) {
+   .sk.heroImg {
+      height: 405px;
+   }
+}
+
+@media screen and (max-width: 1297px) {
+   .sk.thumbnail {
+      height: 180px;
+      width: 200px;
+   }
+
+   .sk.heroImg {
+      height: 365px;
+      width: 90%;
+   }
+
+   .sk.tituloHero {
+      height: 30px;
+   }
+}
+
+@media screen and (max-width: 1278px) {
+   .sk.thumbnail {
+      width: 100%;
+   }
+
+   .sk.tagsCard {
+      margin-bottom: 15px;
+   }
+
+   .sk.tituloCard {
+      margin-bottom: 12px;
+   }
+
+   .sk.criadoPorCard {
+      margin-top: 10px;
+      height: 12px;
+   }
+
+   .sk.textoCard {
+      height: 12px;
+   }
+
+   .sk.tituloHero {
+      height: 25px;
+   }
+}
+
+@media screen and (max-width: 900px) {
+   .sk.heroImg {
+      height: 310px;
+   }
+}
+
+@media screen and (max-width: 600px) {
+   .sk.heroImg {
+      height: 230px;
+   }
+}
+
+@media screen and (max-width: 450px) {
+   .sk.tituloCard {
+      height: 20px;
+   }
+
+   .sk.heroImg {
+      height: 190px;
+   }
+
+   .sk.singlePopularPost {
+      width: 320px;
+   }
+}
+
+@media screen and (max-width: 400px) {
+   .sk.thumbnail {
+      height: 150px;
+   }
 }

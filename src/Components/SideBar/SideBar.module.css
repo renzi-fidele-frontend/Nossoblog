@@ -61,6 +61,12 @@
    box-shadow: 1px 1px 1px black;
 }
 
+#postsPopularesEsqueleto {
+   display: flex;
+   flex-flow: column;
+   gap: 17px;
+}
+
 #tagsContainer {
    display: flex;
    flex-flow: row wrap;
@@ -230,9 +236,17 @@
    justify-content: center;
 }
 
+@media screen and (max-width: 900px) {
+   #tagsEsqueleto {
+      justify-content: center;
+      align-items: center;
+   }
+}
+
 @media screen and (max-width: 575px) {
    .btn,
    .searchBtn {
       font-size: 30px;
    }
 }
+

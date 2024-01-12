@@ -95,19 +95,23 @@ const SideBar = ({ customClass }) => {
 
             {/*Caso cheguem os posts em destaque */}
             <h3>Posts em destaque</h3>
-            <div id={styles.PopularPostsContainer}>
-               {postsEmDestaque?.length > 0 ? (
-                  postsEmDestaque.map((val, ind) => {
+            {postsEmDestaque?.length > 0 ? (
+               <div id={styles.PopularPostsContainer}>
+                  {postsEmDestaque.map((val, ind) => {
                      return (
                         <Link key={ind} to={`/posts/${val.id}`} state={val}>
                            {val.data.titulo}
                         </Link>
                      );
-                  })
-               ) : (
-                  <p>...</p>
-               )}
-            </div>
+                  })}
+               </div>
+            ) : (
+               <div id={styles.postsPopularesEsqueleto}>
+                  {[1, 2, 3, 4, 5].map((v, k) => (
+                     <Esqueleto key={k} tipo={"singlePopularPost"} />
+                  ))}
+               </div>
+            )}
 
             {/*Anúncios do google adsense*/}
             <div id={styles.adsContainer}>
