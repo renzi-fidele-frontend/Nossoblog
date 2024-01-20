@@ -13,11 +13,12 @@ import SearchPage from "./pages/SearchPage/SearchPage";
 import EditPost from "./pages/Dashboard/EditPost/EditPost";
 import { useSelector } from "react-redux";
 import useObservarLogin from "./hooks/useObservarLogin";
+import useScrollTop from "./hooks/ScrollTop/useScrollTop";
 
 function App() {
    const { user } = useSelector((state) => state.user);
    const observar = useObservarLogin();
-   
+
    return (
       <Router>
          <div className="App">
@@ -33,6 +34,7 @@ function App() {
                <Route path="/pesquisa" element={<SearchPage />} />
                <Route path="/dashboard/editar" element={<EditPost />} />
             </Routes>
+
             <Footer />
          </div>
       </Router>

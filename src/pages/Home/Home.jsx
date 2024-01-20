@@ -4,7 +4,6 @@ import { db } from "../../firebase/config";
 import { useEffect } from "react";
 import HeroContainer from "../../Components/HeroContainer/HeroContainer";
 import PostCard from "../../Components/PostCard/PostCard";
-import { SiSpinrilla } from "react-icons/si";
 import SideBar from "../../Components/SideBar/SideBar";
 import { useDispatch, useSelector } from "react-redux";
 import { setPosts } from "../../state/home/homeSlice";
@@ -30,6 +29,8 @@ const Home = () => {
    useEffect(() => {
       if (posts.length === 0) capturarPosts();
    }, []);
+
+   
 
    return (
       <section id={styles.container}>
