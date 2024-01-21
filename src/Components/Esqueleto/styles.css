@@ -102,14 +102,16 @@
 .sk.botaoDashboard {
    width: 50px;
    height: 17px;
-   margin-inline: .5em;
+   margin-inline: 0.5em;
 }
-
-
 
 @media screen and (max-width: 1600px) {
    .sk.heroImg {
       height: 405px;
+   }
+
+   .sk.textoDashboard {
+      width: 600px;
    }
 }
 
@@ -126,6 +128,10 @@
 
    .sk.tituloHero {
       height: 30px;
+   }
+
+   .sk.textoDashboard {
+      width: 500px;
    }
 }
 
@@ -160,6 +166,17 @@
    .sk.heroImg {
       height: 310px;
    }
+
+   .sk.textoDashboard {
+      width: 400px;
+   }
+}
+
+@media screen and (max-width: 700px) {
+   .sk.textoDashboard {
+      width: 300px;
+   }
+  
 }
 
 @media screen and (max-width: 600px) {

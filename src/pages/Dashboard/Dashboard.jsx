@@ -73,7 +73,7 @@ const Dashboard = () => {
          <img src={foto} alt="logo de dashboard" />
          <h2>Dashboard</h2>
          {/*Caso Hajam posts criados pelo administrador da conta */}
-         {posts && (
+         {!posts && (
             <>
                <p>Gerencie os seus Posts</p>
 
@@ -124,7 +124,7 @@ const Dashboard = () => {
          )}
 
          {/*Caso esteja caregando a informação */}
-         {loading === true && (
+         {loading === false && (
             <>
                <p>Gerencie os seus Posts</p>
                <div id={styles.userPostsContainer}>
