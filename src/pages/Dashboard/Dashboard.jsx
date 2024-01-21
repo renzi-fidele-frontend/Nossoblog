@@ -3,17 +3,15 @@ import { getAuth } from "firebase/auth";
 import { app, db } from "../../firebase/config";
 import { collection, getDocs, orderBy, query, where, doc, deleteDoc } from "firebase/firestore";
 import { useEffect, useState } from "react";
-import estiloHome from "../Home/Home.module.css";
-import { SiSpinrilla } from "react-icons/si";
 import foto from "../../Images/user_security_token.svg";
 import { useLocation, useNavigate } from "react-router-dom";
 import ft from "../../Images/Interdit.svg";
 import Esqueleto from "../../Components/Esqueleto/Esqueleto";
+import { setUserPosts } from "../../state/user/userSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 const Dashboard = () => {
-   const [posts, setPosts] = useState(undefined);
-
-   const [loading, setLoading] = useState(true);
+   const [loading, setLoading] = useState(false);
 
    const [removido, setRemovido] = useState(false);
 
@@ -23,11 +21,16 @@ const Dashboard = () => {
 
    const navegar = useNavigate();
 
+   const dispatch = useDispatch();
+
+   const { userPosts } = useSelector((state) => state.user);
+
    //  Caso o post seja atualizado
    const foiAtualizado = useLocation().state;
 
    //  Pegando os Posts criados pelo usuário
    async function capturarPosts(uid) {
+      setLoading(true);
       const arr = [];
       let q = query(collection(db, "Posts"), orderBy("criadoEm", "desc"), where("uid", "==", uid));
 
@@ -38,14 +41,15 @@ const Dashboard = () => {
       });
 
       if (arr.length > 0) {
-         setPosts(arr);
+         dispatch(setUserPosts(arr));
       }
       setLoading(false);
    }
 
    //  Removendo o Post criado pelo usuário
    async function removePost(postId) {
-      setPosts(undefined);
+      setLoading(true);
+      dispatch(setUserPosts(undefined));
       await deleteDoc(doc(db, "Posts", postId)).then((res) => {
          capturarPosts(userID);
          setRemovido(true);
@@ -56,7 +60,7 @@ const Dashboard = () => {
    }
 
    useEffect(() => {
-      capturarPosts(userID);
+      if (!userPosts) capturarPosts(userID);
    }, [userID]);
 
    useEffect(() => {
@@ -73,7 +77,7 @@ const Dashboard = () => {
          <img src={foto} alt="logo de dashboard" />
          <h2>Dashboard</h2>
          {/*Caso Hajam posts criados pelo administrador da conta */}
-         {posts && (
+         {userPosts && (
             <>
                <p>Gerencie os seus Posts</p>
 
@@ -82,7 +86,7 @@ const Dashboard = () => {
                      <p>Título</p>
                      <p>Ações</p>
                   </div>
-                  {posts?.map((val) => {
+                  {userPosts?.map((val) => {
                      return (
                         <div id={styles.itemLine}>
                            <div id={styles.left}>
@@ -149,7 +153,7 @@ const Dashboard = () => {
          )}
 
          {/*Caso não haja nenhum post feito pelo usuário */}
-         {posts === undefined && loading === false && (
+         {userPosts === undefined && loading === false && (
             <>
                <img id={styles.negacao} src={ft} alt="Ilustracao representando nenhum post" />
                <p>Nenhum post foi criado...</p>

@@ -13,6 +13,9 @@ import draftToHtml from "draftjs-to-html";
 import { EditorState, convertToRaw, ContentState } from "draft-js";
 import { Editor } from "react-draft-wysiwyg";
 import htmlToDraft from "html-to-draftjs";
+import { useDispatch } from "react-redux";
+import { setUserPosts } from "../../../state/user/userSlice";
+import useScrollTop from "../../../hooks/ScrollTop/useScrollTop";
 
 const EditPost = () => {
    const objeto = useLocation().state;
@@ -24,6 +27,11 @@ const EditPost = () => {
    const [conteudoHTML, setConteudoHTML] = useState("");
    const [imgUpload, setImgUpload] = useState(null);
    const inputRef = useRef();
+   const dispatch = useDispatch();
+
+   const $divRef = useRef(null);
+
+   const scroll = useScrollTop({ divRef: $divRef.current });
 
    useEffect(() => {
       setTitulo(objeto.data.titulo);
@@ -100,6 +108,8 @@ const EditPost = () => {
                            setConteudoHTML("");
                            setTags([]);
                            //  Redirecionando a dashboard
+
+                           dispatch(setUserPosts(undefined));
                            navegar("/dashboard", { state: true });
                         })
                         .catch((err) => console.log(`Ops, Não foi possível fazer a publicação. ${err}`));
@@ -128,7 +138,9 @@ const EditPost = () => {
                      setImagem("");
                      setConteudoHTML("");
                      setTags([]);
+
                      //  Redirecionando a dashboard
+                     dispatch(setUserPosts(undefined));
                      navegar("/dashboard", { state: true });
                   })
                   .catch((err) => console.log(`Ops, Não foi possível fazer a publicação. ${err}`));
@@ -143,7 +155,7 @@ const EditPost = () => {
    const [estiloEditor, setEstiloEditor] = useState({ backgroundColor: "initial" });
 
    return (
-      <div id={estiloCriarPost.container}>
+      <div id={estiloCriarPost.container} ref={$divRef}>
          <img src={foto} id={styles.logo} alt="ilustração de icone de edição" />
          <h2>Edição de Post</h2>
          <form onSubmit={Atualizar}>
@@ -187,13 +199,6 @@ const EditPost = () => {
             <fieldset>
                <label htmlFor="conteudo">Conteúdo</label>
                <Editor
-                  /*handleReturn={(e) => {
-                            if (e.shiftKey) {
-                                seteditorState(RichUtils.insertSoftNewline(editorState));
-                                return "handled";
-                            }
-                            return "not-handled";
-                        }}*/
                   onFocus={() => setEstiloEditor({ backgroundColor: "pink" })}
                   editorStyle={estiloEditor}
                   toolbarStyle={{
