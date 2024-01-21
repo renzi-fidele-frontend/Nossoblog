@@ -94,6 +94,19 @@
    height: 17px;
 }
 
+.sk.textoDashboard {
+   height: 17px;
+   width: 700px;
+}
+
+.sk.botaoDashboard {
+   width: 50px;
+   height: 17px;
+   margin-inline: .5em;
+}
+
+
+
 @media screen and (max-width: 1600px) {
    .sk.heroImg {
       height: 405px;
