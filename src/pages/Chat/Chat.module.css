@@ -1,0 +1,82 @@
+#ct {
+   height: 70vh;
+   background: #ffe3fd;
+   margin-inline: 20%;
+   border-radius: 18px;
+   box-shadow: 0 0 30px rgba(0, 0, 0, 0.527);
+   display: grid;
+   grid-template-columns: 35% 65%;
+}
+
+#ct > #left {
+   background-color: #585088;
+   border-bottom-left-radius: 18px;
+   border-top-left-radius: 18px;
+   color: white;
+}
+
+#ct form {
+   width: 100%;
+   display: flex;
+   justify-content: space-between;
+   padding: 1em;
+   border-bottom: 1px solid white;
+}
+
+#ct form input {
+   background: none;
+   outline: none;
+   font-size: 17px;
+   color: white;
+   border: none;
+}
+
+#ct form button {
+   font-size: 19px;
+   border: none;
+   background: none;
+}
+
+#userCt {
+   border-top-left-radius: 18px;
+   background-color: #362c70;
+   height: 65px;
+   display: flex;
+   flex-flow: row nowrap;
+   justify-content: space-between;
+   align-items: center;
+   gap: 1em;
+   padding-inline: 10px;
+}
+
+#userCt > div {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+    gap: .3em;
+}
+
+#userCt img {
+   width: 30px;
+   height: 30px;
+}
+
+#userCt p {
+   font-size: 16px;
+   font-weight: 400;
+   letter-spacing: 2px;
+}
+
+#head {
+   height: 65px;
+   display: flex;
+   flex-flow: row nowrap;
+   justify-content: end;
+   background-color: #5c519b;
+   border-top-right-radius: 18px;
+}
+
+.userIcon {
+   color: white !important;
+}

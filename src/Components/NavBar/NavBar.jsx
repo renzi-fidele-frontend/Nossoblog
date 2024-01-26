@@ -59,6 +59,11 @@ const NavBar = () => {
             {user && (
                <>
                   <li>
+                     <NavLink style={({ isActive }) => (isActive ? activeStyle : undefined)} to="/chat">
+                        Chat
+                     </NavLink>
+                  </li>
+                  <li>
                      <NavLink style={({ isActive }) => (isActive ? activeStyle : undefined)} to="/post/novo">
                         Criar post
                      </NavLink>

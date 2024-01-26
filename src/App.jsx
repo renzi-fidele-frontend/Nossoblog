@@ -14,6 +14,7 @@ import EditPost from "./pages/Dashboard/EditPost/EditPost";
 import { useSelector } from "react-redux";
 import useObservarLogin from "./hooks/useObservarLogin";
 import useScrollTop from "./hooks/ScrollTop/useScrollTop";
+import Chat from "./pages/Chat/Chat";
 
 function App() {
    const { user } = useSelector((state) => state.user);
@@ -33,6 +34,8 @@ function App() {
                <Route path="/posts/:id" element={<PostPage />} />
                <Route path="/pesquisa" element={<SearchPage />} />
                <Route path="/dashboard/editar" element={<EditPost />} />
+               <Route path="/chat" element={<Chat />} />
+
             </Routes>
 
             <Footer />
