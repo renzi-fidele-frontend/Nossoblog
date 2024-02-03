@@ -25,7 +25,7 @@ const Register = () => {
          await createUserWithEmailAndPassword(auth, email, senha)
             .then(async (userCredential) => {
                //  Atualizando a seguir o username
-               await updateProfile(userCredential.user, { displayName: nome })
+               await updateProfile(userCredential.user, { displayName: nome, photoURL: undefined })
                   .then(() => {
                      console.log("Nome atualizado com sucesso!");
                   })

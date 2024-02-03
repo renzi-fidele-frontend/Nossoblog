@@ -1,0 +1,143 @@
+#ct {
+   background: #f5e3ff;
+   padding-top: 2em;
+   padding-bottom: 5em;
+   margin-inline: 20%;
+   border-radius: 18px;
+   box-shadow: 0 0 30px rgba(0, 0, 0, 0.527);
+   text-align: center;
+}
+
+#ct > hr {
+   height: 3px;
+   border: none;
+   background-color: rgb(97, 77, 91);
+   margin-bottom: 2em;
+}
+
+#ct > h2 {
+   margin-bottom: 1em;
+   font-size: 2em;
+}
+
+#duasCol {
+   display: grid;
+   grid-template-columns: 50% 50%;
+   padding-inline: 5em;
+}
+
+#duasCol #left {
+   display: flex;
+   flex-flow: row;
+   justify-content: end;
+   padding-right: 5em;
+}
+
+#ct figure {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   width: 240px;
+   background-color: rgb(255, 255, 255);
+   padding: 0.3em;
+   border-radius: 50%;
+   box-shadow: 0 0 15px grey;
+}
+
+#ct figure img {
+   border-radius: 50%;
+   object-fit: cover;
+   width: 240px;
+   height: 240px;
+}
+
+#duasCol > #right {
+   display: flex;
+   flex-flow: column;
+   justify-content: center;
+   gap: 2em;
+   padding-right: 13em;
+}
+
+#duasCol > #right > button {
+   padding: 1em 2em;
+   cursor: pointer;
+   font-weight: 500;
+   font-size: 19px;
+}
+
+#loadBtn {
+   background-color: rgb(24, 24, 24);
+   color: white;
+   border-radius: 8px;
+   border: black;
+   border: 2.7px solid rgb(102, 66, 72);
+}
+
+#loadBtn:hover {
+   transition: all 0.3s ease-out;
+   color: black;
+   background-color: white;
+}
+
+#removeBtn {
+   background-color: transparent;
+   border-radius: 8px;
+   border: 2.7px solid rgb(102, 66, 72);
+}
+
+#removeBtn:hover {
+   background-color: red;
+   color: white;
+   transition: all 0.3s ease-out;
+}
+
+#form {
+   margin-top: 3em;
+   display: flex;
+   flex-flow: column;
+   gap: 1.4em;
+   align-items: start;
+   padding-inline: 16em;
+}
+
+#form label {
+   font-weight: 600;
+}
+
+#form fieldset {
+   border: none;
+   display: flex;
+   flex-flow: column;
+   align-items: start;
+   gap: 10px;
+   width: 100%;
+   font-size: 18px;
+}
+
+#form fieldset input {
+   background-color: transparent;
+   border: 2.7px solid rgb(102, 66, 72);
+   border-radius: 8px;
+   width: inherit;
+   font-size: 17px;
+   padding: 13px 0.9em;
+}
+
+#form button {
+   background-color: #3a1979;
+   border: none;
+   color: white;
+   padding: 0.5em 3em;
+   font-size: 22px;
+   text-align: center;
+   width: 100%;
+   cursor: pointer;
+   margin-top: 1em;
+   border-radius: 8px;
+   font-weight: 600;
+}
+
+#ct i {
+   font-size: 60px;
+}

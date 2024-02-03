@@ -16,7 +16,7 @@ const Chat = () => {
                 <h2>Chat Global</h2>
                <div>
                   <img src={userImg} alt="" />
-                  <p>Renzi</p>
+                  <p>{user?.displayName}</p>
                </div>
             </div>
             <form>

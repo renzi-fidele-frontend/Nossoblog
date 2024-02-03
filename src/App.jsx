@@ -15,6 +15,7 @@ import { useSelector } from "react-redux";
 import useObservarLogin from "./hooks/useObservarLogin";
 import useScrollTop from "./hooks/ScrollTop/useScrollTop";
 import Chat from "./pages/Chat/Chat";
+import Perfil from "./pages/Perfil/Perfil";
 
 function App() {
    const { user } = useSelector((state) => state.user);
@@ -34,8 +35,8 @@ function App() {
                <Route path="/posts/:id" element={<PostPage />} />
                <Route path="/pesquisa" element={<SearchPage />} />
                <Route path="/dashboard/editar" element={<EditPost />} />
-               <Route path="/chat" element={<Chat />} />
-
+               <Route path="/chat" element={user !== null ? <Chat /> : <Navigate to={"/entrar"} />} />
+               <Route path="/perfil_usuario" element={user !== null ? <Perfil /> : <Navigate to={"/entrar"} />} />
             </Routes>
 
             <Footer />

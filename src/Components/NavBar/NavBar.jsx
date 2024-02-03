@@ -73,6 +73,11 @@ const NavBar = () => {
                         Dashboard
                      </NavLink>
                   </li>
+                  <li>
+                     <NavLink style={({ isActive }) => (isActive ? activeStyle : undefined)} to="/perfil_usuario">
+                        Perfil
+                     </NavLink>
+                  </li>
                </>
             )}
 
