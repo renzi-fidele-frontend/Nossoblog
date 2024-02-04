@@ -124,6 +124,13 @@
    padding: 13px 0.9em;
 }
 
+#form fieldset input:hover,
+#form fieldset input:focus,
+#form fieldset input:valid {
+   transition: all 0.3s ease-out;
+   background-color: #faeec8;
+}
+
 #form button {
    background-color: #3a1979;
    border: none;

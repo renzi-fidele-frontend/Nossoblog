@@ -9,7 +9,7 @@ import SideBar from "../../Components/SideBar/SideBar";
 import { doc, increment, updateDoc } from "firebase/firestore";
 import { db } from "../../firebase/config";
 import { motion } from "framer-motion";
-import useScrollTop from "../../hooks/ScrollTop/useScrollTop";
+import useScrollTop from "../../hooks/useScrollTop";
 
 const PostPage = () => {
    const objecto = useLocation().state;

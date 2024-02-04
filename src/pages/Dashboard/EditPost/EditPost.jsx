@@ -15,7 +15,8 @@ import { Editor } from "react-draft-wysiwyg";
 import htmlToDraft from "html-to-draftjs";
 import { useDispatch } from "react-redux";
 import { setUserPosts } from "../../../state/user/userSlice";
-import useScrollTop from "../../../hooks/ScrollTop/useScrollTop";
+import useScrollTop from "../../../hooks/useScrollTop";
+import checkIfImageExists from "../../../hooks/useCheckIfImageExists";
 
 const EditPost = () => {
    const objeto = useLocation().state;
@@ -57,24 +58,7 @@ const EditPost = () => {
 
    async function Atualizar(e) {
       e.preventDefault();
-      // Verificando se o link da imagem existe
-      function checkIfImageExists(url, callback) {
-         const img = new Image();
-         img.src = url;
-
-         if (img.complete) {
-            callback(true);
-         } else {
-            img.onload = () => {
-               callback(true);
-            };
-
-            img.onerror = () => {
-               callback(false);
-            };
-         }
-      }
-
+      
       checkIfImageExists(imagem, async (exists) => {
          if (exists || imgUpload !== null) {
             if (imgUpload !== null) {

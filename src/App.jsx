@@ -13,7 +13,7 @@ import SearchPage from "./pages/SearchPage/SearchPage";
 import EditPost from "./pages/Dashboard/EditPost/EditPost";
 import { useSelector } from "react-redux";
 import useObservarLogin from "./hooks/useObservarLogin";
-import useScrollTop from "./hooks/ScrollTop/useScrollTop";
+import useScrollTop from "./hooks/useScrollTop";
 import Chat from "./pages/Chat/Chat";
 import Perfil from "./pages/Perfil/Perfil";
 

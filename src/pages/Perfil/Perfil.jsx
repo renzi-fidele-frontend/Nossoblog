@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import styles from "./Perfil.module.css";
 import { useSelector } from "react-redux";
 import fotoDemo from "../../Images/me.png";
@@ -8,8 +8,9 @@ import { FaUserEdit } from "react-icons/fa";
 
 const Perfil = () => {
    const { user } = useSelector((state) => state.user);
-   const nome_usuario_ref = useRef(null);
-   const email_usuario_ref = useRef(null);
+   const nome_ref = useRef(null);
+   const email_ref = useRef(null);
+   const [alterado, setAlterado] = useState(false);
 
    function carregarFoto() {
       return; //  TODO
@@ -17,6 +18,15 @@ const Perfil = () => {
 
    function removerFoto() {
       return; //  TODO
+   }
+
+   // Ativando o botão de salvar somente após uma mudança
+   function handleChange() {
+      if (user.displayName === nome_ref.current?.value && user.email === email_ref.current?.value) {
+         setAlterado(false);
+      } else {
+         setAlterado(true);
+      }
    }
 
    return (
@@ -37,20 +47,33 @@ const Perfil = () => {
                <button id={styles.removeBtn}>Remover foto</button>
             </div>
          </div>
-         <form id={styles.form}>
+         <form autoComplete={false} id={styles.form}>
             <fieldset>
                <label htmlFor="">Nome do usuário:</label>
-               <input value={user.displayName} ref={nome_usuario_ref} required type="text" placeholder="Insira o novo nome do usuário" />
+               <input
+                  onChange={handleChange}
+                  defaultValue={user.displayName}
+                  ref={nome_ref}
+                  required
+                  type="text"
+                  placeholder="Insira o novo nome do usuário"
+               />
             </fieldset>
             <fieldset>
                <label htmlFor="">Email:</label>
-               <input value={user.email} ref={email_usuario_ref} required type="email" placeholder="Insira o seu novo email" />
+               <input
+                  onChange={handleChange}
+                  defaultValue={user.email}
+                  ref={email_ref}
+                  required
+                  type="email"
+                  placeholder="Insira o seu novo email"
+               />
             </fieldset>
-            <fieldset>
-               <label htmlFor="">Senha:</label>
-               <input ref={email_usuario_ref} required type="password" placeholder="Insira a nova senha" />
-            </fieldset>
-            <button>Salvar</button>
+
+            <button style={{ opacity: !alterado && "0.5", transition: "all 0.3s ease-out" }} disabled={!alterado}>
+               Salvar
+            </button>
          </form>
       </div>
    );

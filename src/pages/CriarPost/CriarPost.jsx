@@ -14,6 +14,7 @@ import "../../../node_modules/draft-js/dist/Draft.css";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { v4 } from "uuid";
 import { useSelector } from "react-redux";
+import checkIfImageExists from "../../hooks/useCheckIfImageExists";
 
 const CriarPost = () => {
    //  Hooks do formulário
@@ -34,24 +35,6 @@ const CriarPost = () => {
    async function publicar(e) {
       e.preventDefault();
       setLoading(true);
-
-      // Verificando se o link da imagem existe
-      function checkIfImageExists(url, callback) {
-         const img = new Image();
-         img.src = url;
-
-         if (img.complete) {
-            callback(true);
-         } else {
-            img.onload = () => {
-               callback(true);
-            };
-
-            img.onerror = () => {
-               callback(false);
-            };
-         }
-      }
 
       checkIfImageExists(imagem, async (exists) => {
          if (exists || imgUpload !== null) {
