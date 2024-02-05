@@ -37,7 +37,7 @@
    display: flex;
    justify-content: center;
    align-items: center;
-   width: 240px;
+   width: 210px;
    background-color: rgb(255, 255, 255);
    padding: 0.3em;
    border-radius: 50%;
@@ -47,8 +47,8 @@
 #ct figure img {
    border-radius: 50%;
    object-fit: cover;
-   width: 240px;
-   height: 240px;
+   width: 210px;
+   height: 210px;
 }
 
 #duasCol > #right {
@@ -59,7 +59,8 @@
    padding-right: 13em;
 }
 
-#duasCol > #right > button {
+#duasCol > #right > button,
+#loadBtn {
    padding: 1em 2em;
    cursor: pointer;
    font-weight: 500;
