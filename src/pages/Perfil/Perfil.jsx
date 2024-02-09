@@ -8,9 +8,8 @@ import semFotoPerfil from "/src/Images/noprofile.jpg";
 import { FaUserEdit } from "react-icons/fa";
 import { updateProfile } from "firebase/auth";
 import { v4 } from "uuid";
-import { getDownloadURL, ref } from "firebase/storage";
+import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { storage } from "../../firebase/config";
-import checkIfImageExists from "../../hooks/useCheckIfImageExists";
 
 const Perfil = () => {
    const { user } = useSelector((state) => state.user);
@@ -18,15 +17,12 @@ const Perfil = () => {
    const email_ref = useRef(null);
    const [alterado, setAlterado] = useState(false);
    const [fotoPerfil, setFotoPerfil] = useState(null);
-   const [linkFoto, setLinkFoto] = useState("");
-
-   function removerFoto() {
-      return; //  TODO
-   }
+   const [linkFoto, setLinkFoto] = useState(user.providerData.photoURL || "");
+   const inputfileRef = useRef(null);
 
    // Ativando o botão de salvar somente após uma mudança
    function handleChange() {
-      if (user.displayName === nome_ref.current?.value && user.email === email_ref.current?.value) {
+      if (user.displayName === nome_ref.current?.value && user.email === email_ref.current?.value && fotoPerfil === null) {
          setAlterado(false);
       } else {
          setAlterado(true);
@@ -35,27 +31,30 @@ const Perfil = () => {
 
    //  Adicionando a imagem ao DB
    async function uploadImagem() {
-      const imageRef = ref(storage, `fotosPerfil/${fotoPerfil.name + v4()}`);
-      uploadBytes(imageRef, fotoPerfil).then((v) => {
-         getDownloadURL(v.ref).then(async (link) => {
-            setLinkFoto(link);
-         });
-      });
+      let file = inputfileRef?.current?.files[0];
+      console.log(file);
+      const imageRef = ref(storage, `fotosPerfil/${file.name + v4()}`);
+      uploadBytes(imageRef, file)
+         .then((v) => {
+            getDownloadURL(v.ref).then(async (link) => {
+               console.log(`O link é: ${link}`);
+               setLinkFoto(link);
+            });
+         })
+         .catch((err) => console.log(`Erro, ${err} ao carregar a imagem ao DB`));
    }
 
-   async function atualizarPerfil(e, comImagem = false) {
-      e.preventDefault();
+   async function atualizarPerfil(comImagem = false) {
       if (comImagem) {
-         if (fotoPerfil.length > 0) {
-            uploadImagem();
-            await updateProfile(user, { displayName: nome_ref.current.value, photoURL: linkFoto })
-               .then(() => {
-                  console.log("Perfil atualizado com sucesso!");
-               })
-               .catch((err) => {
-                  console.log(err.code, err.message);
-               });
-         }
+         uploadImagem();
+         console.log(linkFoto);
+         await updateProfile(user, { displayName: nome_ref.current.value, photoURL: linkFoto })
+            .then(() => {
+               console.log("Perfil e imagem atualizado com sucesso!");
+            })
+            .catch((err) => {
+               console.log(err.code, err.message);
+            });
       } else {
          await updateProfile(user, { displayName: nome_ref.current.value })
             .then(() => {
@@ -80,7 +79,7 @@ const Perfil = () => {
                   {linkFoto.length > 0 ? (
                      <img src={fotoDemo} alt="Foto de perfil do usuário" />
                   ) : (
-                     <img src={semFotoPerfil} alt="Foto de perfil do usuário" />
+                     <img src={semFotoPerfil} alt="Sem foto de perfil do usuário" />
                   )}
                </figure>
             </div>
@@ -88,20 +87,38 @@ const Perfil = () => {
                <input
                   hidden
                   type="file"
+                  ref={inputfileRef}
                   id="fotoPerfil"
                   accept="image/*"
                   onChange={(e) => {
-                     console.log(`Foto carregada: ${e.target.files[0]}`);
-                     setFotoPerfil(e.target.files[0]);
+                     setAlterado(true);
                   }}
                />
                <label for="fotoPerfil" id={styles.loadBtn}>
                   Carregar nova foto
                </label>
-               <button id={styles.removeBtn}>Remover foto</button>
+               <button
+                  onClick={(e) => {
+                     setFotoPerfil(null);
+                  }}
+                  id={styles.removeBtn}
+               >
+                  Remover foto
+               </button>
             </div>
          </div>
-         <form onSubmit={atualizarPerfil} autoComplete={false} id={styles.form}>
+         <form
+            onSubmit={(e) => {
+               e.preventDefault();
+               if (inputfileRef?.current?.files.length > 0) {
+                  atualizarPerfil(true);
+               } else {
+                  atualizarPerfil(false);
+               }
+            }}
+            autoComplete={false}
+            id={styles.form}
+         >
             <fieldset>
                <label>Nome do usuário:</label>
                <input
