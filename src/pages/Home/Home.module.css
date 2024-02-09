@@ -40,7 +40,7 @@
 #right {
    padding-top: 2em;
    text-align: start;
-   border-left: #e0c6eb 6px dashed;
+   border-left: #e0c6eb 6px solid;
    padding-left: 2em;
    position: sticky;
 }

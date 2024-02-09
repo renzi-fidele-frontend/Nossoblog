@@ -1,7 +1,6 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styles from "./Perfil.module.css";
 import { useSelector } from "react-redux";
-import fotoDemo from "../../Images/me.png";
 import semFotoPerfil from "/src/Images/noprofile.jpg";
 
 // Icons
@@ -17,8 +16,9 @@ const Perfil = () => {
    const email_ref = useRef(null);
    const [alterado, setAlterado] = useState(false);
    const [fotoPerfil, setFotoPerfil] = useState(null);
-   const [linkFoto, setLinkFoto] = useState(user.providerData.photoURL || "");
+   const [linkFoto, setLinkFoto] = useState(user?.photoURL || "");
    const inputfileRef = useRef(null);
+   const [loading, setLoading] = useState(false);
 
    // Ativando o botão de salvar somente após uma mudança
    function handleChange() {
@@ -29,32 +29,27 @@ const Perfil = () => {
       }
    }
 
-   //  Adicionando a imagem ao DB
-   async function uploadImagem() {
-      let file = inputfileRef?.current?.files[0];
-      console.log(file);
-      const imageRef = ref(storage, `fotosPerfil/${file.name + v4()}`);
-      uploadBytes(imageRef, file)
-         .then((v) => {
-            getDownloadURL(v.ref).then(async (link) => {
-               console.log(`O link é: ${link}`);
-               setLinkFoto(link);
-            });
-         })
-         .catch((err) => console.log(`Erro, ${err} ao carregar a imagem ao DB`));
-   }
-
-   async function atualizarPerfil(comImagem = false) {
+   async function atualizarPerfil(comImagem) {
+      setLoading(true);
       if (comImagem) {
-         uploadImagem();
-         console.log(linkFoto);
-         await updateProfile(user, { displayName: nome_ref.current.value, photoURL: linkFoto })
-            .then(() => {
-               console.log("Perfil e imagem atualizado com sucesso!");
+         let file = inputfileRef?.current?.files[0];
+         const imageRef = ref(storage, `fotosPerfil/${v4() + file.name}`);
+         uploadBytes(imageRef, file)
+            .then((v) => {
+               getDownloadURL(v.ref).then(async (link) => {
+                  console.log(`O link é: ${link}`);
+                  setLinkFoto(link);
+                  await updateProfile(user, { displayName: nome_ref.current.value, photoURL: link })
+                     .then(() => {
+                        console.log("Perfil e imagem atualizado com sucesso!");
+                     })
+                     .catch((err) => {
+                        console.log(err.code, err.message);
+                     });
+               });
             })
-            .catch((err) => {
-               console.log(err.code, err.message);
-            });
+            .catch((err) => console.log(`Erro, ${err} ao carregar a imagem ao DB`));
+         console.log(linkFoto);
       } else {
          await updateProfile(user, { displayName: nome_ref.current.value })
             .then(() => {
@@ -64,6 +59,19 @@ const Perfil = () => {
                console.log(err.code, err.message);
             });
       }
+      setAlterado(false);
+      setLoading(false);
+   }
+
+   async function removerFoto() {
+      await updateProfile(user, { photoURL: null })
+         .then(() => {
+            console.log("Foto de perfil removida com sucesso!");
+            setLinkFoto("");
+         })
+         .catch((err) => {
+            console.log(err.code, err.message);
+         });
    }
 
    return (
@@ -76,8 +84,8 @@ const Perfil = () => {
          <div id={styles.duasCol}>
             <div id={styles.left}>
                <figure>
-                  {linkFoto.length > 0 ? (
-                     <img src={fotoDemo} alt="Foto de perfil do usuário" />
+                  {linkFoto?.length > 0 ? (
+                     <img src={linkFoto} key={linkFoto} alt="Foto de perfil do usuário" />
                   ) : (
                      <img src={semFotoPerfil} alt="Sem foto de perfil do usuário" />
                   )}
@@ -97,12 +105,7 @@ const Perfil = () => {
                <label for="fotoPerfil" id={styles.loadBtn}>
                   Carregar nova foto
                </label>
-               <button
-                  onClick={(e) => {
-                     setFotoPerfil(null);
-                  }}
-                  id={styles.removeBtn}
-               >
+               <button onClick={removerFoto} id={styles.removeBtn}>
                   Remover foto
                </button>
             </div>
