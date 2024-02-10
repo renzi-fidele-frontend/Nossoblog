@@ -6,6 +6,7 @@
    border-radius: 18px;
    box-shadow: 0 0 30px rgba(0, 0, 0, 0.527);
    text-align: center;
+   position: relative;
 }
 
 #ct > hr {
@@ -148,4 +149,22 @@
 
 #ct i {
    font-size: 60px;
+}
+
+#backdrop {
+   position: absolute;
+   background-color: rgba(0, 0, 0, 0.5);
+   top: 0;
+   right: 0;
+   left: 0;
+   bottom: 0;
+   border-radius: inherit;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+#animCt {
+   width: 300px;
+   margin-inline: auto;
 }

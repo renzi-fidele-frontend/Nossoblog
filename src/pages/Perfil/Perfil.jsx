@@ -9,6 +9,7 @@ import { updateProfile } from "firebase/auth";
 import { v4 } from "uuid";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { storage } from "../../firebase/config";
+import animatedSvg from "../../Images/animatedLoading.svg";
 
 const Perfil = () => {
    const { user } = useSelector((state) => state.user);
@@ -29,8 +30,12 @@ const Perfil = () => {
       }
    }
 
+   async function atualizarEmail() {
+      /*TODO */
+   }
+
    async function atualizarPerfil(comImagem) {
-      setLoading(true);
+      setLoading(true)
       if (comImagem) {
          let file = inputfileRef?.current?.files[0];
          const imageRef = ref(storage, `fotosPerfil/${v4() + file.name}`);
@@ -42,6 +47,7 @@ const Perfil = () => {
                   await updateProfile(user, { displayName: nome_ref.current.value, photoURL: link })
                      .then(() => {
                         console.log("Perfil e imagem atualizado com sucesso!");
+                        setLoading(false);
                      })
                      .catch((err) => {
                         console.log(err.code, err.message);
@@ -54,24 +60,30 @@ const Perfil = () => {
          await updateProfile(user, { displayName: nome_ref.current.value })
             .then(() => {
                console.log("Perfil atualizado com sucesso!");
+               setLoading(false);
             })
             .catch((err) => {
                console.log(err.code, err.message);
             });
       }
       setAlterado(false);
-      setLoading(false);
    }
 
    async function removerFoto() {
-      await updateProfile(user, { photoURL: null })
-         .then(() => {
-            console.log("Foto de perfil removida com sucesso!");
-            setLinkFoto("");
-         })
-         .catch((err) => {
-            console.log(err.code, err.message);
-         });
+      if (linkFoto.length > 0) {
+         setLoading(true);
+         await updateProfile(user, { photoURL: null })
+            .then(() => {
+               console.log("Foto de perfil removida com sucesso!");
+               setLinkFoto("");
+               setLoading(false);
+            })
+            .catch((err) => {
+               console.log(err.code, err.message);
+            });
+      } else {
+         alert("Você não possúi foto de perfil");
+      }
    }
 
    return (
@@ -149,6 +161,13 @@ const Perfil = () => {
                Salvar
             </button>
          </form>
+         {loading && (
+            <div id={styles.backdrop}>
+               <div id={styles.animCt}>
+                  <img src={animatedSvg} alt="loading..." />
+               </div>
+            </div>
+         )}
       </div>
    );
 };
