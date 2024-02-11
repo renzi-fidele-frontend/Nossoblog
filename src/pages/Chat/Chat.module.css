@@ -50,11 +50,11 @@
 }
 
 #userCt > div {
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: center;
-    align-items: center;
-    gap: .3em;
+   display: flex;
+   flex-flow: row nowrap;
+   justify-content: center;
+   align-items: center;
+   gap: 0.3em;
 }
 
 #userCt img {
@@ -79,4 +79,44 @@
 
 .userIcon {
    color: white !important;
+}
+
+#users {
+}
+
+#userCard {
+   display: flex;
+   flex-flow: row nowrap;
+   align-items: stretch;
+   gap: 20px;
+   padding-inline: 1em;
+   padding-block: 0.5em;
+   cursor: pointer;
+}
+
+#userCard:hover {
+   background-color: #362c70;
+   transition: all 0.1s ease-in;
+}
+
+#userCard #left img {
+   width: 70px;
+   height: 70px;
+   border-radius: 50%;
+}
+
+#userCard #right {
+   display: flex;
+   gap: 7px;
+   flex-flow: column;
+   justify-content: center;
+}
+
+#userCard #right h5 {
+   font-size: 17px;
+   font-weight: 600;
+}
+
+#userCard #right p {
+   font-size: 15px;
 }

@@ -13,7 +13,7 @@ const Chat = () => {
       <div id={styles.ct}>
          <div id={styles.left}>
             <div id={styles.userCt}>
-                <h2>Chat Global</h2>
+               <h2>Chat Global</h2>
                <div>
                   <img src={userImg} alt="" />
                   <p>{user?.displayName}</p>
@@ -25,7 +25,19 @@ const Chat = () => {
                   <FaSearch />
                </button>
             </form>
-            <div id={styles.users}></div>
+            <div id={styles.users}>
+               {[1, 2, 3, 4, 5].map((v, k) => (
+                  <div id={styles.userCard} key={k}>
+                     <div id={styles.left}>
+                        <img src={user?.photoURL} alt="" />
+                     </div>
+                     <div id={styles.right}>
+                        <h5>Nome completo</h5>
+                        <p>Última mensagem</p>
+                     </div>
+                  </div>
+               ))}
+            </div>
          </div>
          <div id={styles.right}>
             <div id={styles.head}></div>

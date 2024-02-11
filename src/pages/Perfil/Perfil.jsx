@@ -9,20 +9,20 @@ import { storage } from "../../firebase/config";
 // Icons
 import { FaUserEdit } from "react-icons/fa";
 import animatedSvg from "../../Images/animatedLoading.svg";
+import semFotoPerfil from "../../Images/noProfile.jpg";
 
 const Perfil = () => {
    const { user } = useSelector((state) => state.user);
    const nome_ref = useRef(null);
    const email_ref = useRef(null);
    const [alterado, setAlterado] = useState(false);
-   const [fotoPerfil, setFotoPerfil] = useState(null);
    const [linkFoto, setLinkFoto] = useState(user?.photoURL || "");
    const inputfileRef = useRef(null);
    const [loading, setLoading] = useState(false);
 
    // Ativando o botão de salvar somente após uma mudança
    function handleChange() {
-      if (user.displayName === nome_ref.current?.value && user.email === email_ref.current?.value && fotoPerfil === null) {
+      if (user.displayName === nome_ref.current?.value && user.email === email_ref.current?.value) {
          setAlterado(false);
       } else {
          setAlterado(true);
