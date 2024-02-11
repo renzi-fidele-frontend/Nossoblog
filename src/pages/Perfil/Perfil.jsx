@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import styles from "./Perfil.module.css";
 import { useSelector } from "react-redux";
-import semFotoPerfil from "/src/Images/noprofile.jpg";
 
 // Icons
 import { FaUserEdit } from "react-icons/fa";
