@@ -25,12 +25,13 @@
    display: grid;
    grid-template-columns: 50% 50%;
    padding-inline: 5em;
+   max-width: 800px;
+   margin-inline: auto;
 }
 
 #duasCol #left {
    display: flex;
    flex-flow: row;
-   justify-content: end;
    padding-right: 5em;
 }
 
@@ -38,7 +39,6 @@
    display: flex;
    justify-content: center;
    align-items: center;
-   width: 210px;
    background-color: rgb(255, 255, 255);
    padding: 0.3em;
    border-radius: 50%;
@@ -57,7 +57,6 @@
    flex-flow: column;
    justify-content: center;
    gap: 2em;
-   padding-right: 13em;
 }
 
 #duasCol > #right > button,
@@ -167,4 +166,108 @@
 #animCt {
    width: 300px;
    margin-inline: auto;
+}
+
+@media screen and (max-width: 1830px) {
+   #duasCol {
+      max-width: 700px;
+   }
+}
+
+@media screen and (max-width: 1648px) {
+   #ct {
+      margin-inline: 14%;
+   }
+}
+
+@media screen and (max-width: 1378px) {
+   #form {
+      padding-inline: 8em;
+   }
+}
+
+@media screen and (max-width: 1000px) {
+   #ct {
+      margin-inline: 5%;
+   }
+}
+
+@media screen and (max-width: 900px) {
+   #ct > h2 {
+      font-size: 1.7em;
+   }
+
+   #duasCol > #right > button,
+   #loadBtn {
+      font-size: 17px;
+   }
+
+   #duasCol #left {
+      padding-right: 2em;
+   }
+
+   #form {
+      padding-inline: 3em;
+   }
+}
+
+@media screen and (max-width: 700px) {
+   #duasCol {
+      max-width: initial;
+      padding-inline: 2em;
+   }
+
+   #ct figure img {
+      max-width: 180px;
+      max-height: 180px;
+   }
+}
+
+@media screen and (max-width: 600px) {
+   #duasCol {
+      display: flex;
+      flex-flow: column;
+   }
+
+   #ct figure {
+      margin-inline: auto;
+      margin-bottom: 1.5em;
+   }
+
+   #duasCol #left {
+      padding-right: 0;
+   }
+
+   #duasCol #right {
+      gap: 0.8em;
+   }
+
+   #ct i {
+      font-size: 40px;
+   }
+
+   #ct > h2 {
+      font-size: 1.5em;
+   }
+
+   #form fieldset input {
+      font-size: 15px;
+   }
+}
+
+@media screen and (max-width: 500px) {
+   #duasCol > #right > button,
+   #loadBtn {
+      font-size: 15px;
+   }
+
+   #form {
+      padding-inline: 1.2em;
+   }
+}
+
+@media screen and (max-width: 420px) {
+   #ct > h2 {
+      font-size: 1.3em;
+   }
 }
