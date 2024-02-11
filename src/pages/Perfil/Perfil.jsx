@@ -161,7 +161,7 @@ const Perfil = () => {
                Salvar
             </button>
          </form>
-         {!loading && (
+         {loading && (
             <div id={styles.backdrop}>
                <div id={styles.animCt}>
                   <img src={animatedSvg} alt="loading..." />
