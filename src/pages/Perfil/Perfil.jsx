@@ -35,7 +35,7 @@ const Perfil = () => {
    }
 
    async function atualizarPerfil(comImagem) {
-      setLoading(true)
+      setLoading(true);
       if (comImagem) {
          let file = inputfileRef?.current?.files[0];
          const imageRef = ref(storage, `fotosPerfil/${v4() + file.name}`);
@@ -161,7 +161,7 @@ const Perfil = () => {
                Salvar
             </button>
          </form>
-         {loading && (
+         {!loading && (
             <div id={styles.backdrop}>
                <div id={styles.animCt}>
                   <img src={animatedSvg} alt="loading..." />

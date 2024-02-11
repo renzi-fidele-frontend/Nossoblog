@@ -184,6 +184,10 @@
    #form {
       padding-inline: 8em;
    }
+
+   #animCt {
+      width: 200px;
+   }
 }
 
 @media screen and (max-width: 1000px) {
@@ -253,6 +257,10 @@
    #form fieldset input {
       font-size: 15px;
    }
+
+   #animCt {
+      width: 140px;
+   }
 }
 
 @media screen and (max-width: 500px) {
@@ -269,5 +277,9 @@
 @media screen and (max-width: 420px) {
    #ct > h2 {
       font-size: 1.3em;
+   }
+
+   #animCt {
+      width: 100px;
    }
 }
