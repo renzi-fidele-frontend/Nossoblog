@@ -1,13 +1,13 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import styles from "./Perfil.module.css";
 import { useSelector } from "react-redux";
-
-// Icons
-import { FaUserEdit } from "react-icons/fa";
-import { updateProfile } from "firebase/auth";
 import { v4 } from "uuid";
+// Firebase
+import { updateEmail, updateProfile } from "firebase/auth";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { storage } from "../../firebase/config";
+// Icons
+import { FaUserEdit } from "react-icons/fa";
 import animatedSvg from "../../Images/animatedLoading.svg";
 
 const Perfil = () => {
@@ -29,12 +29,18 @@ const Perfil = () => {
       }
    }
 
-   async function atualizarEmail() {
-      /*TODO */
+   async function atualizarEmail(novoEmail) {
+      await updateEmail(user, novoEmail)
+         .then(() => {
+            email_ref.current.value = novoEmail;
+            console.log("Email atualizado com sucesso!");
+         })
+         .catch((err) => console.log("Ops, aconteceu o erro: ", err));
    }
 
    async function atualizarPerfil(comImagem) {
       setLoading(true);
+      if (email_ref.current.value !== user?.email) atualizarEmail(email_ref.current.value);
       if (comImagem) {
          let file = inputfileRef?.current?.files[0];
          const imageRef = ref(storage, `fotosPerfil/${v4() + file.name}`);
