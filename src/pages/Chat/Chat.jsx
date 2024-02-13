@@ -1,10 +1,12 @@
 import React from "react";
 import styles from "./Chat.module.css";
 import { useSelector } from "react-redux";
-import userImg from "../../Images/user.png";
+import Conversa from "../../Components/Conversa/Conversa";
 
 //  Icons
 import { FaSearch } from "react-icons/fa";
+import userImg from "../../Images/user.png";
+
 
 const Chat = () => {
    const { user } = useSelector((state) => state.user);
@@ -19,7 +21,7 @@ const Chat = () => {
                   <p>{user?.displayName}</p>
                </div>
             </div>
-            <form>
+            <form id={styles.form}>
                <input type="text" placeholder="Encontre um usuário" />
                <button>
                   <FaSearch />
@@ -40,8 +42,7 @@ const Chat = () => {
             </div>
          </div>
          <div id={styles.right}>
-            <div id={styles.head}></div>
-            <div id={styles.chatBody}></div>
+            <Conversa />
          </div>
       </div>
    );

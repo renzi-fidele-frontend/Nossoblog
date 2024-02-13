@@ -1,0 +1,87 @@
+#ct {
+   position: relative;
+   height: 100%;
+   display: flex;
+   flex-flow: column;
+}
+
+#head {
+   display: flex;
+   flex-flow: row nowrap;
+   justify-content: space-between;
+   align-items: center;
+   background-color: #5c519b;
+   border-top-right-radius: 18px;
+   padding-inline: 25px;
+   padding-block: 20px;
+   color: white;
+   position: absolute;
+   top: 0;
+   width: 100%;
+}
+
+#head h5 {
+   font-size: 20px;
+   font-weight: 500;
+}
+
+#chatBody {
+   display: flex;
+   flex-direction: column;
+   padding-top: 5em;
+   padding-inline: 2em;
+   overflow-x: hidden;
+   height: 100%;
+}
+
+#mensagens {
+   display: flex;
+   flex-flow: column;
+}
+
+.msg {
+}
+
+.msg img {
+   width: 40px;
+   height: 40px;
+   object-fit: cover;
+   object-position: center;
+   border-radius: 50%;
+}
+
+#input {
+   background-color: white;
+   display: flex;
+   flex-flow: row nowrap;
+   padding: 10px 15px;
+}
+
+#input > input {
+   background-color: white;
+   color: #000;
+   width: 100%;
+   font-size: 18px;
+   border: none;
+   border-right: 1px solid rgb(213, 205, 218);
+   margin-right: 9px;
+}
+
+#input > div {
+   display: flex;
+   flex-flow: row nowrap;
+   gap: 13px;
+   align-items: center;
+   font-size: 30px;
+   padding-left: 5px;
+}
+
+#input > div > svg {
+   cursor: pointer;
+}
+
+#input > div > svg:hover {
+   transition: all 0.1s ease;
+   scale: 1.1;
+   background-color: #e5e2f3;
+}

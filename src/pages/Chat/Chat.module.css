@@ -15,7 +15,7 @@
    color: white;
 }
 
-#ct form {
+#form {
    width: 100%;
    display: flex;
    justify-content: space-between;
@@ -23,7 +23,7 @@
    border-bottom: 1px solid #a195e5;
 }
 
-#ct form input {
+#form input {
    background: none;
    outline: none;
    font-size: 17px;
@@ -31,7 +31,7 @@
    border: none;
 }
 
-#ct form button {
+#form button {
    font-size: 19px;
    border: none;
    background: none;
@@ -66,15 +66,6 @@
    font-size: 14px;
    font-weight: 400;
    letter-spacing: 2px;
-}
-
-#head {
-   height: 65px;
-   display: flex;
-   flex-flow: row nowrap;
-   justify-content: end;
-   background-color: #5c519b;
-   border-top-right-radius: 18px;
 }
 
 .userIcon {
