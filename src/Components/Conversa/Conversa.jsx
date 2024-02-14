@@ -18,9 +18,9 @@ const Conversa = () => {
          <div id={styles.chatBody}>
             <div id={styles.mensagens}>
                {[1, 2, 3, 4, 5, 6, 7, 8].map((v, k) => (
-                  <div key={k} className={styles.msg}>
+                  <div key={k} className={styles.msg} id={styles.recebido}>
                      <img src={user?.photoURL} alt="Foto do usuário" />
-                     <p></p>
+                     <p>Texto da mensagem</p>
                   </div>
                ))}
             </div>
@@ -28,8 +28,16 @@ const Conversa = () => {
          <form id={styles.input}>
             <input type="text" placeholder="Escreva a mensagem aqui..." />
             <div>
-               <AiOutlineUpload title="Carregar ficheiro" />
-               <AiOutlinePicture title="Carregar imagem" />
+               <input type="file" hidden id="file1" />
+               <input type="file" hidden id="imgFile" />
+
+               <label htmlFor="file1">
+                  <AiOutlineUpload title="Carregar ficheiro" />
+               </label>
+               <label htmlFor="imgFile">
+                  <AiOutlinePicture title="Carregar imagem" />
+               </label>
+
                <IoSend title="Enviar" />
             </div>
          </form>
