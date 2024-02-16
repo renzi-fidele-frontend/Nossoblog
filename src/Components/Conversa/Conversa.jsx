@@ -17,8 +17,14 @@ const Conversa = () => {
          </div>
          <div id={styles.chatBody}>
             <div id={styles.mensagens}>
-               {[1, 2, 3, 4, 5, 6, 7, 8].map((v, k) => (
+               {[1, 2, 3, 4, 5].map((v, k) => (
                   <div key={k} className={styles.msg} id={styles.recebido}>
+                     <img src={user?.photoURL} alt="Foto do usuário" />
+                     <p>Texto da mensagem</p>
+                  </div>
+               ))}
+               {[1, 2, 4].map((v, k) => (
+                  <div key={k} className={styles.msg} id={styles.enviado}>
                      <img src={user?.photoURL} alt="Foto do usuário" />
                      <p>Texto da mensagem</p>
                   </div>

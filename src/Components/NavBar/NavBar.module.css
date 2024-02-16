@@ -1,126 +1,128 @@
 #nav {
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: space-between;
-    margin: 0.7em 0.4em;
-    align-items: center;
-    background-color: rgb(255, 255, 255);
-    padding: 8px 4em;
-    border-radius: 7px;
+   display: flex;
+   flex-flow: row nowrap;
+   justify-content: space-between;
+   margin: 0.7em 0.4em;
+   align-items: center;
+   background-color: rgb(255, 255, 255);
+   padding: 8px 4em;
+   border-radius: 7px;
 }
 
 #nav > a {
-    font-weight: 500;
-    font-size: 1.17em;
-    color: #180b47de;
-    display: flex;
-    flex-flow: row;
-    align-items: center;
+   display: flex;
+   flex-flow: row;
+   align-items: center;
 }
 
-#nav > a > span {
-    display: inherit;
-    font-size: 1.3em;
-    font-weight: 700;
-    margin-left: 8px;
+#logo {
+   width: 170px;
 }
 
 #nav > ul {
-    display: inherit;
-    flex-flow: nowrap;
+   display: inherit;
+   flex-flow: nowrap;
 }
 
 #nav > ul > li {
-    margin-inline: 0.8em;
-    list-style: none;
-    font-size: 17px;
+   margin-inline: 0.8em;
+   list-style: none;
+   font-size: 17px;
 }
 
 #nav > ul > li > a {
-    color: black;
+   color: black;
 }
 
 .ativo {
-    text-decoration: underline;
+   text-decoration: underline;
 }
 
 path {
-    fill: #25104b;
+   fill: #25104b;
 }
 
 .bars,
 .closeBtn {
-    display: none;
-    font-size: 24px;
+   display: none;
+   font-size: 24px;
 }
 
 .bars:hover,
 .closeBtn:hover {
-    cursor: pointer;
+   cursor: pointer;
 }
 
 @media screen and (max-width: 1142px) {
-    #nav > ul {
-        display: none;
-    }
+   #nav > ul {
+      display: none;
+   }
 
-    .responsivo {
-        position: fixed;
-        width: 100%;
-        height: 100vh;
-        margin: 0 !important;
-        top: 0;
-        z-index: 3;
-        justify-content: center !important;
-        animation: deslizar 0.6s ease-in-out;
-    }
+   .responsivo {
+      position: fixed;
+      width: 100%;
+      height: 100vh;
+      margin: 0 !important;
+      top: 0;
+      z-index: 3;
+      justify-content: center !important;
+      animation: deslizar 0.6s ease-in-out;
+   }
 
-    @keyframes deslizar {
-        from {
-            opacity: 0;
-            transform: translateY(-1000px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
+   @keyframes deslizar {
+      from {
+         opacity: 0;
+         transform: translateY(-1000px);
+      }
+      to {
+         opacity: 1;
+         transform: translateY(0);
+      }
+   }
 
-    .responsivo > ul {
-        display: block !important;
-    }
+   .responsivo > ul {
+      display: block !important;
+   }
 
-    .responsivo > ul > li {
-        margin-bottom: 4%;
-        text-align: center;
-    }
+   .responsivo > ul > li {
+      margin-bottom: 4%;
+      text-align: center;
+   }
 
-    .responsivo > a,
-    .responsivo > svg {
-        display: none !important;
-    }
+   .responsivo > a,
+   .responsivo > svg {
+      display: none !important;
+   }
 
-    .responsivo > .closeBtn {
-        display: inline !important;
-        position: absolute;
-        top: 3%;
-        right: 3%;
-        font-size: 24px;
-    }
+   .responsivo > .closeBtn {
+      display: inline !important;
+      position: absolute;
+      top: 3%;
+      right: 3%;
+      font-size: 24px;
+   }
 
-    .bars {
-        display: inline;
-    }
+   .bars {
+      display: inline;
+   }
 }
 
 @media screen and (max-width: 800px) {
-    #nav {
-        padding-inline: 2em;
-    }
+   #nav {
+      padding-inline: 2em;
+   }
+
+   #logo {
+      width: 150px;
+   }
 }
 
 @media screen and (max-width: 682px) {
-    #nav > a {
-        font-size: 15px;
-    }
+   #nav > a {
+      font-size: 15px;
+   }
+
+   #logo {
+      width: 120px;
+   }
 }

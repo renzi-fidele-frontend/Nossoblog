@@ -30,8 +30,8 @@
    flex-direction: column;
    padding-top: 5em;
    padding-inline: 2em;
-   overflow-x: hidden;
-   height: 100%;
+   height: 93%;
+   overflow-y: auto;
 }
 
 #mensagens {
@@ -51,7 +51,7 @@
    background-color: #fff;
    padding: 10px 15px;
    border-radius: 5px;
-   font-size: 15px;
+   font-size: 14px;
 }
 
 .msg#recebido {
@@ -60,6 +60,12 @@
 
 .msg#enviado {
    justify-content: end;
+   flex-flow: row-reverse;
+}
+
+.msg#enviado p {
+   background-color: #5c519b;
+   color: white;
 }
 
 .msg img {
@@ -75,6 +81,9 @@
    display: flex;
    flex-flow: row nowrap;
    padding: 10px 15px;
+   position: absolute;
+   bottom: 0;
+   width: 100%;
 }
 
 #input > input {

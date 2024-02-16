@@ -7,9 +7,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { setUser } from "../../state/user/userSlice";
 
 // Icones
-import { HiGlobeEuropeAfrica } from "react-icons/hi2";
 import { FaBars } from "react-icons/fa";
 import { ImCross } from "react-icons/im";
+import logo from "../../Images/lg.png";
 
 const NavBar = () => {
    //  Pegando o valor global do Contexto
@@ -43,11 +43,7 @@ const NavBar = () => {
    return (
       <header ref={navRef} id={styles.nav}>
          <NavLink to="/">
-            Nosso{" "}
-            <span>
-               Bl
-               <HiGlobeEuropeAfrica size={25} />g
-            </span>
+            <img id={styles.logo} src={logo} alt="Logo do blog" />
          </NavLink>
          <ul>
             <li>

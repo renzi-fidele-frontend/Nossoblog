@@ -15,6 +15,9 @@
    color: white;
 }
 
+#ct > #right {
+}
+
 #form {
    width: 100%;
    display: flex;
@@ -79,7 +82,7 @@
    display: flex;
    flex-flow: row nowrap;
    align-items: stretch;
-   gap: 20px;
+   gap: 13px;
    padding-inline: 1em;
    padding-block: 0.5em;
    cursor: pointer;
@@ -91,8 +94,8 @@
 }
 
 #userCard #left img {
-   width: 70px;
-   height: 70px;
+   width: 65px;
+   height: 65px;
    border-radius: 50%;
 }
 
