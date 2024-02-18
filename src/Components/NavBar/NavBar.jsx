@@ -12,7 +12,6 @@ import { ImCross } from "react-icons/im";
 import logo from "../../Images/lg.png";
 
 const NavBar = () => {
-   //  Pegando o valor global do Contexto
    const { user } = useSelector((state) => state.user);
    const dispatch = useDispatch();
 
