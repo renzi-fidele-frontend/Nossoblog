@@ -1,16 +1,23 @@
 import styles from "./Home.module.css";
 import { collection, query, orderBy, getDocs } from "firebase/firestore";
 import { db } from "../../firebase/config";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import HeroContainer from "../../Components/HeroContainer/HeroContainer";
 import PostCard from "../../Components/PostCard/PostCard";
 import SideBar from "../../Components/SideBar/SideBar";
 import { useDispatch, useSelector } from "react-redux";
 import { setPosts } from "../../state/home/homeSlice";
+import SmoothScrollbar from "smooth-scrollbar";
 
 const Home = () => {
    const { posts } = useSelector((state) => state.home);
    const dispatch = useDispatch();
+
+   const scrollRef = useRef(null);
+
+   useEffect(() => {
+      SmoothScrollbar.init(scrollRef.current);
+   }, [scrollRef]);
 
    //  Capturar dados na coleção Posts
    async function capturarPosts() {
@@ -30,11 +37,9 @@ const Home = () => {
       if (posts.length === 0) capturarPosts();
    }, []);
 
-   
-
    return (
       <section id={styles.container}>
-         <div id={styles.left}>
+         <div ref={scrollRef} id={styles.left}>
             {/*Caso cheguem posts do banco de dados */}
             {posts.length > 0 ? (
                <>

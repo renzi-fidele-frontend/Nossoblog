@@ -6,7 +6,7 @@
    grid-template-columns: 70% 30%;
 }
 
-#left > h2 {
+#left > div > h2 {
    font-size: 2.5em;
    font-weight: 700;
    margin-top: 0.5em;
@@ -19,22 +19,11 @@
 }
 
 #left {
-   overflow-y: scroll;
+   overflow-y: auto;
    padding-bottom: 4em;
    text-align: start;
    -webkit-mask-image: linear-gradient(to top, transparent 0, transparent 21px, #000 47px, #000 100%);
    mask-image: linear-gradient(to top, transparent 0, transparent 21px, #000 47px, #000 100%);
-}
-
-/* Hide scrollbar for Chrome, Safari and Opera */
-#left::-webkit-scrollbar {
-   display: none;
-}
-
-/* Hide scrollbar for IE, Edge and Firefox */
-#left {
-   -ms-overflow-style: none; /* IE and Edge */
-   scrollbar-width: none; /* Firefox */
 }
 
 #right {
@@ -84,7 +73,7 @@
       grid-template-columns: 70% 30%;
    }
 
-   #left > h2 {
+   #left > div > h2 {
       margin-top: 0.5em;
    }
 
@@ -94,7 +83,7 @@
 }
 
 @media screen and (max-width: 1462px) {
-   #left > h2 {
+   #left > div > h2 {
       font-size: 2.2em;
    }
 }
@@ -106,7 +95,7 @@
 }
 
 @media screen and (max-width: 1214px) {
-   #left > h2 {
+   #left > div > h2 {
       font-size: 28px;
    }
 }
@@ -156,7 +145,7 @@
 }
 
 @media screen and (max-width: 646px) {
-   #left > h2 {
+   #left > div > h2 {
       font-size: 23px;
    }
 }
@@ -165,13 +154,13 @@
 }
 
 @media screen and (max-width: 566px) {
-   #left > h2 {
+   #left > div > h2 {
       margin-right: 5%;
    }
 }
 
 @media screen and (max-width: 530px) {
-   #left > h2 {
+   #left > div > h2 {
       font-size: 20px;
    }
 }
