@@ -16,6 +16,7 @@
 }
 
 #ct > #right {
+   height: inherit;
 }
 
 #form {
