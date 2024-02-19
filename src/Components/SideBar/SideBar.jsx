@@ -63,6 +63,10 @@ const SideBar = ({ customClass }) => {
       divRef.current.classList.toggle(styles.responsivo);
    }
 
+   function removeClass() {
+      divRef.current.classList.remove(styles.responsivo);
+   }
+
    return (
       <>
          <section id={styles.container} ref={divRef} className={customClass}>
@@ -82,7 +86,11 @@ const SideBar = ({ customClass }) => {
             {tagsPopulares.length > 0 ? (
                <div id={styles.tagsContainer}>
                   {tagsPopulares.map((val, ind) => {
-                     return <Link to={`/pesquisa?q=${val}`}>#{val}</Link>;
+                     return (
+                        <Link onClick={removeClass} to={`/pesquisa?q=${val}`}>
+                           #{val}
+                        </Link>
+                     );
                   })}
                </div>
             ) : (
@@ -99,7 +107,7 @@ const SideBar = ({ customClass }) => {
                <div id={styles.PopularPostsContainer}>
                   {postsEmDestaque.map((val, ind) => {
                      return (
-                        <Link key={ind} to={`/posts/${val.id}`} state={val}>
+                        <Link onClick={removeClass} key={ind} to={`/posts/${val.id}`} state={val}>
                            {val.data.titulo}
                         </Link>
                      );

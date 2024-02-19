@@ -35,8 +35,12 @@ const NavBar = () => {
 
    const navRef = useRef();
 
-   function mostrarNav() {
+   function toggleNav() {
       navRef.current.classList.toggle(styles.responsivo);
+   }
+
+   function removeNav() {
+      navRef.current.classList.remove(styles.responsivo);
    }
 
    return (
@@ -46,7 +50,7 @@ const NavBar = () => {
          </NavLink>
          <ul>
             <li>
-               <NavLink style={({ isActive }) => (isActive ? activeStyle : undefined)} to="/">
+               <NavLink onClick={removeNav} style={({ isActive }) => (isActive ? activeStyle : undefined)} to="/">
                   Home
                </NavLink>
             </li>
@@ -54,22 +58,22 @@ const NavBar = () => {
             {user && (
                <>
                   <li>
-                     <NavLink style={({ isActive }) => (isActive ? activeStyle : undefined)} to="/chat">
+                     <NavLink onClick={removeNav} style={({ isActive }) => (isActive ? activeStyle : undefined)} to="/chat">
                         Chat
                      </NavLink>
                   </li>
                   <li>
-                     <NavLink style={({ isActive }) => (isActive ? activeStyle : undefined)} to="/post/novo">
+                     <NavLink onClick={removeNav} style={({ isActive }) => (isActive ? activeStyle : undefined)} to="/post/novo">
                         Criar post
                      </NavLink>
                   </li>
                   <li>
-                     <NavLink style={({ isActive }) => (isActive ? activeStyle : undefined)} to="/dashboard">
+                     <NavLink onClick={removeNav} style={({ isActive }) => (isActive ? activeStyle : undefined)} to="/dashboard">
                         Dashboard
                      </NavLink>
                   </li>
                   <li>
-                     <NavLink style={({ isActive }) => (isActive ? activeStyle : undefined)} to="/perfil_usuario">
+                     <NavLink onClick={removeNav} style={({ isActive }) => (isActive ? activeStyle : undefined)} to="/perfil_usuario">
                         Perfil
                      </NavLink>
                   </li>
@@ -77,7 +81,7 @@ const NavBar = () => {
             )}
 
             <li>
-               <NavLink style={({ isActive }) => (isActive ? activeStyle : undefined)} to="/sobre">
+               <NavLink onClick={removeNav} style={({ isActive }) => (isActive ? activeStyle : undefined)} to="/sobre">
                   Sobre
                </NavLink>
             </li>
@@ -95,20 +99,20 @@ const NavBar = () => {
             {!user && (
                <>
                   <li>
-                     <NavLink style={({ isActive }) => (isActive ? activeStyle : undefined)} to="/cadastro">
+                     <NavLink onClick={removeNav} style={({ isActive }) => (isActive ? activeStyle : undefined)} to="/cadastro">
                         Cadastrar
                      </NavLink>
                   </li>
                   <li>
-                     <NavLink style={({ isActive }) => (isActive ? activeStyle : undefined)} to="/entrar">
+                     <NavLink onClick={removeNav} style={({ isActive }) => (isActive ? activeStyle : undefined)} to="/entrar">
                         Entrar
                      </NavLink>
                   </li>
                </>
             )}
          </ul>
-         <FaBars className={styles.bars} onClick={mostrarNav} />
-         <ImCross className={styles.closeBtn} onClick={mostrarNav} />
+         <FaBars className={styles.bars} onClick={toggleNav} />
+         <ImCross className={styles.closeBtn} onClick={toggleNav} />
       </header>
    );
 };
