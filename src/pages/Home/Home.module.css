@@ -6,7 +6,7 @@
    grid-template-columns: 70% 30%;
 }
 
-#left > div > h2 {
+#left h2 {
    font-size: 2.5em;
    font-weight: 700;
    margin-top: 0.5em;
@@ -19,7 +19,7 @@
 }
 
 #left {
-   overflow-y: auto;
+   overflow-y: hidden;
    padding-bottom: 4em;
    text-align: start;
    -webkit-mask-image: linear-gradient(to top, transparent 0, transparent 21px, #000 47px, #000 100%);
@@ -73,7 +73,7 @@
       grid-template-columns: 70% 30%;
    }
 
-   #left > div > h2 {
+   #left h2 {
       margin-top: 0.5em;
    }
 
@@ -83,7 +83,7 @@
 }
 
 @media screen and (max-width: 1462px) {
-   #left > div > h2 {
+   #left h2 {
       font-size: 2.2em;
    }
 }
@@ -95,7 +95,7 @@
 }
 
 @media screen and (max-width: 1214px) {
-   #left > div > h2 {
+   #left h2 {
       font-size: 28px;
    }
 }
@@ -145,20 +145,19 @@
 }
 
 @media screen and (max-width: 646px) {
-   #left > div > h2 {
+   #left h2 {
       font-size: 23px;
    }
 }
 
-
 @media screen and (max-width: 566px) {
-   #left > div > h2 {
+   #left h2 {
       margin-right: 5%;
    }
 }
 
 @media screen and (max-width: 530px) {
-   #left > div > h2 {
+   #left h2 {
       font-size: 20px;
    }
 }
