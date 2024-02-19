@@ -15,10 +15,6 @@ const Home = () => {
 
    const scrollRef = useRef(null);
 
-   useEffect(() => {
-      SmoothScrollbar.init(scrollRef.current);
-   }, [scrollRef]);
-
    //  Capturar dados na coleção Posts
    async function capturarPosts() {
       let arr = [];
@@ -29,12 +25,18 @@ const Home = () => {
       captura.forEach((doc) => {
          arr.push({ data: doc.data(), id: doc.id });
       });
-
-      dispatch(setPosts(arr));
+      try {
+         dispatch(setPosts(arr));
+         SmoothScrollbar.init(scrollRef?.current);
+      } catch (err) {
+         console.log("O erro foi", err);
+      }
    }
 
    useEffect(() => {
+      
       if (posts.length === 0) capturarPosts();
+      
    }, []);
 
    return (
