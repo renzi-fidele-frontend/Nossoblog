@@ -25,18 +25,17 @@ const Home = () => {
       captura.forEach((doc) => {
          arr.push({ data: doc.data(), id: doc.id });
       });
-      try {
-         dispatch(setPosts(arr));
-         SmoothScrollbar.init(scrollRef?.current);
-      } catch (err) {
-         console.log("O erro foi", err);
-      }
+      dispatch(setPosts(arr));
+
+      SmoothScrollbar.init(scrollRef?.current, {});
    }
 
    useEffect(() => {
-      
-      if (posts.length === 0) capturarPosts();
-      
+      if (posts.length === 0) {
+         capturarPosts();
+      } else {
+         SmoothScrollbar.init(scrollRef?.current);
+      }
    }, []);
 
    return (

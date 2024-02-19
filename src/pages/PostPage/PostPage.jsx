@@ -10,6 +10,7 @@ import { doc, increment, updateDoc } from "firebase/firestore";
 import { db } from "../../firebase/config";
 import { motion } from "framer-motion";
 import useScrollTop from "../../hooks/useScrollTop";
+import SmoothScrollbar from "smooth-scrollbar";
 
 const PostPage = () => {
    const objecto = useLocation().state;
@@ -44,6 +45,7 @@ const PostPage = () => {
 
    useEffect(() => {
       aumentarViews();
+      SmoothScrollbar.init(ctRef.current);
    }, []);
 
    return (
