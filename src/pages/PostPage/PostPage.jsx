@@ -18,8 +18,6 @@ const PostPage = () => {
    const [data, setData] = useState("");
    const ctRef = useRef(null);
 
-   const scrollTop = useScrollTop({ divRef: ctRef.current });
-
    //  Convertendo o tempo em segundos para formato de data
    function toDateTime(secs) {
       let t = new Date(secs * 1000); // Epoch
@@ -47,6 +45,8 @@ const PostPage = () => {
       aumentarViews();
       SmoothScrollbar.init(ctRef.current);
    }, []);
+
+   const scrollTop = useScrollTop({ divRef: ctRef.current });
 
    return (
       <div id={estiloHome.container}>
