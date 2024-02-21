@@ -2,9 +2,9 @@ import styles from "./Register.module.css";
 import icon from "../../Images/register.svg";
 import { useState } from "react";
 import { getAuth, createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
-import { app } from "../../firebase/config";
+import { app, db } from "../../firebase/config";
 import { motion } from "framer-motion";
-import { useDispatch } from "react-redux";
+import { addDoc, collection } from "firebase/firestore";
 
 const Register = () => {
    //  Hooks do form
@@ -24,16 +24,22 @@ const Register = () => {
          //  Criando o usuário
          await createUserWithEmailAndPassword(auth, email, senha)
             .then(async (userCredential) => {
-               //  Atualizando a seguir o username
-               await updateProfile(userCredential.user, { displayName: nome, photoURL: undefined })
+               // Adicionando o user a coleção do chat global
+               const docRef = await addDoc(collection(db, "Users"), {
+                  nome: nome,
+                  email: email,
+               })
                   .then(() => {
-                     console.log("Nome atualizado com sucesso!");
+                     console.log("User adicionado a coleção de chat global");
                   })
-                  .catch((err) => {
-                     let errorCode = err.code;
-                     let errorMessage = err.message;
-                     console.log(errorCode, errorMessage);
-                  });
+                  .catch((err) => console.log(err));
+
+               //  Atualizando a seguir o username
+               await updateProfile(userCredential.user, { displayName: nome, photoURL: undefined }).catch((err) => {
+                  let errorCode = err.code;
+                  let errorMessage = err.message;
+                  console.log(errorCode, errorMessage);
+               });
             })
             .catch((err) => {
                let errorCode = err.code;
