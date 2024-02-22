@@ -39,6 +39,7 @@
    font-size: 19px;
    border: none;
    background: none;
+   cursor: pointer;
 }
 
 #userCt {
@@ -114,4 +115,17 @@
 
 #userCard #right p {
    font-size: 15px;
+}
+
+.itemsPesquisa {
+   border-bottom: 1px solid #a195e5;
+}
+
+#cima {
+   padding-inline: 2em;
+   padding-top: 1em;
+   display: flex;
+   flex-flow: row nowrap;
+   justify-content: space-between;
+   align-items: center;
 }

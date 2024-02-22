@@ -51,7 +51,6 @@ const Perfil = () => {
                   setLinkFoto(link);
                   await updateProfile(user, { displayName: nome_ref.current.value, photoURL: link })
                      .then(() => {
-                        console.log("Perfil e imagem atualizado com sucesso!");
                         setLoading(false);
                      })
                      .catch((err) => {

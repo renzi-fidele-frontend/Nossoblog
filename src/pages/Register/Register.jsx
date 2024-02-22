@@ -4,7 +4,7 @@ import { useState } from "react";
 import { getAuth, createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { app, db } from "../../firebase/config";
 import { motion } from "framer-motion";
-import { addDoc, collection } from "firebase/firestore";
+import { collection, doc, setDoc } from "firebase/firestore";
 
 const Register = () => {
    //  Hooks do form
@@ -24,8 +24,19 @@ const Register = () => {
          //  Criando o usuário
          await createUserWithEmailAndPassword(auth, email, senha)
             .then(async (userCredential) => {
+               //  Atualizando a seguir o username
+               await updateProfile(userCredential.user, {
+                  displayName: nome,
+                  photoURL:
+                     "https://firebasestorage.googleapis.com/v0/b/miniblog-c5fa5.appspot.com/o/fotosPerfil%2FnoProfile.jpg?alt=media&token=086b913b-26ae-4c73-a6da-0785fd5b958c",
+               }).catch((err) => {
+                  let errorCode = err.code;
+                  let errorMessage = err.message;
+                  console.log(errorCode, errorMessage);
+               });
+
                // Adicionando o user a coleção do chat global
-               const docRef = await addDoc(collection(db, "Users"), {
+               await setDoc(doc(db, "Users", userCredential.user.uid), {
                   nome: nome,
                   email: email,
                   photoURL:
@@ -37,15 +48,9 @@ const Register = () => {
                   })
                   .catch((err) => console.log(err));
 
-               //  Atualizando a seguir o username
-               await updateProfile(userCredential.user, {
-                  displayName: nome,
-                  photoURL:
-                     "https://firebasestorage.googleapis.com/v0/b/miniblog-c5fa5.appspot.com/o/fotosPerfil%2FnoProfile.jpg?alt=media&token=086b913b-26ae-4c73-a6da-0785fd5b958c",
-               }).catch((err) => {
-                  let errorCode = err.code;
-                  let errorMessage = err.message;
-                  console.log(errorCode, errorMessage);
+               // Inicializando a coleção das conversas do usuário
+               await setDoc(doc(db, "UserChats", userCredential.user.uid), {}).then(() => {
+                  console.log("Coleção das conversas do usuário inicializada");
                });
             })
             .catch((err) => {
