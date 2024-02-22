@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styles from "./Chat.module.css";
 import { useSelector } from "react-redux";
 import Conversa from "../../Components/Conversa/Conversa";
@@ -9,12 +9,14 @@ import userImg from "../../Images/user.png";
 import { FaSpinner } from "react-icons/fa";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import { db } from "../../firebase/config";
+import SmoothScrollbar from "smooth-scrollbar";
 
 const Chat = () => {
    const { user } = useSelector((state) => state.user);
    const [resultadosPesquisa, setResultadosPesquisa] = useState([]);
    const searchInputRef = useRef(null);
    const [loading, setLoading] = useState(false);
+   const ctRef = useRef(null);
 
    async function pesquisar(e) {
       e.preventDefault();
@@ -40,9 +42,13 @@ const Chat = () => {
       }
    }
 
+   useEffect(() => {
+      SmoothScrollbar.init(ctRef.current);
+   }, []);
+
    return (
       <div id={styles.ct}>
-         <div id={styles.left}>
+         <div ref={ctRef} id={styles.left}>
             <div id={styles.userCt}>
                <h2>Chat Global</h2>
                <div>
