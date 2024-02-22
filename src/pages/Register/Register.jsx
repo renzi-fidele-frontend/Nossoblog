@@ -28,6 +28,9 @@ const Register = () => {
                const docRef = await addDoc(collection(db, "Users"), {
                   nome: nome,
                   email: email,
+                  photoURL:
+                     "https://firebasestorage.googleapis.com/v0/b/miniblog-c5fa5.appspot.com/o/fotosPerfil%2FnoProfile.jpg?alt=media&token=086b913b-26ae-4c73-a6da-0785fd5b958c",
+                  uid: userCredential.user.uid,
                })
                   .then(() => {
                      console.log("User adicionado a coleção de chat global");
@@ -35,7 +38,11 @@ const Register = () => {
                   .catch((err) => console.log(err));
 
                //  Atualizando a seguir o username
-               await updateProfile(userCredential.user, { displayName: nome, photoURL: undefined }).catch((err) => {
+               await updateProfile(userCredential.user, {
+                  displayName: nome,
+                  photoURL:
+                     "https://firebasestorage.googleapis.com/v0/b/miniblog-c5fa5.appspot.com/o/fotosPerfil%2FnoProfile.jpg?alt=media&token=086b913b-26ae-4c73-a6da-0785fd5b958c",
+               }).catch((err) => {
                   let errorCode = err.code;
                   let errorMessage = err.message;
                   console.log(errorCode, errorMessage);

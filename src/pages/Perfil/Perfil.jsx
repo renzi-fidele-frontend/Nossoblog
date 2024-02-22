@@ -16,7 +16,7 @@ const Perfil = () => {
    const nome_ref = useRef(null);
    const email_ref = useRef(null);
    const [alterado, setAlterado] = useState(false);
-   const [linkFoto, setLinkFoto] = useState(user?.photoURL || "");
+   const [linkFoto, setLinkFoto] = useState(user?.photoURL);
    const inputfileRef = useRef(null);
    const [loading, setLoading] = useState(false);
 
@@ -77,10 +77,15 @@ const Perfil = () => {
    async function removerFoto() {
       if (linkFoto.length > 0) {
          setLoading(true);
-         await updateProfile(user, { photoURL: null })
+         await updateProfile(user, {
+            photoURL:
+               "https://firebasestorage.googleapis.com/v0/b/miniblog-c5fa5.appspot.com/o/fotosPerfil%2FnoProfile.jpg?alt=media&token=086b913b-26ae-4c73-a6da-0785fd5b958c",
+         })
             .then(() => {
                console.log("Foto de perfil removida com sucesso!");
-               setLinkFoto("");
+               setLinkFoto(
+                  "https://firebasestorage.googleapis.com/v0/b/miniblog-c5fa5.appspot.com/o/fotosPerfil%2FnoProfile.jpg?alt=media&token=086b913b-26ae-4c73-a6da-0785fd5b958c"
+               );
                setLoading(false);
             })
             .catch((err) => {
@@ -101,11 +106,7 @@ const Perfil = () => {
          <div id={styles.duasCol}>
             <div id={styles.left}>
                <figure>
-                  {linkFoto?.length > 0 ? (
-                     <img src={linkFoto} key={linkFoto} alt="Foto de perfil do usuário" />
-                  ) : (
-                     <img src={semFotoPerfil} alt="Sem foto de perfil do usuário" />
-                  )}
+                  <img src={linkFoto} key={linkFoto} alt="Foto de perfil do usuário" />
                </figure>
             </div>
             <div id={styles.right}>
