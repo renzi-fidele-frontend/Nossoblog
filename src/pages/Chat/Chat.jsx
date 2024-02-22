@@ -6,6 +6,7 @@ import Conversa from "../../Components/Conversa/Conversa";
 //  Icons
 import { FaSearch } from "react-icons/fa";
 import userImg from "../../Images/user.png";
+import { FaSpinner } from "react-icons/fa";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import { db } from "../../firebase/config";
 
@@ -55,6 +56,13 @@ const Chat = () => {
                   <FaSearch />
                </button>
             </form>
+
+            {loading && (
+               <i id={styles.loadIco}>
+                  <FaSpinner />
+               </i>
+            )}
+
             {/*Mostrando os resultados da pesquisa somente ao se pesquisar */}
             {resultadosPesquisa.length > 0 && (
                <div id={styles.users} className={styles.itemsPesquisa}>

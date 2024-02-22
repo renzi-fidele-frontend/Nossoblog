@@ -13,6 +13,7 @@
    border-bottom-left-radius: 18px;
    border-top-left-radius: 18px;
    color: white;
+   position: relative;
 }
 
 #ct > #right {
@@ -122,10 +123,51 @@
 }
 
 #cima {
-   padding-inline: 2em;
+   padding-right: 1.2em;
+   padding-left: 1em;
    padding-top: 1em;
    display: flex;
    flex-flow: row nowrap;
    justify-content: space-between;
    align-items: center;
+}
+
+#cima > h6 {
+   font-size: 16px;
+   font-weight: 500;
+}
+
+#cima > button {
+   background-color: #f5e3ff;
+   border: none;
+   padding: 6px 1.4em;
+   cursor: pointer;
+}
+
+#loadIco {
+   position: absolute;
+   background-color: rgba(0, 0, 0, 0.322);
+   top: 0;
+   height: 100%;
+   width: 100%;
+   font-size: 25px;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   padding: 1em;
+   border-bottom: 1px solid #a195e5;
+}
+
+#loadIco > svg {
+   animation: girar 1s infinite linear;
+}
+
+@keyframes girar {
+   to {
+      transform: rotateZ(360deg);
+   }
+}
+
+#loadIco path {
+   fill: #a195e5;
 }
