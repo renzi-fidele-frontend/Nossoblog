@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import styles from "./Chat.module.css";
 import { useSelector } from "react-redux";
 import Conversa from "../../Components/Conversa/Conversa";
@@ -37,14 +37,15 @@ const Chat = () => {
          setResultadosPesquisa(arr);
          console.log(resultadosPesquisa);
          setLoading(false);
+         SmoothScrollbar.init(ctRef.current);
       } else {
          alert("Insira no mínimo 3 caractéres");
       }
    }
 
    useEffect(() => {
-      SmoothScrollbar.init(ctRef.current);
-   }, []);
+      //
+   }, [ctRef]);
 
    return (
       <div id={styles.ct}>
