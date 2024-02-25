@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styles from "./Chat.module.css";
 import { useSelector } from "react-redux";
 import Conversa from "../../Components/Conversa/Conversa";
@@ -17,7 +17,7 @@ const Chat = () => {
    const [resultadosPesquisa, setResultadosPesquisa] = useState([]);
    const searchInputRef = useRef(null);
    const [loading, setLoading] = useState(false);
-   const ctRef = useRef();
+   const ctRef = useRef(null);
 
    async function pesquisar(e) {
       e.preventDefault();
@@ -48,15 +48,13 @@ const Chat = () => {
       return modStr;
    }
 
+   useEffect(() => {
+      if (ctRef.current !== null) SmoothScrollbar.init(ctRef.current);
+   }, [ctRef.current]);
+
    return (
       <div id={styles.ct}>
-         <div
-            ref={ctRef}
-            onLoad={(e) => {
-               SmoothScrollbar.init(ctRef.current);
-            }}
-            id={styles.left}
-         >
+         <div ref={ctRef} onLoad={(e) => {}} id={styles.left}>
             <div id={styles.userCt}>
                <h2>Chat Global</h2>
                <div>
@@ -71,39 +69,43 @@ const Chat = () => {
                </button>
             </form>
 
-            {loading && (
-               <i id={styles.loadIco}>
-                  <FaSpinner />
-               </i>
-            )}
+            <div>
+               {loading && (
+                  <i id={styles.loadIco}>
+                     <FaSpinner />
+                  </i>
+               )}
+            </div>
 
             {/*Mostrando os resultados da pesquisa somente ao se pesquisar */}
-            {resultadosPesquisa.length > 0 && (
-               <div id={styles.users} className={styles.itemsPesquisa}>
-                  <div id={styles.cima}>
-                     <h6>Resultados da pesquisa</h6>
-                     <button
-                        onClick={() => {
-                           setResultadosPesquisa([]);
-                        }}
-                     >
-                        Fechar
-                     </button>
-                  </div>
-
-                  {resultadosPesquisa.map((v, k) => (
-                     <div id={styles.userCard} title="Adicionar usuário" className={styles.userCard} key={k}>
-                        <div id={styles.left}>
-                           <img src={v?.photoURL} alt="" />
-                        </div>
-                        <div id={styles.right}>
-                           <h5>{capitalizar(v?.nome)}</h5>
-                           <IoPersonAddOutline className={styles.addUserIco} />
-                        </div>
+            <div id={styles.users} className={styles.itemsPesquisa}>
+               {resultadosPesquisa.length > 0 && (
+                  <div id={styles.users} className={styles.itemsPesquisa}>
+                     <div id={styles.cima}>
+                        <h6>Resultados da pesquisa</h6>
+                        <button
+                           onClick={() => {
+                              setResultadosPesquisa([]);
+                           }}
+                        >
+                           Fechar
+                        </button>
                      </div>
-                  ))}
-               </div>
-            )}
+
+                     {resultadosPesquisa.map((v, k) => (
+                        <div id={styles.userCard} title="Adicionar usuário" className={styles.userCard} key={k}>
+                           <div id={styles.left}>
+                              <img src={v?.photoURL} alt="" />
+                           </div>
+                           <div id={styles.right}>
+                              <h5>{capitalizar(v?.nome)}</h5>
+                              <IoPersonAddOutline className={styles.addUserIco} />
+                           </div>
+                        </div>
+                     ))}
+                  </div>
+               )}
+            </div>
 
             <div id={styles.users}>
                {[1, 2, 3, 4, 5].map((v, k) => (
