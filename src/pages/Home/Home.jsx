@@ -26,8 +26,6 @@ const Home = () => {
          arr.push({ data: doc.data(), id: doc.id });
       });
       dispatch(setPosts(arr));
-
-      SmoothScrollbar.init(scrollRef?.current, {});
    }
 
    useEffect(() => {
@@ -40,7 +38,13 @@ const Home = () => {
 
    return (
       <section id={styles.container}>
-         <div ref={scrollRef} id={styles.left}>
+         <div
+            ref={scrollRef}
+            onLoad={() => {
+               SmoothScrollbar.init(scrollRef?.current);
+            }}
+            id={styles.left}
+         >
             {/*Caso cheguem posts do banco de dados */}
             {posts.length > 0 ? (
                <>
