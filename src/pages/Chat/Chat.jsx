@@ -10,13 +10,14 @@ import { FaSpinner } from "react-icons/fa";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import { db } from "../../firebase/config";
 import SmoothScrollbar from "smooth-scrollbar";
+import { IoPersonAddOutline } from "react-icons/io5";
 
 const Chat = () => {
    const { user } = useSelector((state) => state.user);
    const [resultadosPesquisa, setResultadosPesquisa] = useState([]);
    const searchInputRef = useRef(null);
    const [loading, setLoading] = useState(false);
-   const ctRef = useRef(null);
+   const ctRef = useRef();
 
    async function pesquisar(e) {
       e.preventDefault();
@@ -37,19 +38,25 @@ const Chat = () => {
          setResultadosPesquisa(arr);
          console.log(resultadosPesquisa);
          setLoading(false);
-         SmoothScrollbar.init(ctRef.current);
       } else {
          alert("Insira no mínimo 3 caractéres");
       }
    }
 
-   useEffect(() => {
-      //
-   }, [ctRef]);
+   function capitalizar(str) {
+      let modStr = str[0].toUpperCase() + str.slice(1);
+      return modStr;
+   }
 
    return (
       <div id={styles.ct}>
-         <div ref={ctRef} id={styles.left}>
+         <div
+            ref={ctRef}
+            onLoad={(e) => {
+               SmoothScrollbar.init(ctRef.current);
+            }}
+            id={styles.left}
+         >
             <div id={styles.userCt}>
                <h2>Chat Global</h2>
                <div>
@@ -85,12 +92,13 @@ const Chat = () => {
                   </div>
 
                   {resultadosPesquisa.map((v, k) => (
-                     <div id={styles.userCard} key={k}>
+                     <div id={styles.userCard} title="Adicionar usuário" className={styles.userCard} key={k}>
                         <div id={styles.left}>
                            <img src={v?.photoURL} alt="" />
                         </div>
                         <div id={styles.right}>
-                           <h5>{v?.nome}</h5>
+                           <h5>{capitalizar(v?.nome)}</h5>
+                           <IoPersonAddOutline className={styles.addUserIco} />
                         </div>
                      </div>
                   ))}

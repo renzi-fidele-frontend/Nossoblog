@@ -92,7 +92,7 @@
 }
 
 #userCard:hover {
-   background-color: #362c70;
+   background-color: #433b6e;
    transition: all 0.1s ease-in;
 }
 
@@ -126,6 +126,7 @@
    padding-right: 1.2em;
    padding-left: 1em;
    padding-top: 1em;
+   margin-bottom: 7px;
    display: flex;
    flex-flow: row nowrap;
    justify-content: space-between;
@@ -170,4 +171,32 @@
 
 #loadIco path {
    fill: #a195e5;
+}
+
+.userCard {
+   border-bottom: 0.4px dashed #a195e5;
+}
+
+#users .userCard:last-child {
+   border-bottom: none !important;
+}
+
+.userCard:hover {
+   background-color: #433b6e !important;
+}
+
+.userCard > #right {
+   flex-flow: row nowrap !important;
+   justify-content: space-between !important;
+   align-items: center;
+   flex: 1 1;
+}
+
+.addUserIco {
+   font-size: 26px;
+}
+
+.addUserIco:hover path {
+   fill: white;
+   transition: 0.2s all;
 }
