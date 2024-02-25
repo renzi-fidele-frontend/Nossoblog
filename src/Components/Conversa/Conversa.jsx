@@ -6,16 +6,11 @@ import SmoothScrollbar from "smooth-scrollbar";
 // React Icons
 import { AiOutlinePicture, AiOutlineUpload } from "react-icons/ai";
 import { IoSend } from "react-icons/io5";
-import foto from "../../Images/fotoMSG.jpg"
+import foto from "../../Images/fotoMSG.jpg";
 
 const Conversa = () => {
    const { user } = useSelector((state) => state.user);
    const scrollRef = useRef(null);
-
-   useEffect(() => {
-      console.log(scrollRef.current);
-      SmoothScrollbar.init(scrollRef.current);
-   }, [scrollRef]);
 
    return (
       <div id={styles.ct}>
@@ -23,7 +18,13 @@ const Conversa = () => {
             <h5>Nome completo</h5>
             <p>Estado online</p>
          </div>
-         <div ref={scrollRef} id={styles.chatBody}>
+         <div
+            ref={scrollRef}
+            onLoad={() => {
+               SmoothScrollbar.init(scrollRef.current);
+            }}
+            id={styles.chatBody}
+         >
             <div id={styles.mensagens}>
                {[1, 2, 3, 4, 5].map((v, k) => (
                   <div key={k} className={styles.msg} id={styles.recebido}>
