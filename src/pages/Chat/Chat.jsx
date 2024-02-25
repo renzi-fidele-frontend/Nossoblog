@@ -78,7 +78,7 @@ const Chat = () => {
             </div>
 
             {/*Mostrando os resultados da pesquisa somente ao se pesquisar */}
-            <div id={styles.users} className={styles.itemsPesquisa}>
+            <div>
                {resultadosPesquisa.length > 0 && (
                   <div id={styles.users} className={styles.itemsPesquisa}>
                      <div id={styles.cima}>
