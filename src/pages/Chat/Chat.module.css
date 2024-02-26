@@ -196,7 +196,7 @@
    font-size: 26px;
 }
 
-.addUserIco:hover path {
+.userCard:hover path {
    fill: white;
    transition: 0.2s all;
 }

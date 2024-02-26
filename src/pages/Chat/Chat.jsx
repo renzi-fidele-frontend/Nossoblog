@@ -23,20 +23,17 @@ const Chat = () => {
       e.preventDefault();
 
       if (searchInputRef.current.value.length > 2) {
+         let txt = searchInputRef.current.value.toString().toLowerCase();
+         console.log(txt);
          setLoading(true);
          const usersRef = collection(db, "Users");
-         const q = query(
-            usersRef,
-            where("nome", ">=", searchInputRef.current.value),
-            where("nome", "<=", searchInputRef.current.value + "\uf8ff")
-         );
+         const q = query(usersRef, where("nome", ">=", txt), where("nome", "<=", txt + "\uf8ff"));
          const chamada = await getDocs(q);
          let arr = [];
          chamada.forEach((doc) => {
             arr.push(doc.data());
          });
          setResultadosPesquisa(arr);
-         console.log(resultadosPesquisa);
          setLoading(false);
       } else {
          alert("Insira no mínimo 3 caractéres");
@@ -48,13 +45,15 @@ const Chat = () => {
       return modStr;
    }
 
+   function adicionarUsuario() {}
+
    useEffect(() => {
       if (ctRef.current !== null) SmoothScrollbar.init(ctRef.current);
    }, [ctRef.current]);
 
    return (
       <div id={styles.ct}>
-         <div ref={ctRef} onLoad={(e) => {}} id={styles.left}>
+         <div ref={ctRef} id={styles.left}>
             <div id={styles.userCt}>
                <h2>Chat Global</h2>
                <div>
@@ -83,17 +82,11 @@ const Chat = () => {
                   <div id={styles.users} className={styles.itemsPesquisa}>
                      <div id={styles.cima}>
                         <h6>Resultados da pesquisa</h6>
-                        <button
-                           onClick={() => {
-                              setResultadosPesquisa([]);
-                           }}
-                        >
-                           Fechar
-                        </button>
+                        <button onClick={() => setResultadosPesquisa([])}>Fechar</button>
                      </div>
 
                      {resultadosPesquisa.map((v, k) => (
-                        <div id={styles.userCard} title="Adicionar usuário" className={styles.userCard} key={k}>
+                        <div onClick={adicionarUsuario} id={styles.userCard} title="Adicionar usuário" className={styles.userCard} key={k}>
                            <div id={styles.left}>
                               <img src={v?.photoURL} alt="" />
                            </div>
@@ -107,8 +100,9 @@ const Chat = () => {
                )}
             </div>
 
+            {/*   Conversas do usuário */}
             <div id={styles.users}>
-               {[1, 2, 3, 4, 5].map((v, k) => (
+               {[1].map((v, k) => (
                   <div id={styles.userCard} key={k}>
                      <div id={styles.left}>
                         <img src={user?.photoURL} alt="" />

@@ -26,7 +26,7 @@ const Register = () => {
             .then(async (userCredential) => {
                //  Atualizando a seguir o username
                await updateProfile(userCredential.user, {
-                  displayName: nome,
+                  displayName: nome.toString().toLowerCase(),
                   photoURL:
                      "https://firebasestorage.googleapis.com/v0/b/miniblog-c5fa5.appspot.com/o/fotosPerfil%2FnoProfile.jpg?alt=media&token=086b913b-26ae-4c73-a6da-0785fd5b958c",
                }).catch((err) => {
@@ -37,7 +37,7 @@ const Register = () => {
 
                // Adicionando o user a coleção do chat global
                await setDoc(doc(db, "Users", userCredential.user.uid), {
-                  nome: nome,
+                  nome: nome.toString().toLowerCase(),
                   email: email,
                   photoURL:
                      "https://firebasestorage.googleapis.com/v0/b/miniblog-c5fa5.appspot.com/o/fotosPerfil%2FnoProfile.jpg?alt=media&token=086b913b-26ae-4c73-a6da-0785fd5b958c",
