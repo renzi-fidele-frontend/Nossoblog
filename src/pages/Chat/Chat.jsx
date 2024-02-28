@@ -1,16 +1,17 @@
 import React, { useEffect, useRef, useState } from "react";
 import styles from "./Chat.module.css";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Conversa from "../../Components/Conversa/Conversa";
+import { collection, doc, getDoc, getDocs, query, serverTimestamp, setDoc, updateDoc, where } from "firebase/firestore";
+import { db } from "../../firebase/config";
+import SmoothScrollbar from "smooth-scrollbar";
 
 //  Icons
 import { FaSearch } from "react-icons/fa";
 import userImg from "../../Images/user.png";
 import { FaSpinner } from "react-icons/fa";
-import { collection, doc, getDoc, getDocs, query, serverTimestamp, setDoc, updateDoc, where } from "firebase/firestore";
-import { db } from "../../firebase/config";
-import SmoothScrollbar from "smooth-scrollbar";
 import { IoPersonAddOutline } from "react-icons/io5";
+import { setUserChats } from "../../state/chat/chatSlice";
 
 const Chat = () => {
    const { user } = useSelector((state) => state.user);
@@ -18,6 +19,10 @@ const Chat = () => {
    const searchInputRef = useRef(null);
    const [loading, setLoading] = useState(false);
    const ctRef = useRef(null);
+
+   // Redux
+   const { userChats } = useSelector((state) => state.chat);
+   const dispatch = useDispatch();
 
    async function pesquisar(e) {
       e.preventDefault();
@@ -80,9 +85,11 @@ const Chat = () => {
 
    async function apanharConversas() {
       let res = await getDocs(collection(db, "UserChats"));
+      let arr = [];
       res.forEach((doc) => {
-         console.log(doc.data());
+         arr.push(doc.data());
       });
+      dispatch(setUserChats(arr));
    }
 
    useEffect(() => {
@@ -90,7 +97,7 @@ const Chat = () => {
    }, [ctRef.current]);
 
    useEffect(() => {
-      apanharConversas();
+      if (userChats.length === 0) apanharConversas();
    }, []);
 
    return (
