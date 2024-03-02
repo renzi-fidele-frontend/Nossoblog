@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import styles from "./Chat.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import Conversa from "../../Components/Conversa/Conversa";
-import { collection, doc, getDoc, getDocs, query, serverTimestamp, setDoc, updateDoc, where } from "firebase/firestore";
+import { collection, doc, getDoc, getDocs, onSnapshot, query, serverTimestamp, setDoc, updateDoc, where } from "firebase/firestore";
 import { db } from "../../firebase/config";
 import SmoothScrollbar from "smooth-scrollbar";
 
@@ -50,21 +50,16 @@ const Chat = () => {
    }
 
    async function adicionarUsuario(userSelecionado) {
+      setLoading(true);
       // Combinação da UID do usúario logado e o UID do usuário selecionado
       // Forçando a criação da UID combinada a sempre iniciar pela UID mais comprida
       let uid_combinado = user.uid > userSelecionado?.uid ? user.uid + userSelecionado?.uid : userSelecionado?.uid + user.uid;
 
-      console.log(uid_combinado);
-
       // Verificando se o usuário selecionado foi adicionado às conversas
       let res = await getDoc(doc(db, "Chats", uid_combinado));
 
-      console.log("adicionando...");
-
       // Caso não tenha sido adicionado, inicializando uma nova conversa
       if (!res.exists()) {
-         console.log("A conversa ainda não foi criada");
-
          await setDoc(doc(db, "Chats", uid_combinado), { mensagens: [] });
 
          // Não dá pra usar template literals no updateDoc, somente array
@@ -80,25 +75,29 @@ const Chat = () => {
                console.log(`Chat inicializado com sucesso`);
             })
             .catch((err) => console.error("err"));
+      } else {
+         console.log("A conversa já existe");
+         setResultadosPesquisa([]);
+         //
+         searchInputRef.current.value = "";
       }
+      setLoading(false);
    }
 
-   async function apanharConversas() {
-      let res = await getDocs(collection(db, "UserChats"));
-      let arr = [];
-      res.forEach((doc) => {
-         arr.push(doc.data());
+   async function apanharConversasUsuario() {
+      let res = onSnapshot(doc(db, "UserChats", user.uid), (conversas) => {
+         // Convertendo o objeto para array, para que possa ser mapeado
+         dispatch(setUserChats(Object.entries(conversas.data())));
       });
-      dispatch(setUserChats(arr));
    }
+
+   useEffect(() => {
+      apanharConversasUsuario();
+   }, [user.uid]);
 
    useEffect(() => {
       if (ctRef.current !== null) SmoothScrollbar.init(ctRef.current);
    }, [ctRef.current]);
-
-   useEffect(() => {
-      if (userChats.length === 0) apanharConversas();
-   }, []);
 
    return (
       <div id={styles.ct}>
@@ -159,17 +158,26 @@ const Chat = () => {
 
             {/* Conversas do usuário */}
             <div id={styles.users}>
-               {[1].map((v, k) => (
-                  <div id={styles.userCard} key={k}>
-                     <div id={styles.left}>
-                        <img src={user?.photoURL} alt="" />
-                     </div>
-                     <div id={styles.right}>
-                        <h5>Nome completo</h5>
-                        <p>Última mensagem</p>
-                     </div>
-                  </div>
-               ))}
+               {userChats.length > 0 ? (
+                  userChats.map((v, k) => {
+                     console.log(v);
+                     return (
+                        <div id={styles.userCard} key={k}>
+                           <div id={styles.left}>
+                              <img src={v[1]?.userInfo?.photoURL} alt="" />
+                           </div>
+                           <div id={styles.right}>
+                              <h5>{capitalizar(v[1]?.userInfo?.nome)}</h5>
+                              <p>Última mensagem</p>
+                           </div>
+                        </div>
+                     );
+                  })
+               ) : (
+                  <>
+                     <p>Nenhum usuário foi adicionado</p>
+                  </>
+               )}
             </div>
          </div>
          <div id={styles.right}>
