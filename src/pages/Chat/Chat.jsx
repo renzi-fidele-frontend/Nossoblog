@@ -84,7 +84,7 @@ const Chat = () => {
       setLoading(false);
    }
 
-   async function apanharConversasUsuario() {
+   function apanharConversasUsuario() {
       let res = onSnapshot(doc(db, "UserChats", user.uid), (conversas) => {
          // Convertendo o objeto para array, para que possa ser mapeado
          dispatch(setUserChats(Object.entries(conversas.data())));
@@ -160,7 +160,6 @@ const Chat = () => {
             <div id={styles.users}>
                {userChats.length > 0 ? (
                   userChats.map((v, k) => {
-                     console.log(v);
                      return (
                         <div id={styles.userCard} key={k}>
                            <div id={styles.left}>
