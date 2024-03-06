@@ -11,7 +11,8 @@ import { FaSearch } from "react-icons/fa";
 import userImg from "../../Images/user.png";
 import { FaSpinner } from "react-icons/fa";
 import { IoPersonAddOutline } from "react-icons/io5";
-import { setUserChats } from "../../state/chat/chatSlice";
+import { setUserChats, setUserSelecionado } from "../../state/chat/chatSlice";
+import capitalizar from "../../hooks/useCapitalizar";
 
 const Chat = () => {
    const { user } = useSelector((state) => state.user);
@@ -44,10 +45,7 @@ const Chat = () => {
       }
    }
 
-   function capitalizar(str) {
-      let modStr = str[0].toUpperCase() + str.slice(1);
-      return modStr;
-   }
+   
 
    async function adicionarUsuario(userSelecionado) {
       setLoading(true);
@@ -161,7 +159,13 @@ const Chat = () => {
                {userChats.length > 0 ? (
                   userChats.map((v, k) => {
                      return (
-                        <div id={styles.userCard} key={k}>
+                        <div
+                           id={styles.userCard}
+                           onClick={() => {
+                              dispatch(setUserSelecionado(v[1]?.userInfo));
+                           }}
+                           key={k}
+                        >
                            <div id={styles.left}>
                               <img src={v[1]?.userInfo?.photoURL} alt="" />
                            </div>

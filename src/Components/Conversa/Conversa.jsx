@@ -7,15 +7,17 @@ import SmoothScrollbar from "smooth-scrollbar";
 import { AiOutlinePicture, AiOutlineUpload } from "react-icons/ai";
 import { IoSend } from "react-icons/io5";
 import foto from "../../Images/fotoMSG.jpg";
+import capitalizar from "../../hooks/useCapitalizar";
 
 const Conversa = () => {
    const { user } = useSelector((state) => state.user);
+   const { mensagens, userSelecionado } = useSelector((state) => state.chat);
    const scrollRef = useRef(null);
 
    return (
       <div id={styles.ct}>
          <div id={styles.head}>
-            <h5>Nome completo</h5>
+            <h5>{capitalizar(userSelecionado.nome)}</h5>
             <p>Estado online</p>
          </div>
          <div
@@ -26,7 +28,8 @@ const Conversa = () => {
             id={styles.chatBody}
          >
             <div id={styles.mensagens}>
-               {[1, 2, 3, 4, 5].map((v, k) => (
+               {/* Modelo de mensagem recebida */}
+               {mensagens.map((v, k) => (
                   <div key={k} className={styles.msg} id={styles.recebido}>
                      <div>
                         <img className={styles.fotoUser} src={user?.photoURL} alt="Foto do usuário" />
@@ -35,7 +38,9 @@ const Conversa = () => {
                      <div className={styles.conteudoMsg}>Texto da mensagem</div>
                   </div>
                ))}
-               {[1, 2, 4].map((v, k) => (
+
+               {/* Modelo de mensagem enviada */}
+               {[].map((v, k) => (
                   <div key={k} className={styles.msg} id={styles.enviado}>
                      <div>
                         <img className={styles.fotoUser} src={user?.photoURL} alt="Foto do usuário" />
@@ -45,7 +50,7 @@ const Conversa = () => {
                   </div>
                ))}
 
-               {/*Modelo de mesagem contendo imagem */}
+               {/* Modelo de mensagem contendo imagem */}
                <div className={styles.msg} id={styles.enviado}>
                   <div>
                      <img className={styles.fotoUser} src={user?.photoURL} alt="Foto do usuário" />
