@@ -17,7 +17,7 @@ const Conversa = () => {
    return (
       <div id={styles.ct}>
          <div id={styles.head}>
-            <h5>{capitalizar(userSelecionado.nome)}</h5>
+            <h5>{capitalizar(userSelecionado?.nome || "")}</h5>
             <p>Estado online</p>
          </div>
          <div
@@ -50,7 +50,7 @@ const Conversa = () => {
                   </div>
                ))}
 
-               {/* Modelo de mensagem contendo imagem */}
+               {/* Modelo de mensagem contendo imagem 
                <div className={styles.msg} id={styles.enviado}>
                   <div>
                      <img className={styles.fotoUser} src={user?.photoURL} alt="Foto do usuário" />
@@ -60,6 +60,7 @@ const Conversa = () => {
                      <img src={foto} alt="" />
                   </div>
                </div>
+               */}
             </div>
          </div>
          <form id={styles.input}>
