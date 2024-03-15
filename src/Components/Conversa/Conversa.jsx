@@ -13,11 +13,18 @@ const Conversa = () => {
    const { user } = useSelector((state) => state.user);
    const { mensagens, userSelecionado } = useSelector((state) => state.chat);
    const scrollRef = useRef(null);
+   const { uidChatSelecionado } = useSelector((state) => state.chat);
+
+   useEffect(() => {
+      if (uidChatSelecionado.length > 0) {
+         console.log(`A UID do chat selecionado é: ${uidChatSelecionado}`);
+      }
+   }, [uidChatSelecionado]);
 
    return (
       <div id={styles.ct}>
          <div id={styles.head}>
-            <h5>{capitalizar(userSelecionado?.nome || "")}</h5>
+            <h5>{capitalizar(userSelecionado?.nome)}</h5>
             <p>Estado online</p>
          </div>
          <div

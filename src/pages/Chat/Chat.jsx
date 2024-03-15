@@ -91,7 +91,7 @@ const Chat = () => {
    function apanharMensagensdoUserSelecionado() {
       let uid_combinado = user.uid > userSelecionado?.uid ? user.uid + userSelecionado?.uid : userSelecionado?.uid + user.uid;
 
-      setUidChatSeleciodado(uid_combinado);
+      dispatch(setUidChatSeleciodado(uid_combinado));
 
       let res = onSnapshot(doc(db, "Chats", uid_combinado), (mensagens) => {
          dispatch(setMensagens(mensagens.data().mensagens));
