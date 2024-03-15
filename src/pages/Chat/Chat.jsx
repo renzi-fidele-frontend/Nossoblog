@@ -11,11 +11,12 @@ import { FaSearch } from "react-icons/fa";
 import userImg from "../../Images/user.png";
 import { FaSpinner } from "react-icons/fa";
 import { IoPersonAddOutline } from "react-icons/io5";
-import { setUserChats, setUserSelecionado } from "../../state/chat/chatSlice";
+import { setMensagens, setUserChats, setUserSelecionado } from "../../state/chat/chatSlice";
 import capitalizar from "../../hooks/useCapitalizar";
 
 const Chat = () => {
    const { user } = useSelector((state) => state.user);
+   const { userSelecionado } = useSelector((state) => state.chat);
    const [resultadosPesquisa, setResultadosPesquisa] = useState([]);
    const searchInputRef = useRef(null);
    const [loading, setLoading] = useState(false);
@@ -44,8 +45,6 @@ const Chat = () => {
          alert("Insira no mínimo 3 caractéres");
       }
    }
-
-   
 
    async function adicionarUsuario(userSelecionado) {
       setLoading(true);
@@ -87,6 +86,18 @@ const Chat = () => {
          // Convertendo o objeto para array, para que possa ser mapeado
          dispatch(setUserChats(Object.entries(conversas.data())));
       });
+   }
+
+   async function apanharMensagensdoUserSelecionado() {
+      let uid_combinado = user.uid > userSelecionado?.uid ? user.uid + userSelecionado?.uid : userSelecionado?.uid + user.uid;
+
+      let res = await getDoc(doc(db, "Chats", uid_combinado));
+
+      if (res.exists()) {
+         dispatch(setMensagens(res.data().mensagens));
+      } else {
+         console.log("A conversa não existe");
+      }
    }
 
    useEffect(() => {
@@ -163,6 +174,7 @@ const Chat = () => {
                            id={styles.userCard}
                            onClick={() => {
                               dispatch(setUserSelecionado(v[1]?.userInfo));
+                              apanharMensagensdoUserSelecionado();
                            }}
                            key={k}
                         >
