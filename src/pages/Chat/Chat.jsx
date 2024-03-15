@@ -11,12 +11,12 @@ import { FaSearch } from "react-icons/fa";
 import userImg from "../../Images/user.png";
 import { FaSpinner } from "react-icons/fa";
 import { IoPersonAddOutline } from "react-icons/io5";
-import { setMensagens, setUserChats, setUserSelecionado } from "../../state/chat/chatSlice";
+import { setMensagens, setUidChatSeleciodado, setUserChats, setUserSelecionado } from "../../state/chat/chatSlice";
 import capitalizar from "../../hooks/useCapitalizar";
 
 const Chat = () => {
    const { user } = useSelector((state) => state.user);
-   const { userSelecionado } = useSelector((state) => state.chat);
+   const { userSelecionado, uidChatSelecionado } = useSelector((state) => state.chat);
    const [resultadosPesquisa, setResultadosPesquisa] = useState([]);
    const searchInputRef = useRef(null);
    const [loading, setLoading] = useState(false);
@@ -88,21 +88,23 @@ const Chat = () => {
       });
    }
 
-   async function apanharMensagensdoUserSelecionado() {
+   function apanharMensagensdoUserSelecionado() {
       let uid_combinado = user.uid > userSelecionado?.uid ? user.uid + userSelecionado?.uid : userSelecionado?.uid + user.uid;
 
-      let res = await getDoc(doc(db, "Chats", uid_combinado));
+      setUidChatSeleciodado(uid_combinado);
 
-      if (res.exists()) {
-         dispatch(setMensagens(res.data().mensagens));
-      } else {
-         console.log("A conversa não existe");
-      }
+      let res = onSnapshot(doc(db, "Chats", uid_combinado), (mensagens) => {
+         dispatch(setMensagens(mensagens.data().mensagens));
+      });
    }
 
    useEffect(() => {
       apanharConversasUsuario();
    }, [user.uid]);
+
+   useEffect(() => {
+      apanharMensagensdoUserSelecionado();
+   }, [uidChatSelecionado]);
 
    useEffect(() => {
       if (ctRef.current !== null) SmoothScrollbar.init(ctRef.current);

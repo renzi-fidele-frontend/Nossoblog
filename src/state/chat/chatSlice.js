@@ -4,6 +4,7 @@ const initialState = {
    userChats: [],
    mensagens: [],
    userSelecionado: null,
+   uidChatSelecionado: "",
 };
 
 const chatSlice = createSlice({
@@ -19,9 +20,12 @@ const chatSlice = createSlice({
       setUserSelecionado: (state, action) => {
          state.userSelecionado = action.payload;
       },
+      setUidChatSeleciodado: (state, action) => {
+         state.uidChatSelecionado = action.payload;
+      },
    },
 });
 
-export const { setUserChats, setMensagens, setUserSelecionado } = chatSlice.actions;
+export const { setUserChats, setMensagens, setUserSelecionado, setUidChatSeleciodado } = chatSlice.actions;
 
 export default chatSlice.reducer;
