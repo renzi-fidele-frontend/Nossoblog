@@ -6,7 +6,6 @@ import SmoothScrollbar from "smooth-scrollbar";
 // React Icons
 import { AiOutlinePicture, AiOutlineUpload } from "react-icons/ai";
 import { IoSend } from "react-icons/io5";
-import foto from "../../Images/fotoMSG.jpg";
 import capitalizar from "../../hooks/useCapitalizar";
 
 const Conversa = () => {
