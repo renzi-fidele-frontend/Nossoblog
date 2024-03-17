@@ -88,8 +88,8 @@ const Chat = () => {
       });
    }
 
-   function apanharMensagensdoUserSelecionado() {
-      let uid_combinado = user.uid > userSelecionado?.uid ? user.uid + userSelecionado?.uid : userSelecionado?.uid + user.uid;
+   function apanharMensagensdoUserSelecionado(selectedUser) {
+      let uid_combinado = user.uid > selectedUser?.uid ? user.uid + selectedUser?.uid : selectedUser?.uid + user.uid;
 
       dispatch(setUidChatSeleciodado(uid_combinado));
 
@@ -103,7 +103,7 @@ const Chat = () => {
    }, [user.uid]);
 
    useEffect(() => {
-      apanharMensagensdoUserSelecionado();
+      apanharMensagensdoUserSelecionado(userSelecionado);
    }, [uidChatSelecionado]);
 
    useEffect(() => {
@@ -176,7 +176,7 @@ const Chat = () => {
                            id={styles.userCard}
                            onClick={() => {
                               dispatch(setUserSelecionado(v[1]?.userInfo));
-                              apanharMensagensdoUserSelecionado();
+                              apanharMensagensdoUserSelecionado(v[1]?.userInfo);
                            }}
                            key={k}
                         >

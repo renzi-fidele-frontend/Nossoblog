@@ -10,15 +10,14 @@ import capitalizar from "../../hooks/useCapitalizar";
 
 const Conversa = () => {
    const { user } = useSelector((state) => state.user);
-   const { mensagens, userSelecionado } = useSelector((state) => state.chat);
+   const { mensagens, userSelecionado, uidChatSelecionado } = useSelector((state) => state.chat);
    const scrollRef = useRef(null);
-   const { uidChatSelecionado } = useSelector((state) => state.chat);
 
    useEffect(() => {
-      if (uidChatSelecionado.length > 0) {
+      if (uidChatSelecionado.length > 0 && userSelecionado !== null) {
          console.log(`A UID do chat selecionado é: ${uidChatSelecionado}`);
       }
-   }, [uidChatSelecionado]);
+   }, [uidChatSelecionado, userSelecionado]);
 
    return (
       <div id={styles.ct}>
