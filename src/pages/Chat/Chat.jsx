@@ -94,7 +94,7 @@ const Chat = () => {
       dispatch(setUidChatSeleciodado(uid_combinado));
 
       let res = onSnapshot(doc(db, "Chats", uid_combinado), (mensagens) => {
-         dispatch(setMensagens(mensagens.data().mensagens));
+         dispatch(setMensagens(mensagens?.data()?.mensagens));
       });
    }
 
