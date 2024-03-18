@@ -29,7 +29,7 @@ const Conversa = () => {
       e.preventDefault();
       if (inputFileRef.current) {
          console.log("Enviando mensagem com imagem...");
-         /*
+
          let file = inputFileRef?.current?.files[0];
          const imageRef = ref(storage, `FotosMensagens/${v4() + file.name}`);
          uploadBytesResumable(imageRef, file).then((v) => {
@@ -37,10 +37,9 @@ const Conversa = () => {
                console.log(`O link é: ${link}`);
             });
          });
-         */
       } else if (textoMsgRef?.current?.value?.length > 0) {
          console.log("Enviando mensagem sem imagem");
-         /*
+
          let msgRef = doc(db, "Chats", uidChatSelecionado);
          await updateDoc(msgRef, {
             mensagens: arrayUnion({
@@ -50,7 +49,6 @@ const Conversa = () => {
                enviadoEm: Timestamp.now(),
             }),
          });
-         */
       }
    }
 
