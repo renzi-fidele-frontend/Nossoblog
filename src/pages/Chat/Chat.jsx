@@ -13,6 +13,7 @@ import { FaSpinner } from "react-icons/fa";
 import { IoPersonAddOutline } from "react-icons/io5";
 import { setMensagens, setUidChatSeleciodado, setUserChats, setUserSelecionado } from "../../state/chat/chatSlice";
 import capitalizar from "../../hooks/useCapitalizar";
+import noChat from "../../Images/noChat.png";
 
 const Chat = () => {
    const { user } = useSelector((state) => state.user);
@@ -202,6 +203,7 @@ const Chat = () => {
                <Conversa />
             ) : (
                <div id={styles.semConversaCt}>
+                  <img src={noChat} alt="" />
                   <p>Nenhuma conversa foi selecionada</p>
                </div>
             )}

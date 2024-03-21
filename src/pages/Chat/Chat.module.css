@@ -206,10 +206,16 @@
    justify-content: center;
    align-items: center;
    height: 100%;
+   gap: 2.4em;
+   flex-direction: column;
 }
 
 #semConversaCt > p {
    font-size: 22px;
    font-weight: 500;
    color: #8b7495;
+}
+
+#semConversaCt > img {
+   max-width: 350px;
 }
