@@ -9,8 +9,8 @@ import { IoSend } from "react-icons/io5";
 import capitalizar from "../../hooks/useCapitalizar";
 import { Timestamp, arrayUnion, doc, updateDoc } from "firebase/firestore";
 import { v4 } from "uuid";
-import { ref, uploadBytesResumable } from "firebase/storage";
-import { storage } from "../../firebase/config";
+import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
+import { db, storage } from "../../firebase/config";
 
 const Conversa = () => {
    const { user } = useSelector((state) => state.user);
@@ -27,7 +27,9 @@ const Conversa = () => {
 
    async function enviarMensagem(e) {
       e.preventDefault();
-      if (inputFileRef.current) {
+      // Caso haja uma imagem inserida ou não
+      console.log(inputFileRef.current);
+      if (inputFileRef?.current?.files?.length > 0) {
          console.log("Enviando mensagem com imagem...");
 
          let file = inputFileRef?.current?.files[0];

@@ -200,3 +200,16 @@
    fill: white;
    transition: 0.2s all;
 }
+
+#semConversaCt {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   height: 100%;
+}
+
+#semConversaCt > p {
+   font-size: 22px;
+   font-weight: 500;
+   color: #8b7495;
+}

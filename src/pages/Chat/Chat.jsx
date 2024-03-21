@@ -198,7 +198,13 @@ const Chat = () => {
             </div>
          </div>
          <div id={styles.right}>
-            <Conversa />
+            {userSelecionado ? (
+               <Conversa />
+            ) : (
+               <div id={styles.semConversaCt}>
+                  <p>Nenhuma conversa foi selecionada</p>
+               </div>
+            )}
          </div>
       </div>
    );
