@@ -175,10 +175,11 @@ const Chat = () => {
                      return (
                         <div
                            id={styles.userCard}
-                           onClick={() => {
+                           onClick={(e) => {
                               dispatch(setUserSelecionado(v[1]?.userInfo));
                               apanharMensagensdoUserSelecionado(v[1]?.userInfo);
                            }}
+                           className={userSelecionado?.uid === v[1]?.userInfo?.uid && styles.selecionado}
                            key={k}
                         >
                            <div id={styles.left}>

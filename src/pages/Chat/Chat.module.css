@@ -91,7 +91,12 @@
    cursor: pointer;
 }
 
-#userCard:hover {
+#userCard:hover, .selecionado {
+   background-color: #433b6e;
+   transition: all 0.1s ease-in;
+}
+
+.selecionado {
    background-color: #433b6e;
    transition: all 0.1s ease-in;
 }
