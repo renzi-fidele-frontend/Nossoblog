@@ -40,17 +40,29 @@ const Conversa = () => {
             });
          });
       } else if (textoMsgRef?.current?.value?.length > 0) {
-         console.log("Enviando mensagem sem imagem");
+         console.log("Enviando mensagem sem imagem...");
 
          let msgRef = doc(db, "Chats", uidChatSelecionado);
          await updateDoc(msgRef, {
             mensagens: arrayUnion({
                id: v4(),
-               texto,
+               texto: textoMsgRef.current.value,
                senderId: user.uid,
                enviadoEm: Timestamp.now(),
             }),
-         });
+         })
+            .then(async () => {
+               await updateDoc(doc(db, "UserChats", user.uid), {
+                  [uidChatSelecionado + ".ultimaMensagem"]: {
+                     texto: textoMsgRef.current.value,
+                     enviadoEm: Timestamp.now(),
+                  },
+               }).then(console.log("Última mensagem foi atualizada"));
+               console.log("Mensagem enviada com sucesso");
+               textoMsgRef.current.value = "";
+               console.log(res);
+            })
+            .catch((err) => console.log(err));
       }
    }
 
