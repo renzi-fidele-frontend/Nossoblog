@@ -2,23 +2,12 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./PostCard.module.css";
 import Esqueleto from "../Esqueleto/Esqueleto";
+import converterSegundoParaData from "../../hooks/useConverterSegundoParaData";
 
 const PostCard = ({ linkAtivo = false, objecto, conteudo, titulo, autor, data, imagem, tagsInical, id }) => {
    const [descricao, setDescricao] = useState("");
    const [tags, setTags] = useState("");
-   const [dataCorrigida, setDataCorrigida] = useState("");
-
    const navegar = useNavigate();
-
-   //  Convertendo o tempo em segundos para formato de data
-   function toDateTime(secs) {
-      let t = new Date(secs * 1000); // Epoch
-      let dd = t.getDate();
-      let mm = t.getMonth() + 1;
-      let yyyy = t.getFullYear();
-      let frase = `${dd}/${mm}/${yyyy}`;
-      setDataCorrigida(frase);
-   }
 
    function convertHtmtoString(str) {
       let element = document.createElement("div");
@@ -41,7 +30,6 @@ const PostCard = ({ linkAtivo = false, objecto, conteudo, titulo, autor, data, i
    }
 
    useEffect(() => {
-      if (data) toDateTime(data.seconds);
       if (conteudo?.length > 10) reduzir(conteudo, 70);
       if (tagsInical) organizar(tagsInical);
    }, [tagsInical, data, conteudo]);
@@ -58,7 +46,7 @@ const PostCard = ({ linkAtivo = false, objecto, conteudo, titulo, autor, data, i
          }}
       >
          <div id={styles.left}>{imagem ? <img src={imagem} loading="lazy" alt="imagem de post" /> : <Esqueleto tipo={"thumbnail"} />}</div>
-         {tags && titulo && descricao && autor && dataCorrigida ? (
+         {tags && titulo && descricao && autor ? (
             <div id={styles.right}>
                <p id={styles.tags}>{tags}</p>
                <h4>{titulo}</h4>
@@ -66,7 +54,7 @@ const PostCard = ({ linkAtivo = false, objecto, conteudo, titulo, autor, data, i
                <p id={styles.autor}>
                   Por <strong>{autor}</strong>
                </p>
-               <p id={styles.dataCorrigida}>{dataCorrigida}</p>
+               <p id={styles.dataCorrigida}>{converterSegundoParaData(data?.seconds)}</p>
             </div>
          ) : (
             <div id={styles.rightEsqueleto}>
