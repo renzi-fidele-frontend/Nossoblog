@@ -3,10 +3,10 @@ import { useNavigate } from "react-router-dom";
 import styles from "./PostCard.module.css";
 import Esqueleto from "../Esqueleto/Esqueleto";
 import converterSegundoParaData from "../../hooks/useConverterSegundoParaData";
+import useOrganizarTags from "../../hooks/useOrganizarTags";
 
 const PostCard = ({ linkAtivo = false, objecto, conteudo, titulo, autor, data, imagem, tagsInical, id }) => {
    const [descricao, setDescricao] = useState("");
-   const [tags, setTags] = useState("");
    const navegar = useNavigate();
 
    function convertHtmtoString(str) {
@@ -20,19 +20,9 @@ const PostCard = ({ linkAtivo = false, objecto, conteudo, titulo, autor, data, i
       setDescricao(convertHtmtoString(str.length > maxlength ? str.slice(0, maxlength - 1) + "…" : str));
    }
 
-   //  Orgazizando as tags a mostrar
-   function organizar(tags) {
-      var frase = "";
-      tags.forEach((v) => {
-         frase += `#${v} `;
-      });
-      setTags(frase);
-   }
-
    useEffect(() => {
       if (conteudo?.length > 10) reduzir(conteudo, 70);
-      if (tagsInical) organizar(tagsInical);
-   }, [tagsInical, data, conteudo]);
+   }, [conteudo]);
 
    return (
       <div
@@ -46,9 +36,9 @@ const PostCard = ({ linkAtivo = false, objecto, conteudo, titulo, autor, data, i
          }}
       >
          <div id={styles.left}>{imagem ? <img src={imagem} loading="lazy" alt="imagem de post" /> : <Esqueleto tipo={"thumbnail"} />}</div>
-         {tags && titulo && descricao && autor ? (
+         {tagsInical && titulo && descricao && autor ? (
             <div id={styles.right}>
-               <p id={styles.tags}>{tags}</p>
+               <p id={styles.tags}>{useOrganizarTags(tagsInical)}</p>
                <h4>{titulo}</h4>
                <p id={styles.descricao}>{descricao}</p>
                <p id={styles.autor}>

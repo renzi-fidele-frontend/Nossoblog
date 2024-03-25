@@ -3,42 +3,16 @@ import { Link, useNavigate } from "react-router-dom";
 import styles from "./HeroContainer.module.css";
 import { motion } from "framer-motion";
 import Esqueleto from "../Esqueleto/Esqueleto";
+import converterSegundoParaData from "../../hooks/useConverterSegundoParaData";
+import useOrganizarTags from "../../hooks/useOrganizarTags";
 
 const hiddenMask = `repeating-linear-gradient(to right, rgba(0,0,0,0) 0px, rgba(0,0,0,0) 30px, rgba(0,0,0,1) 30px, rgba(0,0,0,1) 30px)`;
 const visibleMask = `repeating-linear-gradient(to right, rgba(0,0,0,0) 0px, rgba(0,0,0,0) 0px, rgba(0,0,0,1) 0px, rgba(0,0,0,1) 30px)`;
 
 const HeroContainer = ({ imagem, titulo, criadoPor, criadoEm, tags, id, objecto }) => {
-   const [data, setData] = useState("");
-   const [tagsOrg, setTagsOrg] = useState([]);
-
    const navegar = useNavigate();
-
    const [isLoaded, setIsLoaded] = useState(false);
    const [isInView, setIsInView] = useState(false);
-
-   //  Orgazizando as tags a mostrar
-   function organizar(tags) {
-      var frase = "";
-      tags.forEach((v) => {
-         frase += `#${v} `;
-      });
-      setTagsOrg(frase);
-   }
-
-   //  Convertendo o tempo em segundos para formato de data
-   function toDateTime(secs) {
-      let t = new Date(secs * 1000); // Epoch
-      let dd = t.getDate();
-      let mm = t.getMonth() + 1;
-      let yyyy = t.getFullYear();
-      let frase = `${dd}/${mm}/${yyyy}`;
-      setData(frase);
-   }
-
-   useEffect(() => {
-      if (criadoEm) toDateTime(criadoEm);
-      if (tags) organizar(tags);
-   }, [criadoEm, tags]);
 
    return (
       <>
@@ -69,7 +43,7 @@ const HeroContainer = ({ imagem, titulo, criadoPor, criadoEm, tags, id, objecto 
                   {titulo}
                </Link>
                <p id={styles.data}>
-                  {data} - Por {criadoPor} <span>{tagsOrg}</span>
+                  {converterSegundoParaData(criadoEm)} - Por {criadoPor} <span>{useOrganizarTags(tags)}</span>
                </p>
             </motion.div>
          ) : (
