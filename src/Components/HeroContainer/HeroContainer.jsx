@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import styles from "./HeroContainer.module.css";
 import { motion } from "framer-motion";
 import Esqueleto from "../Esqueleto/Esqueleto";
-import converterSegundoParaData from "../../hooks/useConverterSegundoParaData";
+import useConverterSegundoParaData from "../../hooks/useuseConverterSegundoParaData";
 import useOrganizarTags from "../../hooks/useOrganizarTags";
 
 const hiddenMask = `repeating-linear-gradient(to right, rgba(0,0,0,0) 0px, rgba(0,0,0,0) 30px, rgba(0,0,0,1) 30px, rgba(0,0,0,1) 30px)`;
@@ -43,7 +43,7 @@ const HeroContainer = ({ imagem, titulo, criadoPor, criadoEm, tags, id, objecto 
                   {titulo}
                </Link>
                <p id={styles.data}>
-                  {converterSegundoParaData(criadoEm)} - Por {criadoPor} <span>{useOrganizarTags(tags)}</span>
+                  {useConverterSegundoParaData(criadoEm)} - Por {criadoPor} <span>{useOrganizarTags(tags)}</span>
                </p>
             </motion.div>
          ) : (

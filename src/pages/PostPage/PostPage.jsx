@@ -11,22 +11,11 @@ import { db } from "../../firebase/config";
 import { motion } from "framer-motion";
 import useScrollTop from "../../hooks/useScrollTop";
 import SmoothScrollbar from "smooth-scrollbar";
+import useConverterSegundoParaData from "../../hooks/useConverterSegundoParaData";
 
 const PostPage = () => {
    const objecto = useLocation().state;
-   const [TagsOrg, setTagsOrg] = useState("");
-   const [data, setData] = useState("");
    const ctRef = useRef(null);
-
-   //  Convertendo o tempo em segundos para formato de data
-   function toDateTime(secs) {
-      let t = new Date(secs * 1000); // Epoch
-      let dd = t.getDate();
-      let mm = t.getMonth() + 1;
-      let yyyy = t.getFullYear();
-      let frase = `${dd}/${mm}/${yyyy}`;
-      setData(frase);
-   }
 
    //  Aumentando o número de vezes lido
    function aumentarViews() {
@@ -36,10 +25,6 @@ const PostPage = () => {
          .then(() => console.log("Numero de vezes lidas aumentada!"))
          .catch((err) => console.log(err));
    }
-
-   useEffect(() => {
-      toDateTime(objecto.data.criadoEm.seconds);
-   }, [objecto]);
 
    useEffect(() => {
       aumentarViews();
@@ -60,22 +45,19 @@ const PostPage = () => {
             <h2 id={styles.tit}>{objecto.data.titulo}</h2>
             <div id={styles.fundo}>
                <img src={objecto.data.imagem} id={styles.img} alt="Imagem de destaque" />
-
                <div id={styles.line}>
                   <div>
                      <HiUserCircle size={23} />
-
-                     <p>{objecto.data.criadoPor}</p>
+                     <p>{objecto?.data?.criadoPor}</p>
                   </div>
                   <div>
                      <BsCalendar2DateFill size={23} />
-
-                     <p>{data}</p>
+                     <p>{useConverterSegundoParaData(objecto?.data?.criadoEm?.seconds)}</p>
                   </div>
                   <div>
                      <AiFillTags size={23} />
                      <div id={styles.tagsOrg}>
-                        {objecto.data.tags.map((v, id) => {
+                        {objecto?.data?.tags?.map((v, id) => {
                            return (
                               <Link id={id} to={`/pesquisa/?q=${v}`}>
                                  #{v}
@@ -83,7 +65,6 @@ const PostPage = () => {
                            );
                         })}
                      </div>
-                     <p>{TagsOrg}</p>
                   </div>
                </div>
 

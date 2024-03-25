@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./PostCard.module.css";
 import Esqueleto from "../Esqueleto/Esqueleto";
-import converterSegundoParaData from "../../hooks/useConverterSegundoParaData";
+import useConverterSegundoParaData from "../../hooks/useuseConverterSegundoParaData";
 import useOrganizarTags from "../../hooks/useOrganizarTags";
 
 const PostCard = ({ linkAtivo = false, objecto, conteudo, titulo, autor, data, imagem, tagsInical, id }) => {
@@ -44,7 +44,7 @@ const PostCard = ({ linkAtivo = false, objecto, conteudo, titulo, autor, data, i
                <p id={styles.autor}>
                   Por <strong>{autor}</strong>
                </p>
-               <p id={styles.dataCorrigida}>{converterSegundoParaData(data?.seconds)}</p>
+               <p id={styles.dataCorrigida}>{useConverterSegundoParaData(data?.seconds)}</p>
             </div>
          ) : (
             <div id={styles.rightEsqueleto}>
