@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./PostCard.module.css";
 import Esqueleto from "../Esqueleto/Esqueleto";
-import useConverterSegundoParaData from "../../hooks/useuseConverterSegundoParaData";
+import useConverterSegundoParaData from "../../hooks/useConverterSegundoParaData";
 import useOrganizarTags from "../../hooks/useOrganizarTags";
 
 const PostCard = ({ linkAtivo = false, objecto, conteudo, titulo, autor, data, imagem, tagsInical, id }) => {
