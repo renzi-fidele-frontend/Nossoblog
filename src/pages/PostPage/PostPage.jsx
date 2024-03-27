@@ -2,7 +2,7 @@ import { Link, useLocation } from "react-router-dom";
 import styles from "./PostPage.module.css";
 import estiloHome from "../Home/Home.module.css";
 import { HiUserCircle } from "react-icons/hi";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { BsCalendar2DateFill } from "react-icons/bs";
 import { AiFillTags } from "react-icons/ai";
 import SideBar from "../../Components/SideBar/SideBar";

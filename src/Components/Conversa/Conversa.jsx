@@ -11,6 +11,7 @@ import { Timestamp, arrayUnion, doc, updateDoc } from "firebase/firestore";
 import { v4 } from "uuid";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 import { db, storage } from "../../firebase/config";
+import useConverterSegundoParaFormatoDeHora from "../../hooks/useConverterSegundoParaFormatoDeHora";
 
 const Conversa = () => {
    const { user } = useSelector((state) => state.user);
@@ -21,14 +22,12 @@ const Conversa = () => {
 
    useEffect(() => {
       if (uidChatSelecionado.length > 0 && userSelecionado !== null) {
-         //console.log(`A UID do chat selecionado é: ${uidChatSelecionado}`);
       }
    }, [uidChatSelecionado, userSelecionado]);
 
    async function enviarMensagem(e) {
       e.preventDefault();
       // Caso haja uma imagem inserida ou não
-      console.log(inputFileRef.current);
       if (inputFileRef?.current?.files?.length > 0) {
          console.log("Enviando mensagem com imagem...");
 
@@ -81,26 +80,18 @@ const Conversa = () => {
          >
             <div id={styles.mensagens}>
                {/* Modelo de mensagem recebida */}
-               {mensagens?.map((v, k) => (
-                  <div key={k} className={styles.msg} id={styles.recebido}>
-                     <div>
-                        <img className={styles.fotoUser} src={user?.photoURL} alt="Foto do usuário" />
-                        <span>08:30</span>
+               {mensagens?.map((v, k) => {
+                  console.log(v);
+                  return (
+                     <div key={k} className={styles.msg} id={v?.senderId === user?.uid ? styles.enviado : styles.recebido}>
+                        <div>
+                           <img className={styles.fotoUser} src={user?.photoURL} alt="Foto do usuário" />
+                           <span>{useConverterSegundoParaFormatoDeHora(v?.enviadoEm)}</span>
+                        </div>
+                        <div className={styles.conteudoMsg}>{v?.texto}</div>
                      </div>
-                     <div className={styles.conteudoMsg}>Texto da mensagem</div>
-                  </div>
-               ))}
-
-               {/* Modelo de mensagem enviada */}
-               {[1].map((v, k) => (
-                  <div key={k} className={styles.msg} id={styles.enviado}>
-                     <div>
-                        <img className={styles.fotoUser} src={user?.photoURL} alt="Foto do usuário" />
-                        <span>08:30</span>
-                     </div>
-                     <div className={styles.conteudoMsg}>Texto da mensagem</div>
-                  </div>
-               ))}
+                  );
+               })}
 
                {/* Modelo de mensagem contendo imagem 
                <div className={styles.msg} id={styles.enviado}>
