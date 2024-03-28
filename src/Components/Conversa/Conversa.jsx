@@ -36,6 +36,31 @@ const Conversa = () => {
          uploadBytesResumable(imageRef, file).then((v) => {
             getDownloadURL(v.ref).then(async (link) => {
                console.log(`O link é: ${link}`);
+
+               // Atualizar a imagem a coleção
+
+               let msgRef = doc(db, "Chats", uidChatSelecionado);
+               await updateDoc(msgRef, {
+                  mensagens: arrayUnion({
+                     id: v4(),
+                     texto: textoMsgRef.current.value,
+                     senderId: user.uid,
+                     imagem: link,
+                     enviadoEm: Timestamp.now(),
+                  }),
+               })
+                  .then(async () => {
+                     await updateDoc(doc(db, "UserChats", user.uid), {
+                        [uidChatSelecionado + ".ultimaMensagem"]: {
+                           texto: "Foto",
+                           enviadoEm: Timestamp.now(),
+                        },
+                     }).then(console.log("Última mensagem foi atualizada"));
+                     console.log("Mensagem enviada com sucesso");
+                     textoMsgRef.current.value = "";
+                     console.log(res);
+                  })
+                  .catch((err) => console.log(err));
             });
          });
       } else if (textoMsgRef?.current?.value?.length > 0) {
@@ -81,14 +106,16 @@ const Conversa = () => {
             <div id={styles.mensagens}>
                {/* Modelo de mensagem recebida */}
                {mensagens?.map((v, k) => {
-                  console.log(v);
                   return (
                      <div key={k} className={styles.msg} id={v?.senderId === user?.uid ? styles.enviado : styles.recebido}>
                         <div>
                            <img className={styles.fotoUser} src={user?.photoURL} alt="Foto do usuário" />
                            <span>{useConverterSegundoParaFormatoDeHora(v?.enviadoEm)}</span>
                         </div>
-                        <div className={styles.conteudoMsg}>{v?.texto}</div>
+                        <div className={styles.conteudoMsg}>
+                           {v?.texto?.length > 0} <p>{v?.texto}</p>
+                           {v?.imagem?.length > 0 && <img src={v?.imagem} alt="" />}
+                        </div>
                      </div>
                   );
                })}

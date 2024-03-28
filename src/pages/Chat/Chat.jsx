@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import styles from "./Chat.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import Conversa from "../../Components/Conversa/Conversa";
-import { collection, doc, getDoc, getDocs, onSnapshot, query, serverTimestamp, setDoc, updateDoc, where } from "firebase/firestore";
+import { query, collection, doc, getDoc, getDocs, onSnapshot, serverTimestamp, setDoc, updateDoc, where } from "firebase/firestore";
 import { db } from "../../firebase/config";
 import SmoothScrollbar from "smooth-scrollbar";
 
@@ -83,7 +83,9 @@ const Chat = () => {
    }
 
    function apanharConversasUsuario() {
-      let res = onSnapshot(doc(db, "UserChats", user.uid), (conversas) => {
+      let snapRef = doc(db, "UserChats", user.uid);
+
+      let res = onSnapshot(snapRef, (conversas) => {
          // Convertendo o objeto para array, para que possa ser mapeado
          dispatch(setUserChats(Object.entries(conversas.data())));
       });
@@ -94,7 +96,9 @@ const Chat = () => {
 
       dispatch(setUidChatSeleciodado(uid_combinado));
 
-      let res = onSnapshot(doc(db, "Chats", uid_combinado), (mensagens) => {
+      let snapRef = doc(db, "Chats", uid_combinado);
+
+      let res = onSnapshot(snapRef, (mensagens) => {
          dispatch(setMensagens(mensagens?.data()?.mensagens));
       });
    }
