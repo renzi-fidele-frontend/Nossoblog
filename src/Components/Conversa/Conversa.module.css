@@ -67,6 +67,9 @@
 .msg#enviado .conteudoMsg {
    background-color: #5c519b;
    color: white;
+   align-items: end;
+   flex-direction: column-reverse;
+   gap: 1em;
 }
 
 .fotoUser {

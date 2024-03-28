@@ -113,24 +113,12 @@ const Conversa = () => {
                            <span>{useConverterSegundoParaFormatoDeHora(v?.enviadoEm)}</span>
                         </div>
                         <div className={styles.conteudoMsg}>
-                           {v?.texto?.length > 0} <p>{v?.texto}</p>
+                           {v?.texto?.length > 0 && <p>{v?.texto}</p>}
                            {v?.imagem?.length > 0 && <img src={v?.imagem} alt="" />}
                         </div>
                      </div>
                   );
                })}
-
-               {/* Modelo de mensagem contendo imagem 
-               <div className={styles.msg} id={styles.enviado}>
-                  <div>
-                     <img className={styles.fotoUser} src={user?.photoURL} alt="Foto do usuário" />
-                     <span>08:30</span>
-                  </div>
-                  <div className={styles.conteudoMsg}>
-                     <img src={foto} alt="" />
-                  </div>
-               </div>
-               */}
             </div>
          </div>
          <form id={styles.input}>
