@@ -12,6 +12,7 @@ import { v4 } from "uuid";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 import { db, storage } from "../../firebase/config";
 import useConverterSegundoParaFormatoDeHora from "../../hooks/useConverterSegundoParaFormatoDeHora";
+import ill from "../../Images/semMensagem.png";
 
 const Conversa = () => {
    const { user } = useSelector((state) => state.user);
@@ -105,20 +106,27 @@ const Conversa = () => {
          >
             <div id={styles.mensagens}>
                {/* Modelo de mensagem recebida */}
-               {mensagens?.map((v, k) => {
-                  return (
-                     <div key={k} className={styles.msg} id={v?.senderId === user?.uid ? styles.enviado : styles.recebido}>
-                        <div>
-                           <img className={styles.fotoUser} src={user?.photoURL} alt="Foto do usuário" />
-                           <span>{useConverterSegundoParaFormatoDeHora(v?.enviadoEm)}</span>
+               {mensagens?.length > 0 ? (
+                  mensagens?.map((v, k) => {
+                     return (
+                        <div key={k} className={styles.msg} id={v?.senderId === user?.uid ? styles.enviado : styles.recebido}>
+                           <div>
+                              <img className={styles.fotoUser} src={user?.photoURL} alt="Foto do usuário" />
+                              <span>{useConverterSegundoParaFormatoDeHora(v?.enviadoEm)}</span>
+                           </div>
+                           <div className={styles.conteudoMsg}>
+                              {v?.texto?.length > 0 && <p>{v?.texto}</p>}
+                              {v?.imagem?.length > 0 && <img src={v?.imagem} alt="" />}
+                           </div>
                         </div>
-                        <div className={styles.conteudoMsg}>
-                           {v?.texto?.length > 0 && <p>{v?.texto}</p>}
-                           {v?.imagem?.length > 0 && <img src={v?.imagem} alt="" />}
-                        </div>
-                     </div>
-                  );
-               })}
+                     );
+                  })
+               ) : (
+                  <div id={styles.nenhumaMsgCt}>
+                     <img src={ill} />
+                     <p>Nenhuma mensagem foi enviada</p>
+                  </div>
+               )}
             </div>
          </div>
          <form id={styles.input}>

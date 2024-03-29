@@ -139,3 +139,24 @@
    justify-content: center;
    cursor: pointer;
 }
+
+#nenhumaMsgCt {
+   display: flex;
+   flex-flow: column;
+   justify-content: center;
+   display: center;
+   gap: 1em;
+}
+
+#nenhumaMsgCt > img {
+   width: 380px;
+   margin-inline: auto;
+   margin-top: 2em;
+}
+
+#nenhumaMsgCt > p {
+   font-size: 22px;
+   font-weight: 500;
+   color: #8b7495;
+   text-align: center;
+}
