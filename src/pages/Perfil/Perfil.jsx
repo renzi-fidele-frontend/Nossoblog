@@ -33,7 +33,6 @@ const Perfil = () => {
       await updateEmail(user, novoEmail)
          .then(() => {
             email_ref.current.value = novoEmail;
-            console.log("Email atualizado com sucesso!");
          })
          .catch((err) => console.log("Ops, aconteceu o erro: ", err));
    }
@@ -59,11 +58,11 @@ const Perfil = () => {
                });
             })
             .catch((err) => console.log(`Erro, ${err} ao carregar a imagem ao DB`));
-         console.log(linkFoto);
+         
       } else {
          await updateProfile(user, { displayName: nome_ref.current.value })
             .then(() => {
-               console.log("Perfil atualizado com sucesso!");
+               
                setLoading(false);
             })
             .catch((err) => {
