@@ -100,7 +100,7 @@ const Conversa = () => {
          <div
             ref={scrollRef}
             onLoad={() => {
-               SmoothScrollbar.init(scrollRef.current);
+               SmoothScrollbar.init(scrollRef.current).scrollTo(0, 10000);
             }}
             id={styles.chatBody}
          >
