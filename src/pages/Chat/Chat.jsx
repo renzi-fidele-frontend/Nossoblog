@@ -14,6 +14,7 @@ import { IoPersonAddOutline } from "react-icons/io5";
 import { setMensagens, setUidChatSeleciodado, setUserChats, setUserSelecionado } from "../../state/chat/chatSlice";
 import capitalizar from "../../hooks/useCapitalizar";
 import noChat from "../../Images/noChat.png";
+import semUsuario from "../../Images/semUsusario.png";
 
 const Chat = () => {
    const { user } = useSelector((state) => state.user);
@@ -179,7 +180,7 @@ const Chat = () => {
                      return (
                         <div
                            id={styles.userCard}
-                           onClick={(e) => {
+                           onClick={() => {
                               dispatch(setUserSelecionado(v[1]?.userInfo));
                               apanharMensagensdoUserSelecionado(v[1]?.userInfo);
                            }}
@@ -197,9 +198,10 @@ const Chat = () => {
                      );
                   })
                ) : (
-                  <>
+                  <div id={styles.noUserCt}>
+                     <img src={semUsuario} alt="" />
                      <p>Nenhum usuário foi adicionado</p>
-                  </>
+                  </div>
                )}
             </div>
          </div>

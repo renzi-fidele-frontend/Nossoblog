@@ -91,7 +91,8 @@
    cursor: pointer;
 }
 
-#userCard:hover, .selecionado {
+#userCard:hover,
+.selecionado {
    background-color: #433b6e;
    transition: all 0.1s ease-in;
 }
@@ -223,4 +224,17 @@
 
 #semConversaCt > img {
    max-width: 350px;
+}
+
+#noUserCt {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   flex-direction: column;
+   padding-block: 2em;
+   gap: 1em;
+}
+
+#noUserCt > img {
+   width: 60%;
 }
