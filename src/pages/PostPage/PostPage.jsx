@@ -8,14 +8,14 @@ import { AiFillTags } from "react-icons/ai";
 import SideBar from "../../Components/SideBar/SideBar";
 import { doc, increment, updateDoc } from "firebase/firestore";
 import { db } from "../../firebase/config";
-import { motion } from "framer-motion";
-import useScrollTop from "../../hooks/useScrollTop";
+import { easeOut, motion } from "framer-motion";
 import SmoothScrollbar from "smooth-scrollbar";
 import useConverterSegundoParaData from "../../hooks/useConverterSegundoParaData";
 
 const PostPage = () => {
    const objecto = useLocation().state;
    const ctRef = useRef(null);
+   const { pathname } = useLocation();
 
    //  Aumentando o número de vezes lido
    function aumentarViews() {
@@ -31,7 +31,9 @@ const PostPage = () => {
       SmoothScrollbar.init(ctRef.current);
    }, []);
 
-   const scrollTop = useScrollTop({ divRef: ctRef.current });
+   useEffect(() => {
+      SmoothScrollbar.get(ctRef.current).scrollTo(0, 0, 420, { easing: easeOut });
+   }, [pathname]);
 
    return (
       <div id={estiloHome.container}>
