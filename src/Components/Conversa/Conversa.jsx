@@ -7,7 +7,7 @@ import SmoothScrollbar from "smooth-scrollbar";
 import { AiOutlinePicture, AiOutlineUpload } from "react-icons/ai";
 import { IoSend } from "react-icons/io5";
 import capitalizar from "../../hooks/useCapitalizar";
-import { Timestamp, arrayUnion, doc, updateDoc } from "firebase/firestore";
+import { Timestamp, arrayUnion, doc, serverTimestamp, updateDoc } from "firebase/firestore";
 import { v4 } from "uuid";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 import { db, storage } from "../../firebase/config";
@@ -36,10 +36,7 @@ const Conversa = () => {
          const imageRef = ref(storage, `FotosMensagens/${v4() + file.name}`);
          uploadBytesResumable(imageRef, file).then((v) => {
             getDownloadURL(v.ref).then(async (link) => {
-               console.log(`O link é: ${link}`);
-
-               // Atualizar a imagem a coleção
-
+               // Atualizar a imagem na coleção
                let msgRef = doc(db, "Chats", uidChatSelecionado);
                await updateDoc(msgRef, {
                   mensagens: arrayUnion({
@@ -51,15 +48,16 @@ const Conversa = () => {
                   }),
                })
                   .then(async () => {
+                     // Atualizando a última mensagem enviada, na coleção das conversas do usuário
                      await updateDoc(doc(db, "UserChats", user.uid), {
                         [uidChatSelecionado + ".ultimaMensagem"]: {
                            texto: "Foto",
                            enviadoEm: Timestamp.now(),
                         },
-                     }).then(console.log("Última mensagem foi atualizada"));
+                     });
                      console.log("Mensagem enviada com sucesso");
                      textoMsgRef.current.value = "";
-                     console.log(res);
+                     inputFileRef.current.files = [];
                   })
                   .catch((err) => console.log(err));
             });
@@ -80,7 +78,7 @@ const Conversa = () => {
                await updateDoc(doc(db, "UserChats", user.uid), {
                   [uidChatSelecionado + ".ultimaMensagem"]: {
                      texto: textoMsgRef.current.value,
-                     enviadoEm: Timestamp.now(),
+                     enviadoEm: serverTimestamp(),
                   },
                }).then(console.log("Última mensagem foi atualizada"));
                console.log("Mensagem enviada com sucesso");

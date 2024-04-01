@@ -62,6 +62,8 @@ const Chat = () => {
          await setDoc(doc(db, "Chats", uid_combinado), { mensagens: [] });
 
          // Não dá pra usar template literals no updateDoc, somente array
+
+         // Inicializando a conversa para o remetente
          await updateDoc(doc(db, "UserChats", user.uid), {
             [uid_combinado + ".userInfo"]: {
                uid: userSelecionado.uid,
@@ -69,11 +71,17 @@ const Chat = () => {
                photoURL: userSelecionado.photoURL,
             },
             [uid_combinado + ".criadoEm"]: serverTimestamp(),
-         })
-            .then(() => {
-               console.log(`Chat inicializado com sucesso`);
-            })
-            .catch((err) => console.error("err"));
+         }).catch((err) => console.error("err"));
+
+         // Inicializando a conversa para o destinatário
+         await updateDoc(doc(db, "UserChats", userSelecionado.uid), {
+            [uid_combinado + ".userInfo"]: {
+               uid: user.uid,
+               nome: user.nome,
+               photoURL: user.photoURL,
+            },
+            [uid_combinado + ".criadoEm"]: serverTimestamp(),
+         }).catch((err) => console.error("err"));
       } else {
          console.log("A conversa já existe");
          setResultadosPesquisa([]);
