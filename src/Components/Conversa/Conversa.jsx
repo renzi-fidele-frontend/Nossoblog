@@ -127,7 +127,7 @@ const Conversa = () => {
                )}
             </div>
          </div>
-         <form id={styles.input}>
+         <form onSubmit={enviarMensagem} id={styles.input}>
             <input ref={textoMsgRef} type="text" placeholder="Escreva a mensagem aqui..." />
             <div>
                <input type="file" ref={inputFileRef} hidden id="file1" />

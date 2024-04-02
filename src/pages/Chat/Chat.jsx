@@ -50,6 +50,8 @@ const Chat = () => {
 
    async function adicionarUsuario(userSelecionado) {
       setLoading(true);
+      console.log(userSelecionado.uid);
+
       // Combinação da UID do usúario logado e o UID do usuário selecionado
       // Forçando a criação da UID combinada a sempre iniciar pela UID mais comprida
       let uid_combinado = user.uid > userSelecionado?.uid ? user.uid + userSelecionado?.uid : userSelecionado?.uid + user.uid;
@@ -71,23 +73,28 @@ const Chat = () => {
                photoURL: userSelecionado.photoURL,
             },
             [uid_combinado + ".criadoEm"]: serverTimestamp(),
-         }).catch((err) => console.error("err"));
+         })
+            .then((r) => console.log("Conversa do destinatário inicializada"))
+            .catch((err) => console.error("err"));
 
          // Inicializando a conversa para o destinatário
          await updateDoc(doc(db, "UserChats", userSelecionado.uid), {
             [uid_combinado + ".userInfo"]: {
                uid: user.uid,
-               nome: user.nome,
+               nome: user.displayName,
                photoURL: user.photoURL,
             },
             [uid_combinado + ".criadoEm"]: serverTimestamp(),
-         }).catch((err) => console.error("err"));
+         })
+            .then((r) => console.log(r))
+            .catch((err) => console.error(err));
       } else {
          console.log("A conversa já existe");
          setResultadosPesquisa([]);
          //
          searchInputRef.current.value = "";
       }
+
       setLoading(false);
    }
 
@@ -114,7 +121,7 @@ const Chat = () => {
 
    useEffect(() => {
       apanharConversasUsuario();
-   }, [user.uid]);
+   }, [user?.uid]);
 
    useEffect(() => {
       apanharMensagensdoUserSelecionado(userSelecionado);

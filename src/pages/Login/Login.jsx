@@ -6,7 +6,6 @@ import { useState } from "react";
 import icon from "../../Images/undraw_secure_login_pdn4.svg";
 import { motion } from "framer-motion";
 import { useDispatch } from "react-redux";
-import { setUser } from "../../state/user/userSlice";
 
 const Login = () => {
    const dispatch = useDispatch();
