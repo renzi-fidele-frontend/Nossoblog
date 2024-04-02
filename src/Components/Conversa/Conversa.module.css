@@ -64,6 +64,12 @@
    flex-flow: row-reverse;
 }
 
+.msg#recebido .conteudoMsg {
+   flex-direction: column-reverse;
+   gap: 1em;
+   align-items: start;
+}
+
 .msg#enviado .conteudoMsg {
    background-color: #5c519b;
    color: white;
@@ -160,5 +166,3 @@
    color: #8b7495;
    text-align: center;
 }
-
-
