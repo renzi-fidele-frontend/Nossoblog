@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styles from "./Conversa.module.css";
 import { useSelector } from "react-redux";
 import SmoothScrollbar from "smooth-scrollbar";
@@ -13,6 +13,7 @@ import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 import { db, storage } from "../../firebase/config";
 import useConverterSegundoParaFormatoDeHora from "../../hooks/useConverterSegundoParaFormatoDeHora";
 import ill from "../../Images/semMensagem.png";
+import load from "../../Images/ball-triangle.svg"
 
 const Conversa = () => {
    const { user } = useSelector((state) => state.user);
@@ -20,6 +21,7 @@ const Conversa = () => {
    const scrollRef = useRef(null);
    const textoMsgRef = useRef(null);
    const inputFileRef = useRef(null);
+   const [loading, setLoading] = useState(false);
 
    useEffect(() => {
       if (uidChatSelecionado.length > 0 && userSelecionado !== null) {
@@ -28,6 +30,7 @@ const Conversa = () => {
 
    async function enviarMensagem(e) {
       e.preventDefault();
+      setLoading(true);
       // Caso haja uma imagem inserida ou não
       if (inputFileRef?.current?.files?.length > 0) {
          console.log("Enviando mensagem com imagem...");
@@ -87,6 +90,7 @@ const Conversa = () => {
             })
             .catch((err) => console.log(err));
       }
+      setLoading(false);
    }
 
    return (
@@ -143,6 +147,12 @@ const Conversa = () => {
                <IoSend onClick={enviarMensagem} title="Enviar" />
             </div>
          </form>
+
+         {loading && (
+            <div id={styles.loadCt}>
+               <img src={load} alt="" />
+            </div>
+         )}
       </div>
    );
 };

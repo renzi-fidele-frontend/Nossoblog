@@ -166,3 +166,28 @@
    color: #8b7495;
    text-align: center;
 }
+
+#loadCt {
+   position: absolute;
+   height: 100%;
+   width: 100%;
+   z-index: 6;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   background-color: #0000009c;
+}
+
+#loadCt > svg {
+   animation: girar 1s infinite linear;
+}
+
+@keyframes girar {
+   to {
+      transform: rotateZ(360deg);
+   }
+}
+
+#loadCt path {
+   fill: #a195e5;
+}
