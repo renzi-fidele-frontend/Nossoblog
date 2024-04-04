@@ -2,18 +2,18 @@ import React, { useEffect, useRef, useState } from "react";
 import styles from "./Conversa.module.css";
 import { useSelector } from "react-redux";
 import SmoothScrollbar from "smooth-scrollbar";
-
-// React Icons
-import { AiOutlinePicture, AiOutlineUpload } from "react-icons/ai";
-import { IoSend } from "react-icons/io5";
 import capitalizar from "../../hooks/useCapitalizar";
 import { Timestamp, arrayUnion, doc, serverTimestamp, updateDoc } from "firebase/firestore";
 import { v4 } from "uuid";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 import { db, storage } from "../../firebase/config";
 import useConverterSegundoParaFormatoDeHora from "../../hooks/useConverterSegundoParaFormatoDeHora";
+
+// Assets
+import { AiOutlinePicture, AiOutlineUpload } from "react-icons/ai";
+import { IoSend } from "react-icons/io5";
 import ill from "../../Images/semMensagem.png";
-import load from "../../Images/ball-triangle.svg"
+import load from "../../Images/ball-triangle.svg";
 
 const Conversa = () => {
    const { user } = useSelector((state) => state.user);
@@ -107,13 +107,16 @@ const Conversa = () => {
             id={styles.chatBody}
          >
             <div id={styles.mensagens}>
-               {/* Modelo de mensagem recebida */}
                {mensagens?.length > 0 ? (
                   mensagens?.map((v, k) => {
                      return (
                         <div key={k} className={styles.msg} id={v?.senderId === user?.uid ? styles.enviado : styles.recebido}>
                            <div>
-                              <img className={styles.fotoUser} src={user?.photoURL} alt="Foto do usuário" />
+                              <img
+                                 className={styles.fotoUser}
+                                 src={v?.senderId === user?.uid ? user?.photoURL : userSelecionado?.photoURL}
+                                 alt="Foto do usuário"
+                              />
                               <span>{useConverterSegundoParaFormatoDeHora(v?.enviadoEm)}</span>
                            </div>
                            <div className={styles.conteudoMsg}>

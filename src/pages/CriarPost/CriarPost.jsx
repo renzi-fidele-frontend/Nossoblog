@@ -15,6 +15,7 @@ import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { v4 } from "uuid";
 import { useSelector } from "react-redux";
 import checkIfImageExists from "../../hooks/useCheckIfImageExists";
+import load from "../../Images/ball-triangle.svg";
 
 const CriarPost = () => {
    //  Hooks do formulário
@@ -168,6 +169,13 @@ const CriarPost = () => {
                <p style={{ color: "red", position: "absolute", marginTop: "4px", fontWeight: "600" }}>{erroFormulario}</p>
             ) : undefined}
          </form>
+
+         {!loading && (
+            <div id={styles.loadingCt}>
+               <img src={load} alt="" />
+               <p>Aguarde um momento</p>
+            </div>
+         )}
       </motion.section>
    );
 };

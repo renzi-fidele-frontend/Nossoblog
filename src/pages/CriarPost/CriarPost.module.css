@@ -1,183 +1,202 @@
 #container {
-    display: flex;
-    flex-flow: column;
-    align-items: center;
-    justify-content: center;
+   display: flex;
+   flex-flow: column;
+   align-items: center;
+   justify-content: center;
+}
+
+#loadingCt {
+   position: absolute;
+   height: 100%;
+   width: 100%;
+   z-index: 6;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   flex-direction: column;
+   background-color: #0000009c;
+   gap: 2em;
+}
+
+#loadingCt p {
+   color: whitesmoke;
+   font-size: 1.2em;
+   font-weight: 600;
 }
 
 #container > img {
-    width: 120px;
+   width: 120px;
 }
 
 #container > h2 {
-    margin-bottom: 0.7em;
-    font-weight: 600;
-    font-size: 2.2em;
+   margin-bottom: 0.7em;
+   font-weight: 600;
+   font-size: 2.2em;
 }
 
 #container > p {
-    margin-bottom: 2em;
-    text-align: center;
-    margin-inline: 2%;
+   margin-bottom: 2em;
+   text-align: center;
+   margin-inline: 2%;
 }
 
 #container > form {
-    width: 40%;
+   width: 40%;
 }
 
 #container > form > fieldset {
-    border: none;
-    display: flex;
-    flex-flow: column nowrap;
-    margin-bottom: 1.5em;
+   border: none;
+   display: flex;
+   flex-flow: column nowrap;
+   margin-bottom: 1.5em;
 }
 
 #container > form > fieldset > label {
-    margin-bottom: 1px;
-    font-weight: 600;
-    font-size: 1em;
+   margin-bottom: 1px;
+   font-weight: 600;
+   font-size: 1em;
 }
 
 #container > form > fieldset > input,
 #container > form > fieldset > textarea {
-    padding: 6px;
-    background: transparent;
-    border-top: none;
-    border-inline: none;
-    font-size: 13px;
-    transition: 0.6s ease-in-out;
+   padding: 6px;
+   background: transparent;
+   border-top: none;
+   border-inline: none;
+   font-size: 13px;
+   transition: 0.6s ease-in-out;
 }
 
 #container > form > fieldset > input:hover,
 #container > form > fieldset > input:focus,
 #container > form > fieldset > textarea:hover,
 #container > form > fieldset > textarea:focus {
-    background-color: pink;
+   background-color: pink;
 }
 
 #container > form > button {
-    align-items: center;
-    background-clip: padding-box;
-    background-color: #3a1979;
-    border: 1px solid transparent;
-    border-radius: 0.25rem;
-    box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
-    box-sizing: border-box;
-    color: #fff;
-    cursor: pointer;
-    display: inline-flex;
-    font-family: system-ui, -apple-system, system-ui, "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 16px;
-    font-weight: 600;
-    justify-content: center;
-    line-height: 1.25;
-    margin: 0;
-    min-height: 3rem;
-    padding: calc(0.875rem - 1px) calc(1.5rem - 1px);
-    position: relative;
-    text-decoration: none;
-    transition: all 250ms;
-    user-select: none;
-    -webkit-user-select: none;
-    touch-action: manipulation;
-    vertical-align: baseline;
-    width: auto;
+   align-items: center;
+   background-clip: padding-box;
+   background-color: #3a1979;
+   border: 1px solid transparent;
+   border-radius: 0.25rem;
+   box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
+   box-sizing: border-box;
+   color: #fff;
+   cursor: pointer;
+   display: inline-flex;
+   font-family: system-ui, -apple-system, system-ui, "Helvetica Neue", Helvetica, Arial, sans-serif;
+   font-size: 16px;
+   font-weight: 600;
+   justify-content: center;
+   line-height: 1.25;
+   margin: 0;
+   min-height: 3rem;
+   padding: calc(0.875rem - 1px) calc(1.5rem - 1px);
+   position: relative;
+   text-decoration: none;
+   transition: all 250ms;
+   user-select: none;
+   -webkit-user-select: none;
+   touch-action: manipulation;
+   vertical-align: baseline;
+   width: auto;
 }
 #container > form > button:hover,
 #container > form > button:focus {
-    background-color: #63469b;
-    box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
+   background-color: #63469b;
+   box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
 }
 #container > form > button:hover {
-    transform: translateY(-3px);
+   transform: translateY(-3px);
 }
 #container > form > button:active {
-    background-color: #c85000;
-    box-shadow: rgba(0, 0, 0, 0.06) 0 2px 4px;
-    transform: translateY(0);
+   background-color: #c85000;
+   box-shadow: rgba(0, 0, 0, 0.06) 0 2px 4px;
+   transform: translateY(0);
 }
 
 /* Wysiwng Editor */
 .demoEditor {
-    border-bottom: 2.5px #e3e3e3 solid;
-    font-size: 13px;
-    color: black;
-    padding-inline: 6px;
-    transition: all 0.6s ease-in-out;
+   border-bottom: 2.5px #e3e3e3 solid;
+   font-size: 13px;
+   color: black;
+   padding-inline: 6px;
+   transition: all 0.6s ease-in-out;
 }
 
 .demoEditor:hover,
 .demoEditor:focus {
-    background-color: pink !important;
+   background-color: pink !important;
 }
 
 .demoWrapper {
-    margin-top: 10px;
+   margin-top: 10px;
 }
 
 @media screen and (max-width: 1665px) {
-    #container > form {
-        width: 50%;
-    }
+   #container > form {
+      width: 50%;
+   }
 }
 
 @media screen and (max-width: 1375px) {
-    #container > form {
-        width: 60%;
-    }
+   #container > form {
+      width: 60%;
+   }
 
-    #container > h2 {
-        font-size: 2em;
-        margin-bottom: 0.4em;
-    }
+   #container > h2 {
+      font-size: 2em;
+      margin-bottom: 0.4em;
+   }
 
-    #container > img {
-        width: 90px;
-    }
+   #container > img {
+      width: 90px;
+   }
 }
 
 @media screen and (max-width: 1119px) {
-    #container > form {
-        width: 70%;
-    }
+   #container > form {
+      width: 70%;
+   }
 }
 
 @media screen and (max-width: 887px) {
-    #container > form {
-        width: 80%;
-    }
+   #container > form {
+      width: 80%;
+   }
 
-    #container > h2 {
-        font-size: 1.7em;
-    }
+   #container > h2 {
+      font-size: 1.7em;
+   }
 }
 
 @media screen and (max-width: 701px) {
-    #container > form {
-        width: 90%;
-    }
+   #container > form {
+      width: 90%;
+   }
 }
 
 @media screen and (max-width: 629px) {
-    #container > form {
-        width: 96%;
-    }
+   #container > form {
+      width: 96%;
+   }
 }
 
 @media screen and (max-width: 629px) {
-    #container > form {
-        width: 97%;
-        display: flex;
-        flex-flow: column nowrap;
-    }
+   #container > form {
+      width: 97%;
+      display: flex;
+      flex-flow: column nowrap;
+   }
 }
 
 @media screen and (max-width: 475px) {
-    #container > p {
-        font-size: 14px;
-    }
+   #container > p {
+      font-size: 14px;
+   }
 
-    #container > h2 {
-        margin-bottom: 0.2em;
-    }
+   #container > h2 {
+      margin-bottom: 0.2em;
+   }
 }
