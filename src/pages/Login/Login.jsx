@@ -6,9 +6,11 @@ import { useState } from "react";
 import icon from "../../Images/undraw_secure_login_pdn4.svg";
 import { motion } from "framer-motion";
 import { useDispatch } from "react-redux";
+import load from "../../Images/ball-triangle.svg";
 
 const Login = () => {
    const dispatch = useDispatch();
+   const [loading, setLoading] = useState(false);
 
    //  Hooks do form
    const [email, setEmail] = useState("");
@@ -22,6 +24,7 @@ const Login = () => {
    //  Fazendo o login
    async function validar(e) {
       e.preventDefault();
+      setLoading(true);
       await signInWithEmailAndPassword(auth, email, senha).catch((err) => {
          let errorMessage = err.message;
          //  Tratando os erros do firebase
@@ -38,10 +41,17 @@ const Login = () => {
             setErroMsg("");
          }, 4000);
       });
+      setLoading(false);
    }
 
    return (
-      <motion.section initial={{ opacity: 0, scale: 0 }} transition={{ duration: 0.4 }} animate={{ opacity: 1, scale: 1 }} id={estilo.container}>
+      <motion.section
+         initial={{ opacity: 0, scale: 0 }}
+         transition={{ duration: 0.4 }}
+         animate={{ opacity: 1, scale: 1 }}
+         className={styles.ct}
+         id={estilo.container}
+      >
          <h2>Entrar</h2>
          <p>Faça o login para poder utilizar o sistema</p>
 
@@ -77,6 +87,13 @@ const Login = () => {
             </form>
             <img id={styles.imagem} src={icon} alt="Imagem ilustrativa de login" />
          </div>
+
+         {loading && (
+            <section id={styles.loadingCt}>
+               <img src={load} alt="" />
+               <p>Aguarde um momento</p>
+            </section>
+         )}
       </motion.section>
    );
 };

@@ -170,7 +170,7 @@ const CriarPost = () => {
             ) : undefined}
          </form>
 
-         {!loading && (
+         {loading && (
             <div id={styles.loadingCt}>
                <img src={load} alt="" />
                <p>Aguarde um momento</p>
