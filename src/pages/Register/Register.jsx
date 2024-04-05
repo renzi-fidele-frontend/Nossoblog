@@ -4,7 +4,9 @@ import { useState } from "react";
 import { getAuth, createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { app, db } from "../../firebase/config";
 import { motion } from "framer-motion";
-import { collection, doc, setDoc } from "firebase/firestore";
+import { doc, setDoc } from "firebase/firestore";
+import load from "../../Images/ball-triangle.svg";
+
 
 const Register = () => {
    //  Hooks do form
@@ -14,12 +16,14 @@ const Register = () => {
    const [confSenha, setConfSenha] = useState("");
    const [msgErro, setMsgErro] = useState(false);
    const [erroFirebase, setErroFirebase] = useState("");
+   const [loading, setLoading] = useState(false);
 
    const auth = getAuth(app);
 
    //  Validando o formulário
    async function validar(e) {
       e.preventDefault();
+      setLoading(true);
       if (senha === confSenha) {
          //  Criando o usuário
          await createUserWithEmailAndPassword(auth, email, senha)
@@ -76,6 +80,7 @@ const Register = () => {
             setMsgErro(false);
          }, 3000);
       }
+      setLoading(false);
    }
 
    return (
@@ -148,6 +153,13 @@ const Register = () => {
             </form>
             <img src={icon} alt="icone" />
          </div>
+
+         {loading && (
+            <section id={styles.loadingCt}>
+               <img src={load} alt="" />
+               <p>Aguarde um momento</p>
+            </section>
+         )}
       </motion.section>
    );
 };
