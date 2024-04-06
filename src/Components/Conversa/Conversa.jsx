@@ -129,22 +129,22 @@ const Conversa = () => {
                {mensagens?.length > 0 ? (
                   mensagens?.map((v, k) => {
                      return (
-                        <Tippy content={`Em ${useConverterSegundoParaData(v?.enviadoEm?.seconds)}`}>
-                           <div key={k} className={styles.msg} id={v?.senderId === user?.uid ? styles.enviado : styles.recebido}>
-                              <div>
-                                 <img
-                                    className={styles.fotoUser}
-                                    src={v?.senderId === user?.uid ? user?.photoURL : userSelecionado?.photoURL}
-                                    alt="Foto do usuário"
-                                 />
-                                 <span>{useConverterSegundoParaFormatoDeHora(v?.enviadoEm)}</span>
-                              </div>
+                        <div key={k} className={styles.msg} id={v?.senderId === user?.uid ? styles.enviado : styles.recebido}>
+                           <div>
+                              <img
+                                 className={styles.fotoUser}
+                                 src={v?.senderId === user?.uid ? user?.photoURL : userSelecionado?.photoURL}
+                                 alt="Foto do usuário"
+                              />
+                              <span>{useConverterSegundoParaFormatoDeHora(v?.enviadoEm)}</span>
+                           </div>
+                           <Tippy content={`Em ${useConverterSegundoParaData(v?.enviadoEm?.seconds)}`}>
                               <div className={styles.conteudoMsg}>
                                  {v?.texto?.length > 0 && <p>{v?.texto}</p>}
                                  {v?.imagem?.length > 0 && <img src={v?.imagem} alt="" />}
                               </div>
-                           </div>
-                        </Tippy>
+                           </Tippy>
+                        </div>
                      );
                   })
                ) : (

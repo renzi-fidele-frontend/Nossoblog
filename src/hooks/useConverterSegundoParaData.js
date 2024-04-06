@@ -4,7 +4,7 @@ const useConverterSegundoParaData = (secs) => {
    let dd = t.getDate();
    let mm = t.getMonth() + 1;
    let yyyy = t.getFullYear();
-   let frase = `${dd}/${mm}/${yyyy}`;
+   let frase = `${dd < 10 ? "0" + dd : dd}/${mm < 10 && "0" + mm}/${yyyy}`;
    return frase;
 };
 

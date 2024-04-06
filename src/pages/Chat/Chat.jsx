@@ -7,6 +7,11 @@ import { db } from "../../firebase/config";
 import SmoothScrollbar from "smooth-scrollbar";
 import { useAbreviar } from "../../hooks/useAbreviar";
 
+// Tooltip
+import Tippy from "@tippyjs/react";
+import "tippy.js/dist/tippy.css"; // optional
+
+
 //  Icons
 import { FaSearch } from "react-icons/fa";
 import userImg from "../../Images/user.png";
