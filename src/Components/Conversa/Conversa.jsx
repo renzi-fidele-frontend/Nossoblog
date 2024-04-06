@@ -8,6 +8,11 @@ import { v4 } from "uuid";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 import { db, storage } from "../../firebase/config";
 import useConverterSegundoParaFormatoDeHora from "../../hooks/useConverterSegundoParaFormatoDeHora";
+import useConverterSegundoParaData from "../../hooks/useConverterSegundoParaData";
+
+// Tooltip
+import Tippy from "@tippyjs/react";
+import "tippy.js/dist/tippy.css"; // optional
 
 // Assets
 import { AiOutlinePicture, AiOutlineUpload } from "react-icons/ai";
@@ -124,20 +129,22 @@ const Conversa = () => {
                {mensagens?.length > 0 ? (
                   mensagens?.map((v, k) => {
                      return (
-                        <div key={k} className={styles.msg} id={v?.senderId === user?.uid ? styles.enviado : styles.recebido}>
-                           <div>
-                              <img
-                                 className={styles.fotoUser}
-                                 src={v?.senderId === user?.uid ? user?.photoURL : userSelecionado?.photoURL}
-                                 alt="Foto do usuário"
-                              />
-                              <span>{useConverterSegundoParaFormatoDeHora(v?.enviadoEm)}</span>
+                        <Tippy content={`Em ${useConverterSegundoParaData(v?.enviadoEm?.seconds)}`}>
+                           <div key={k} className={styles.msg} id={v?.senderId === user?.uid ? styles.enviado : styles.recebido}>
+                              <div>
+                                 <img
+                                    className={styles.fotoUser}
+                                    src={v?.senderId === user?.uid ? user?.photoURL : userSelecionado?.photoURL}
+                                    alt="Foto do usuário"
+                                 />
+                                 <span>{useConverterSegundoParaFormatoDeHora(v?.enviadoEm)}</span>
+                              </div>
+                              <div className={styles.conteudoMsg}>
+                                 {v?.texto?.length > 0 && <p>{v?.texto}</p>}
+                                 {v?.imagem?.length > 0 && <img src={v?.imagem} alt="" />}
+                              </div>
                            </div>
-                           <div className={styles.conteudoMsg}>
-                              {v?.texto?.length > 0 && <p>{v?.texto}</p>}
-                              {v?.imagem?.length > 0 && <img src={v?.imagem} alt="" />}
-                           </div>
-                        </div>
+                        </Tippy>
                      );
                   })
                ) : (
