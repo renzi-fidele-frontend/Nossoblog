@@ -1,98 +1,98 @@
 #container {
-    width: 100%;
+   width: 100%;
 }
 
 #container > img {
-    width: 80%;
-    height: 470px;
-    border-radius: 3px;
-    transition: 0.5s ease-in-out;
-    border: 1px solid rgb(36, 2, 39);
+   width: 80%;
+   height: 470px;
+   border-radius: 3 px;
+   transition: 0.5s ease-in-out;
+   border: 1px solid rgb(36, 2, 39);
 }
 
 #container > img:hover {
-    opacity: 0.9;
-    cursor: pointer;
+   opacity: 0.9;
+   cursor: pointer;
 }
 
 #container > a {
-    font-size: 1.7em;
-    margin-left: 5px;
-    color: black;
-    font-weight: 800;
+   font-size: 1.7em;
+   margin-left: 5px;
+   color: black;
+   font-weight: 800;
 }
 
 #container > a:hover {
-    text-decoration: underline;
-    color: rgb(51, 24, 66);
+   text-decoration: underline;
+   color: rgb(51, 24, 66);
 }
 
 #data {
-    font-size: 15px;
-    margin-left: 10px;
+   font-size: 15px;
+   margin-left: 10px;
 }
 
 #data > span {
-    margin-left: 1em;
+   margin-left: 1em;
 }
 
 @media screen and (max-width: 1436px) {
-    #container > img {
-        width: 80%;
-        height: 430px;
-    }
+   #container > img {
+      width: 80%;
+      height: 430px;
+   }
 
-    #container > a {
-        font-size: 1.4em;
-    }
+   #container > a {
+      font-size: 1.4em;
+   }
 }
 
 @media screen and (max-width: 1214px) {
-    #container > img {
-        height: 380px;
-    }
-    #container > a {
-        font-size: 1.3em;
-    }
+   #container > img {
+      height: 380px;
+   }
+   #container > a {
+      font-size: 1.3em;
+   }
 }
 
 @media screen and (max-width: 854px) {
-    #container > img {
-        height: 320px;
-    }
+   #container > img {
+      height: 320px;
+   }
 }
 
 @media screen and (max-width: 734px) {
-    #container > img {
-        height: 240px;
-        width: 90%;
-    }
-    #data {
-        font-size: 14px;
-    }
+   #container > img {
+      height: 240px;
+      width: 90%;
+   }
+   #data {
+      font-size: 14px;
+   }
 }
 
 @media screen and (max-width: 612px) {
-    #container > a {
-        font-size: 17px;
-        margin-left: 0;
-        line-height: 1px;
-    }
+   #container > a {
+      font-size: 17px;
+      margin-left: 0;
+      line-height: 1px;
+   }
 
-    #data {
-        font-size: 12px;
-        margin-left: 3px;
-        margin-top: 5px;
-    }
+   #data {
+      font-size: 12px;
+      margin-left: 3px;
+      margin-top: 5px;
+   }
 
-    #data > span {
-        margin-left: 0.4em;
-    }
+   #data > span {
+      margin-left: 0.4em;
+   }
 }
 
 @media screen and (max-width: 460px) {
-    #container > img {
-        height: 210px;
-        width: 98%;
-    }
+   #container > img {
+      height: 210px;
+      width: 98%;
+   }
 }

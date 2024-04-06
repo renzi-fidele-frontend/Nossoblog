@@ -207,7 +207,7 @@ const Chat = () => {
                            </div>
                            <div id={styles.right}>
                               <h5>{capitalizar(v[1]?.userInfo?.nome)}</h5>
-                              <p>{v[1]?.ultimaMensagem?.texto || "Nenhuma mensagem enviada"}</p>
+                              <p>{ v[1]?.ultimaMensagem?.texto || "Nenhuma mensagem enviada"}</p>
                            </div>
                         </div>
                      );

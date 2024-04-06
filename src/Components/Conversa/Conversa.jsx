@@ -51,13 +51,20 @@ const Conversa = () => {
                   }),
                })
                   .then(async () => {
-                     // Atualizando a última mensagem enviada, na coleção das conversas do usuário
+                     // Atualizando a última mensagem enviada, na coleção das conversas do remente e do destinatário
                      await updateDoc(doc(db, "UserChats", user.uid), {
                         [uidChatSelecionado + ".ultimaMensagem"]: {
                            texto: "Foto",
                            enviadoEm: Timestamp.now(),
                         },
                      });
+                     await updateDoc(doc(db, "UserChats", userSelecionado.uid), {
+                        [uidChatSelecionado + ".ultimaMensagem"]: {
+                           texto: "Foto",
+                           enviadoEm: Timestamp.now(),
+                        },
+                     });
+                     SmoothScrollbar.get(scrollRef.current).scrollTo(0, 10000);
                      console.log("Mensagem enviada com sucesso");
                      textoMsgRef.current.value = "";
                      inputFileRef.current.files = [];
@@ -83,8 +90,15 @@ const Conversa = () => {
                      texto: textoMsgRef.current.value,
                      enviadoEm: serverTimestamp(),
                   },
-               }).then(console.log("Última mensagem foi atualizada"));
+               });
+               await updateDoc(doc(db, "UserChats", userSelecionado.uid), {
+                  [uidChatSelecionado + ".ultimaMensagem"]: {
+                     texto: textoMsgRef.current.value,
+                     enviadoEm: serverTimestamp(),
+                  },
+               });
                console.log("Mensagem enviada com sucesso");
+               SmoothScrollbar.get(scrollRef.current).scrollTo(0, 10000);
                textoMsgRef.current.value = "";
                console.log(res);
             })
