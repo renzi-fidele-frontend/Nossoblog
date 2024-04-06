@@ -5,6 +5,7 @@ import Conversa from "../../Components/Conversa/Conversa";
 import { query, collection, doc, getDoc, getDocs, onSnapshot, serverTimestamp, setDoc, updateDoc, where } from "firebase/firestore";
 import { db } from "../../firebase/config";
 import SmoothScrollbar from "smooth-scrollbar";
+import { useAbreviar } from "../../hooks/useAbreviar";
 
 //  Icons
 import { FaSearch } from "react-icons/fa";
@@ -207,7 +208,8 @@ const Chat = () => {
                            </div>
                            <div id={styles.right}>
                               <h5>{capitalizar(v[1]?.userInfo?.nome)}</h5>
-                              <p>{ v[1]?.ultimaMensagem?.texto || "Nenhuma mensagem enviada"}</p>
+                              <p>{useAbreviar(v[1]?.ultimaMensagem?.texto || "Nenhuma mensagem enviada", 25
+                           )}</p>
                            </div>
                         </div>
                      );
