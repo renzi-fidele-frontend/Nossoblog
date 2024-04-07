@@ -12,7 +12,7 @@ import useConverterSegundoParaData from "../../hooks/useConverterSegundoParaData
 
 // Tooltip
 import Tippy from "@tippyjs/react";
-import "tippy.js/dist/tippy.css"; // optional
+import "tippy.js/themes/translucent.css";
 
 // Assets
 import { AiOutlinePicture, AiOutlineUpload } from "react-icons/ai";

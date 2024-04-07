@@ -12,6 +12,8 @@ import Tippy from "@tippyjs/react";
 import "tippy.js/dist/tippy.css"; // optional
 
 
+
+import "tippy.js/themes/light.css";
 //  Icons
 import { FaSearch } from "react-icons/fa";
 import userImg from "../../Images/user.png";
@@ -21,6 +23,7 @@ import { setMensagens, setUidChatSeleciodado, setUserChats, setUserSelecionado }
 import capitalizar from "../../hooks/useCapitalizar";
 import noChat from "../../Images/noChat.png";
 import semUsuario from "../../Images/semUsusario.png";
+import useConverterSegundoParaData from "../../hooks/useConverterSegundoParaData";
 
 const Chat = () => {
    const { user } = useSelector((state) => state.user);
@@ -199,23 +202,25 @@ const Chat = () => {
                {userChats.length > 0 ? (
                   userChats.map((v, k) => {
                      return (
-                        <div
-                           id={styles.userCard}
-                           onClick={() => {
-                              dispatch(setUserSelecionado(v[1]?.userInfo));
-                              apanharMensagensdoUserSelecionado(v[1]?.userInfo);
-                           }}
-                           className={userSelecionado?.uid === v[1]?.userInfo?.uid && styles.selecionado}
-                           key={k}
-                        >
-                           <div id={styles.left}>
-                              <img src={v[1]?.userInfo?.photoURL} alt="" />
+                        <Tippy theme="light" content={`Em ${useConverterSegundoParaData(v[1]?.criadoEm?.seconds)}`}>
+                           <div
+                              id={styles.userCard}
+                              onClick={() => {
+                                 dispatch(setUserSelecionado(v[1]?.userInfo));
+                                 apanharMensagensdoUserSelecionado(v[1]?.userInfo);
+                              }}
+                              className={userSelecionado?.uid === v[1]?.userInfo?.uid && styles.selecionado}
+                              key={k}
+                           >
+                              <div id={styles.left}>
+                                 <img src={v[1]?.userInfo?.photoURL} alt="" />
+                              </div>
+                              <div id={styles.right}>
+                                 <h5>{capitalizar(v[1]?.userInfo?.nome)}</h5>
+                                 <p>{useAbreviar(v[1]?.ultimaMensagem?.texto || "Nenhuma mensagem enviada", 29)}</p>
+                              </div>
                            </div>
-                           <div id={styles.right}>
-                              <h5>{capitalizar(v[1]?.userInfo?.nome)}</h5>
-                              <p>{useAbreviar(v[1]?.ultimaMensagem?.texto || "Nenhuma mensagem enviada", 25)}</p>
-                           </div>
-                        </div>
+                        </Tippy>
                      );
                   })
                ) : (
