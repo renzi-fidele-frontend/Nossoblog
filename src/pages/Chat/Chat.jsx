@@ -11,8 +11,6 @@ import { useAbreviar } from "../../hooks/useAbreviar";
 import Tippy from "@tippyjs/react";
 import "tippy.js/dist/tippy.css"; // optional
 
-
-
 import "tippy.js/themes/light.css";
 //  Icons
 import { FaSearch } from "react-icons/fa";
@@ -202,7 +200,7 @@ const Chat = () => {
                {userChats.length > 0 ? (
                   userChats.map((v, k) => {
                      return (
-                        <Tippy theme="light" content={`Em ${useConverterSegundoParaData(v[1]?.criadoEm?.seconds)}`}>
+                        <Tippy theme="light" content={`Em ${useConverterSegundoParaData(v[1]?.ultimaMensagem?.enviadoEm?.seconds)}`}>
                            <div
                               id={styles.userCard}
                               onClick={() => {

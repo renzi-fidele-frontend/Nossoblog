@@ -90,6 +90,7 @@ const Conversa = () => {
             }),
          })
             .then(async () => {
+               // Atualizando a última mensagem enviada na coleção das conversas do usuário
                await updateDoc(doc(db, "UserChats", user.uid), {
                   [uidChatSelecionado + ".ultimaMensagem"]: {
                      texto: textoMsgRef.current.value,
