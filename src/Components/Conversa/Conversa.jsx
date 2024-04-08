@@ -19,6 +19,7 @@ import { AiOutlinePicture, AiOutlineUpload } from "react-icons/ai";
 import { IoSend } from "react-icons/io5";
 import ill from "../../Images/semMensagem.png";
 import load from "../../Images/ball-triangle.svg";
+import useAnalisarData from "../../hooks/useAnalisarData";
 
 const Conversa = () => {
    const { user } = useSelector((state) => state.user);
@@ -139,7 +140,7 @@ const Conversa = () => {
                               />
                               <span>{useConverterSegundoParaFormatoDeHora(v?.enviadoEm)}</span>
                            </div>
-                           <Tippy content={`Em ${useConverterSegundoParaData(v?.enviadoEm?.seconds)}`}>
+                           <Tippy content={useAnalisarData(v?.enviadoEm?.seconds)}>
                               <div className={styles.conteudoMsg}>
                                  {v?.texto?.length > 0 && <p>{v?.texto}</p>}
                                  {v?.imagem?.length > 0 && <img src={v?.imagem} alt="" />}
