@@ -3,7 +3,7 @@ function useAnalisarData(segundos) {
    let milisegundos = segundos * 1000;
    let tempoPassado = new Date(dataAtual.getTime() - milisegundos);
 
-   //   Caso o tempo que passou é equivalente a Hoje
+   //   Caso o tempo que passou seja equivalente a Hoje
    if (
       tempoPassado.getDate() === dataAtual.getDate() &&
       tempoPassado.getMonth() === dataAtual.getMonth() &&
@@ -12,7 +12,7 @@ function useAnalisarData(segundos) {
       return "Hoje";
    }
 
-   //   Caso o tempo que passou é equivalente a Ontem
+   //   Caso o tempo que passou seja equivalente a Ontem
    let ontem = new Date(dataAtual.getTime() - 24 * 60 * 60 * 1000);
    if (
       tempoPassado.getDate() === ontem.getDate() &&
