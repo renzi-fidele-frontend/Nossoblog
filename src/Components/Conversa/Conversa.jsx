@@ -140,7 +140,7 @@ const Conversa = () => {
                               />
                               <span>{useConverterSegundoParaFormatoDeHora(v?.enviadoEm)}</span>
                            </div>
-                           <Tippy content={useAnalisarData(v?.enviadoEm?.seconds)}>
+                           <Tippy content={useAnalisarData(v?.enviadoEm?.seconds, "conversa")}>
                               <div className={styles.conteudoMsg}>
                                  {v?.texto?.length > 0 && <p>{v?.texto}</p>}
                                  {v?.imagem?.length > 0 && <img src={v?.imagem} alt="" />}

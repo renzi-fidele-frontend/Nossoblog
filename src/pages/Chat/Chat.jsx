@@ -22,6 +22,7 @@ import capitalizar from "../../hooks/useCapitalizar";
 import noChat from "../../Images/noChat.png";
 import semUsuario from "../../Images/semUsusario.png";
 import useConverterSegundoParaData from "../../hooks/useConverterSegundoParaData";
+import useAnalisarData from "../../hooks/useAnalisarData";
 
 const Chat = () => {
    const { user } = useSelector((state) => state.user);
@@ -200,7 +201,7 @@ const Chat = () => {
                {userChats.length > 0 ? (
                   userChats.map((v, k) => {
                      return (
-                        <Tippy theme="light" content={`Em ${useConverterSegundoParaData(v[1]?.ultimaMensagem?.enviadoEm?.seconds)}`}>
+                        <Tippy theme="light" content={useAnalisarData(v[1]?.ultimaMensagem?.enviadoEm?.seconds)}>
                            <div
                               id={styles.userCard}
                               onClick={() => {
