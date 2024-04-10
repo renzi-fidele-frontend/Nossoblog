@@ -21,7 +21,6 @@ import { setMensagens, setUidChatSeleciodado, setUserChats, setUserSelecionado }
 import capitalizar from "../../hooks/useCapitalizar";
 import noChat from "../../Images/noChat.png";
 import semUsuario from "../../Images/semUsusario.png";
-import useConverterSegundoParaData from "../../hooks/useConverterSegundoParaData";
 import useAnalisarData from "../../hooks/useAnalisarData";
 
 const Chat = () => {
@@ -111,7 +110,9 @@ const Chat = () => {
 
       let res = onSnapshot(snapRef, (conversas) => {
          // Convertendo o objeto para array, para que possa ser mapeado
-         dispatch(setUserChats(Object.entries(conversas.data())));
+         let obj = Object.entries(conversas.data());
+         obj.sort((a, b) => b[1]?.ultimaMensagem?.enviadoEm?.seconds - a[1]?.ultimaMensagem?.enviadoEm?.seconds);
+         dispatch(setUserChats(obj));
       });
    }
 
@@ -199,7 +200,7 @@ const Chat = () => {
             {/* Conversas do usuário */}
             <div id={styles.users}>
                {userChats.length > 0 ? (
-                  userChats.map((v, k) => {
+                  userChats?.map((v, k) => {
                      return (
                         <Tippy theme="light" content={useAnalisarData(v[1]?.ultimaMensagem?.enviadoEm?.seconds)}>
                            <div
