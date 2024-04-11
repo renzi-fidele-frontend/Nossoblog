@@ -106,7 +106,7 @@ const Chat = () => {
    }
 
    function apanharConversasUsuario() {
-      let snapRef = doc(db, "UserChats", user.uid);
+      let snapRef = doc(db, "UserChats", user?.uid);
 
       let res = onSnapshot(snapRef, (conversas) => {
          // Convertendo o objeto para array, para que possa ser mapeado

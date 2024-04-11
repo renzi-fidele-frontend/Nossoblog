@@ -15,7 +15,7 @@ import ill from "../../Images/semMensagem.png";
 import load from "../../Images/ball-triangle.svg";
 import CardMensagem from "./CardMensagem/CardMensagem";
 
-const Conversa = (loadingMsg = false) => {
+const Conversa = ({ loadingMsg = false }) => {
    const { user } = useSelector((state) => state.user);
    const { mensagens, userSelecionado, uidChatSelecionado } = useSelector((state) => state.chat);
    const scrollRef = useRef(null);
@@ -138,7 +138,7 @@ const Conversa = (loadingMsg = false) => {
                      );
                   })}
 
-               {!loadingMsg && mensagens?.length === 0 && (
+               {mensagens?.length === 0 && !loadingMsg && (
                   <div id={styles.nenhumaMsgCt}>
                      <img src={ill} />
                      <p>Nenhuma mensagem foi enviada</p>
