@@ -40,64 +40,6 @@
    gap: 17px;
 }
 
-.msg {
-   display: flex;
-   flex-flow: row nowrap;
-   align-items: center;
-   gap: 10px;
-}
-
-.conteudoMsg {
-   background-color: #fff;
-   padding: 10px 12px;
-   border-radius: 5px;
-   font-size: 14px;
-   max-width: 60%;
-}
-
-.msg#recebido {
-   justify-content: start;
-}
-
-.msg#enviado {
-   justify-content: end;
-   flex-flow: row-reverse;
-}
-
-.msg#recebido .conteudoMsg {
-   flex-direction: column-reverse;
-   gap: 1em;
-   align-items: start;
-}
-
-.msg#enviado .conteudoMsg {
-   background-color: #5c519b;
-   color: white;
-   align-items: end;
-   flex-direction: column-reverse;
-   gap: 1em;
-}
-
-.fotoUser {
-   width: 36px;
-   height: 36px;
-   object-fit: cover;
-   object-position: center;
-   border-radius: 50%;
-}
-
-.msg > div {
-   display: flex;
-   flex-flow: column;
-   align-items: center;
-   gap: 4px;
-}
-
-.msg > div > span {
-   font-size: 12px;
-   color: rgb(75, 74, 74);
-}
-
 #input {
    background-color: white;
    display: flex;

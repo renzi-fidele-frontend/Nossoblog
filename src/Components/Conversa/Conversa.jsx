@@ -7,21 +7,15 @@ import { Timestamp, arrayUnion, doc, serverTimestamp, updateDoc } from "firebase
 import { v4 } from "uuid";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 import { db, storage } from "../../firebase/config";
-import useConverterSegundoParaFormatoDeHora from "../../hooks/useConverterSegundoParaFormatoDeHora";
-import useConverterSegundoParaData from "../../hooks/useConverterSegundoParaData";
-
-// Tooltip
-import Tippy from "@tippyjs/react";
-import "tippy.js/themes/translucent.css";
 
 // Assets
 import { AiOutlinePicture, AiOutlineUpload } from "react-icons/ai";
 import { IoSend } from "react-icons/io5";
 import ill from "../../Images/semMensagem.png";
 import load from "../../Images/ball-triangle.svg";
-import useAnalisarData from "../../hooks/useAnalisarData";
+import CardMensagem from "./CardMensagem/CardMensagem";
 
-const Conversa = () => {
+const Conversa = (loadingMsg = false) => {
    const { user } = useSelector((state) => state.user);
    const { mensagens, userSelecionado, uidChatSelecionado } = useSelector((state) => state.chat);
    const scrollRef = useRef(null);
@@ -85,7 +79,7 @@ const Conversa = () => {
          await updateDoc(msgRef, {
             mensagens: arrayUnion({
                id: v4(),
-               texto: textoMsgRef.current.value,
+               texto: textoMsgRef?.current?.value,
                senderId: user.uid,
                enviadoEm: Timestamp.now(),
             }),
@@ -94,20 +88,21 @@ const Conversa = () => {
                // Atualizando a última mensagem enviada na coleção das conversas do usuário
                await updateDoc(doc(db, "UserChats", user.uid), {
                   [uidChatSelecionado + ".ultimaMensagem"]: {
-                     texto: textoMsgRef.current.value,
+                     texto: textoMsgRef?.current?.value,
                      enviadoEm: serverTimestamp(),
                   },
                });
                await updateDoc(doc(db, "UserChats", userSelecionado.uid), {
                   [uidChatSelecionado + ".ultimaMensagem"]: {
-                     texto: textoMsgRef.current.value,
+                     texto: textoMsgRef?.current?.value,
                      enviadoEm: serverTimestamp(),
                   },
                });
+            })
+            .then(() => {
                console.log("Mensagem enviada com sucesso");
                SmoothScrollbar.get(scrollRef.current).scrollTo(0, 10000);
                textoMsgRef.current.value = "";
-               console.log(res);
             })
             .catch((err) => console.log(err));
       }
@@ -128,28 +123,22 @@ const Conversa = () => {
             id={styles.chatBody}
          >
             <div id={styles.mensagens}>
-               {mensagens?.length > 0 ? (
+               {mensagens?.length > 0 &&
                   mensagens?.map((v, k) => {
                      return (
-                        <div key={k} className={styles.msg} id={v?.senderId === user?.uid ? styles.enviado : styles.recebido}>
-                           <div>
-                              <img
-                                 className={styles.fotoUser}
-                                 src={v?.senderId === user?.uid ? user?.photoURL : userSelecionado?.photoURL}
-                                 alt="Foto do usuário"
-                              />
-                              <span>{useConverterSegundoParaFormatoDeHora(v?.enviadoEm)}</span>
-                           </div>
-                           <Tippy content={useAnalisarData(v?.enviadoEm?.seconds, "conversa")}>
-                              <div className={styles.conteudoMsg}>
-                                 {v?.texto?.length > 0 && <p>{v?.texto}</p>}
-                                 {v?.imagem?.length > 0 && <img src={v?.imagem} alt="" />}
-                              </div>
-                           </Tippy>
-                        </div>
+                        <CardMensagem
+                           senderId={v?.senderId}
+                           fotoRemetente={user?.photoURL}
+                           fotoDestinatario={userSelecionado?.photoURL}
+                           fotoMensagem={v?.imagem}
+                           textoMensagem={v?.texto}
+                           enviadoEm={v?.enviadoEm?.seconds}
+                           key={k}
+                        />
                      );
-                  })
-               ) : (
+                  })}
+
+               {!loadingMsg && mensagens?.length === 0 && (
                   <div id={styles.nenhumaMsgCt}>
                      <img src={ill} />
                      <p>Nenhuma mensagem foi enviada</p>

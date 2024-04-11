@@ -1,8 +1,6 @@
-function useAnalisarData(segundos, modo = "") {
+function useAnalisarData(segundos) {
    let dataAtual = new Date();
    let dataEnviada = new Date(segundos * 1000);
-
-   if (modo === "conversa") console.log(`Enviada em ${dataEnviada.getDate()}, Dia atual: ${dataAtual.getDate()}`);
 
    //   Caso o tempo que passou seja equivalente a Hoje
    if (
