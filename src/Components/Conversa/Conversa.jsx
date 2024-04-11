@@ -149,12 +149,8 @@ const Conversa = ({ loadingMsg = false }) => {
          <form onSubmit={enviarMensagem} id={styles.input}>
             <input ref={textoMsgRef} type="text" placeholder="Escreva a mensagem aqui..." />
             <div>
-               <input type="file" ref={inputFileRef} hidden id="file1" />
                <input type="file" ref={inputFileRef} hidden id="imgFile" />
 
-               <label htmlFor="file1">
-                  <AiOutlineUpload title="Carregar ficheiro" />
-               </label>
                <label htmlFor="imgFile">
                   <AiOutlinePicture title="Carregar imagem" />
                </label>

@@ -7,7 +7,6 @@ import { useSelector } from "react-redux";
 // Tooltip
 import Tippy from "@tippyjs/react";
 import "tippy.js/dist/tippy.css"; // optional
-import "tippy.js/themes/translucent.css";
 
 const CardMensagem = ({ fotoRemetente, senderId, fotoDestinatario, fotoMensagem, textoMensagem, enviadoEm }) => {
    const { user } = useSelector((state) => state?.user);
