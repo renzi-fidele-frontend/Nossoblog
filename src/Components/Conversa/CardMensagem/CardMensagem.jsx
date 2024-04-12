@@ -8,6 +8,7 @@ import { useSelector } from "react-redux";
 import Lightbox from "yet-another-react-lightbox";
 import "yet-another-react-lightbox/styles.css";
 import Zoom from "yet-another-react-lightbox/plugins/zoom";
+import Fullscreen from "yet-another-react-lightbox/plugins/fullscreen";
 
 // Tooltip
 import Tippy from "@tippyjs/react";
@@ -17,6 +18,7 @@ const CardMensagem = ({ fotoRemetente, senderId, fotoDestinatario, fotoMensagem,
    const [open, setOpen] = useState(false);
    const { user } = useSelector((state) => state?.user);
    const zoomRef = useRef(null);
+   const fullscreenRef = useRef(null);
 
    return (
       <div className={styles.msg} id={senderId === user?.uid ? styles.enviado : styles.recebido}>
@@ -38,8 +40,9 @@ const CardMensagem = ({ fotoRemetente, senderId, fotoDestinatario, fotoMensagem,
                      />
                      <Lightbox
                         zoom={{ ref: zoomRef }}
-                        plugins={[Zoom]}
+                        plugins={[Zoom, Fullscreen]}
                         slides={[{ src: fotoMensagem }]}
+                        fullscreen={{ ref: fullscreenRef }}
                         open={open}
                         close={() => setOpen(false)}
                      />
