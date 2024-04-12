@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import styles from "./CardMensagem.module.css";
 import useAnalisarData from "../../../hooks/useAnalisarData";
 import useConverterSegundoParaFormatoDeHora from "../../../hooks/useConverterSegundoParaFormatoDeHora";
@@ -7,6 +7,7 @@ import { useSelector } from "react-redux";
 // Lightbox
 import Lightbox from "yet-another-react-lightbox";
 import "yet-another-react-lightbox/styles.css";
+import Zoom from "yet-another-react-lightbox/plugins/zoom";
 
 // Tooltip
 import Tippy from "@tippyjs/react";
@@ -15,6 +16,7 @@ import "tippy.js/dist/tippy.css"; // optional
 const CardMensagem = ({ fotoRemetente, senderId, fotoDestinatario, fotoMensagem, textoMensagem, enviadoEm }) => {
    const [open, setOpen] = useState(false);
    const { user } = useSelector((state) => state?.user);
+   const zoomRef = useRef(null);
 
    return (
       <div className={styles.msg} id={senderId === user?.uid ? styles.enviado : styles.recebido}>
@@ -34,7 +36,13 @@ const CardMensagem = ({ fotoRemetente, senderId, fotoDestinatario, fotoMensagem,
                         src={fotoMensagem}
                         alt=""
                      />
-                     <Lightbox slides={[{ src: fotoMensagem }]} open={open} close={() => setOpen(false)} />
+                     <Lightbox
+                        zoom={{ ref: zoomRef }}
+                        plugins={[Zoom]}
+                        slides={[{ src: fotoMensagem }]}
+                        open={open}
+                        close={() => setOpen(false)}
+                     />
                   </>
                )}
             </div>
