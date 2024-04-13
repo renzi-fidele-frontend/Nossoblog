@@ -13,7 +13,7 @@ import Download from "yet-another-react-lightbox/plugins/download";
 
 // Tooltip
 import Tippy from "@tippyjs/react";
-import "tippy.js/dist/tippy.css"; // optional
+import "tippy.js/dist/tippy.css";
 
 const CardMensagem = ({ fotoRemetente, senderId, fotoDestinatario, fotoMensagem, textoMensagem, enviadoEm }) => {
    const [open, setOpen] = useState(false);
@@ -33,6 +33,8 @@ const CardMensagem = ({ fotoRemetente, senderId, fotoDestinatario, fotoMensagem,
                {fotoMensagem?.length > 0 && (
                   <>
                      <img
+                        style={{ cursor: "pointer" }}
+                        title="Abrir imagem"
                         onClick={() => {
                            setOpen(true);
                         }}

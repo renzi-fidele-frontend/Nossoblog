@@ -46,7 +46,7 @@
 #userCt {
    border-top-left-radius: 18px;
    background-color: #362c70;
-   height: 65px;
+   height: 60px;
    display: flex;
    flex-flow: row nowrap;
    justify-content: space-between;
@@ -103,8 +103,8 @@
 }
 
 #userCard #left img {
-   width: 65px;
-   height: 65px;
+   width: 60px;
+   height: 60px;
    border-radius: 50%;
    object-fit: cover;
 }
