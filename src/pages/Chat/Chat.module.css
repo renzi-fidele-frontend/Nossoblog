@@ -136,33 +136,6 @@
    fill: #a195e5;
 }
 
-.userCard {
-   border-bottom: 0.4px dashed #a195e5;
-}
-
-#users .userCard:last-child {
-   border-bottom: none !important;
-}
-
-.userCard:hover {
-   background-color: #433b6e !important;
-}
-
-.userCard > #right {
-   flex-flow: row nowrap !important;
-   justify-content: space-between !important;
-   align-items: center;
-   flex: 1 1;
-}
-
-.addUserIco {
-   font-size: 26px;
-}
-
-.userCard:hover path {
-   fill: white;
-   transition: 0.2s all;
-}
 
 #semConversaCt {
    display: flex;

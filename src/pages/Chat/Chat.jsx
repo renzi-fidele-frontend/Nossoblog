@@ -169,23 +169,15 @@ const Chat = () => {
                      </div>
 
                      {resultadosPesquisa.map((v, k) => (
-                        <div
-                           onClick={() => {
+                        <CardUsuario
+                           onClickPesquisado={() => {
                               adicionarUsuario(v);
                            }}
-                           id={styles.userCard}
-                           title="Adicionar usuário"
-                           className={styles.userCard}
                            key={k}
-                        >
-                           <div id={styles.left}>
-                              <img src={v?.photoURL} alt="" />
-                           </div>
-                           <div id={styles.right}>
-                              <h5>{capitalizar(v?.nome)}</h5>
-                              <IoPersonAddOutline className={styles.addUserIco} />
-                           </div>
-                        </div>
+                           modoPesquisa={true}
+                           fotoUsuario={v?.photoURL}
+                           nomeUsuario={v?.nome}
+                        />
                      ))}
                   </div>
                )}
