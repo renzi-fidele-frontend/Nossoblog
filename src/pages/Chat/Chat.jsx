@@ -5,13 +5,7 @@ import Conversa from "../../Components/Conversa/Conversa";
 import { query, collection, doc, getDoc, getDocs, onSnapshot, serverTimestamp, setDoc, updateDoc, where } from "firebase/firestore";
 import { db } from "../../firebase/config";
 import SmoothScrollbar from "smooth-scrollbar";
-import { useAbreviar } from "../../hooks/useAbreviar";
 
-// Tooltip
-import Tippy from "@tippyjs/react";
-import "tippy.js/dist/tippy.css"; // optional
-
-import "tippy.js/themes/light.css";
 //  Icons
 import { FaSearch } from "react-icons/fa";
 import userImg from "../../Images/user.png";
@@ -21,7 +15,7 @@ import { setMensagens, setUidChatSeleciodado, setUserChats, setUserSelecionado }
 import capitalizar from "../../hooks/useCapitalizar";
 import noChat from "../../Images/noChat.png";
 import semUsuario from "../../Images/semUsusario.png";
-import useAnalisarData from "../../hooks/useAnalisarData";
+import CardUsuario from "../../Components/CardUsuario/CardUsuario";
 
 const Chat = () => {
    const { user } = useSelector((state) => state.user);
@@ -200,29 +194,21 @@ const Chat = () => {
             {/* Conversas do usuário */}
             <div id={styles.users}>
                {userChats.length > 0 ? (
-                  userChats?.map((v, k) => {
-                     return (
-                        <Tippy theme="light" content={useAnalisarData(v[1]?.ultimaMensagem?.enviadoEm?.seconds)}>
-                           <div
-                              id={styles.userCard}
-                              onClick={() => {
-                                 dispatch(setUserSelecionado(v[1]?.userInfo));
-                                 apanharMensagensdoUserSelecionado(v[1]?.userInfo);
-                              }}
-                              className={userSelecionado?.uid === v[1]?.userInfo?.uid && styles.selecionado}
-                              key={k}
-                           >
-                              <div id={styles.left}>
-                                 <img src={v[1]?.userInfo?.photoURL} alt="" />
-                              </div>
-                              <div id={styles.right}>
-                                 <h5>{capitalizar(v[1]?.userInfo?.nome)}</h5>
-                                 <p>{useAbreviar(v[1]?.ultimaMensagem?.texto || "Nenhuma mensagem enviada", 29)}</p>
-                              </div>
-                           </div>
-                        </Tippy>
-                     );
-                  })
+                  userChats?.map((v, k) => (
+                     <CardUsuario
+                        modoPesquisa={false}
+                        onClick={() => {
+                           dispatch(setUserSelecionado(v[1]?.userInfo));
+                           apanharMensagensdoUserSelecionado(v[1]?.userInfo);
+                        }}
+                        atualizadoEm={v[1]?.ultimaMensagem?.enviadoEm?.seconds}
+                        userUid={v[1]?.userInfo?.uid}
+                        nomeUsuario={v[1]?.userInfo?.nome}
+                        ultimaMensagem={v[1]?.ultimaMensagem?.texto}
+                        fotoUsuario={v[1]?.userInfo?.photoURL}
+                        key={k}
+                     />
+                  ))
                ) : (
                   <div id={styles.noUserCt}>
                      <img src={semUsuario} alt="" />

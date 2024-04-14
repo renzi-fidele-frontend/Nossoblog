@@ -1,0 +1,43 @@
+#userCard {
+   display: flex;
+   flex-flow: row nowrap;
+   align-items: stretch;
+   gap: 13px;
+   padding-inline: 1em;
+   padding-block: 0.5em;
+   cursor: pointer;
+}
+
+#userCard:hover,
+.selecionado {
+   background-color: #433b6e;
+   transition: all 0.1s ease-in;
+}
+
+.selecionado {
+   background-color: #433b6e;
+   transition: all 0.1s ease-in;
+}
+
+#userCard #left img {
+   width: 60px;
+   height: 60px;
+   border-radius: 50%;
+   object-fit: cover;
+}
+
+#userCard #right {
+   display: flex;
+   gap: 7px;
+   flex-flow: column;
+   justify-content: center;
+}
+
+#userCard #right h5 {
+   font-size: 17px;
+   font-weight: 600;
+}
+
+#userCard #right p {
+   font-size: 15px;
+}
