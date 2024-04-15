@@ -236,7 +236,14 @@ const Chat = () => {
          </Tippy>
 
          {/*Drawer do responsivo */}
-         <Drawer size={350} lockBackgroundScroll={true} direction="left" className={styles.drawerCt} open={drawerAberto} onClose={() => setDrawerAberto(false)}>
+         <Drawer
+            size={340}
+            lockBackgroundScroll={true}
+            direction="left"
+            className={styles.drawerCt}
+            open={drawerAberto}
+            onClose={() => setDrawerAberto(false)}
+         >
             <div id={styles.userCt}>
                <h2>Chat Global</h2>
                <div>
@@ -292,6 +299,7 @@ const Chat = () => {
                         onClick={() => {
                            dispatch(setUserSelecionado(v[1]?.userInfo));
                            apanharMensagensdoUserSelecionado(v[1]?.userInfo);
+                           setDrawerAberto(false);
                         }}
                         atualizadoEm={v[1]?.ultimaMensagem?.enviadoEm?.seconds}
                         userUid={v[1]?.userInfo?.uid}

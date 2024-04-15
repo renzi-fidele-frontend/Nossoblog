@@ -145,3 +145,9 @@
       font-size: 26px;
    }
 }
+
+@media screen and (max-width: 600px) {
+   #chatBody {
+      padding-inline: 1em;
+   }
+}

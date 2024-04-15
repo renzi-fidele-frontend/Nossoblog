@@ -225,3 +225,40 @@
       background-color: #585088 !important;
    }
 }
+
+@media screen and (max-width: 1000px) {
+   #semConversaCt > img {
+      width: 300px;
+   }
+}
+
+@media screen and (max-width: 700px) {
+   #ct {
+      margin-inline: 3%;
+   }
+}
+
+@media screen and (max-width: 600px) {
+   #abrirDrawer {
+      font-size: 38px;
+   }
+
+   #semConversaCt > img {
+      width: 250px;
+   }
+
+   #semConversaCt > p {
+      font-size: 19px;
+      text-align: center;
+   }
+}
+
+@media screen and (max-width: 400px) {
+   #semConversaCt > p {
+      font-size: 17px;
+      text-align: center;
+   }
+   #semConversaCt > img {
+      width: 220px;
+   }
+}
