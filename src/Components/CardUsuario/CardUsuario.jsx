@@ -1,14 +1,16 @@
 import React from "react";
 import styles from "./CardUsuario.module.css";
 import { useSelector } from "react-redux";
+import useAnalisarData from "../../hooks/useAnalisarData";
+import capitalizar from "../../hooks/useCapitalizar";
+import { useAbreviar } from "../../hooks/useAbreviar";
 
 // Tooltip
 import Tippy from "@tippyjs/react";
 import "tippy.js/dist/tippy.css"; // optional
 import "tippy.js/themes/light.css";
-import useAnalisarData from "../../hooks/useAnalisarData";
-import capitalizar from "../../hooks/useCapitalizar";
-import { useAbreviar } from "../../hooks/useAbreviar";
+
+//  Icons
 import { IoPersonAddOutline } from "react-icons/io5";
 
 const CardUsuario = ({ fotoUsuario, nomeUsuario, onClick, onClickPesquisado, atualizadoEm, userUid, ultimaMensagem, modoPesquisa = false }) => {

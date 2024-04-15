@@ -134,6 +134,8 @@
    fill: #a195e5;
 }
 
-#loadingCt {
-   
+@media screen and (max-width: 1400px) {
+   #input > div {
+      font-size: 26px;
+   }
 }

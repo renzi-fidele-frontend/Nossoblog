@@ -69,3 +69,13 @@
    fill: white;
    transition: 0.2s all;
 }
+
+@media screen and (max-width: 1400px) {
+   #userCard #right h5 {
+      font-size: 16px;
+   }
+
+   #userCard #right p {
+      font-size: 14px;
+   }
+}
