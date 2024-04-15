@@ -4,7 +4,7 @@ const Footer = () => {
     return (
         <footer id={styles.footer}>
             <p>
-                <span>Nosso Blog</span> © Copyright 2023
+                <span>Nosso Blog</span> © Copyright 2024
             </p>
             <div>
                 <p>Desenvolvedor: </p>

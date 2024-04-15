@@ -168,6 +168,10 @@
    width: 60%;
 }
 
+#abrirDrawer {
+   display: none;
+}
+
 @media screen and (max-width: 1600px) {
    #ct {
       margin-inline: 14%;
@@ -176,5 +180,48 @@
 }
 
 @media screen and (max-width: 1300px) {
-   
+   #ct {
+      margin-inline: 8%;
+   }
+}
+
+@media screen and (max-width: 1200px) {
+   #ct > #left {
+      display: none;
+   }
+
+   #ct {
+      margin-inline: 15%;
+      grid-template-columns: 100%;
+      position: relative;
+   }
+
+   #userCt {
+      border-top-left-radius: 0;
+      color: white;
+   }
+
+   #abrirDrawer {
+      display: initial;
+      position: absolute;
+      top: 40%;
+      left: 0;
+      padding: 0.2em;
+      font-size: 46px;
+      border: none;
+      background-color: white;
+      border-top-right-radius: 10px;
+      border-bottom-right-radius: 10px;
+      box-shadow: 1px 1px 1px black;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #362c70;
+      cursor: pointer;
+   }
+
+   .drawerCt {
+      width: 100%;
+      background-color: #585088 !important;
+   }
 }
