@@ -32,6 +32,7 @@ const Chat = () => {
    const [loading, setLoading] = useState(false);
    const ctRef = useRef(null);
    const [drawerAberto, setDrawerAberto] = useState(false);
+   const [isSmallDevice, setIsSmallDevice] = useState(false);
 
    // Redux
    const { userChats } = useSelector((state) => state.chat);
@@ -129,6 +130,23 @@ const Chat = () => {
          dispatch(setMensagens(mensagens?.data()?.mensagens));
       });
    }
+
+   // Controlando se o dispositivo é de largura menor do que 370px
+   useEffect(() => {
+      const handleResize = () => {
+         const mediaQuerie = window.matchMedia("(max-width: 380px)");
+         setIsSmallDevice(mediaQuerie.matches);
+      };
+
+      handleResize();
+
+      window.addEventListener("resize", handleResize);
+
+      // Fazendo o clean Up
+      return () => {
+         window.removeEventListener("resize", handleResize);
+      };
+   }, []);
 
    useEffect(() => {
       apanharConversasUsuario();
@@ -235,9 +253,9 @@ const Chat = () => {
             </button>
          </Tippy>
 
-         {/*Drawer do responsivo */}
+         {/*Drawer do responsivo mobile */}
          <Drawer
-            size={340}
+            size={isSmallDevice ? 290 : 340}
             lockBackgroundScroll={true}
             direction="left"
             className={styles.drawerCt}
@@ -247,8 +265,7 @@ const Chat = () => {
             <div id={styles.userCt}>
                <h2>Chat Global</h2>
                <div>
-                  <img src={userImg} alt="" />
-                  <p>{user?.displayName}</p>
+                  <img src={user?.photoURL} id={styles.ftPerfilMobile} />
                </div>
             </div>
             <form id={styles.form} onSubmit={pesquisar}>

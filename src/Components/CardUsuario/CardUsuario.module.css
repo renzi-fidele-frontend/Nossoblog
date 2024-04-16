@@ -80,3 +80,24 @@
       font-size: 14px;
    }
 }
+
+@media screen and (max-width: 410px) {
+   #userCard #left img {
+      width: 50px;
+      height: 50px;
+   }
+}
+
+@media screen and (max-width: 370px) {
+   #userCard #right h5 {
+      font-size: 15px;
+   }
+
+   #userCard #right p {
+      font-size: 13px;
+   }
+
+   #userCard {
+      padding-inline: .6em;
+   }
+}
