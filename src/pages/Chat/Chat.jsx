@@ -29,6 +29,7 @@ const Chat = () => {
    const { userSelecionado, uidChatSelecionado } = useSelector((state) => state.chat);
    const [resultadosPesquisa, setResultadosPesquisa] = useState([]);
    const searchInputRef = useRef(null);
+   const searchInputRefMobile = useRef(null);
    const [loading, setLoading] = useState(false);
    const ctRef = useRef(null);
    const [drawerAberto, setDrawerAberto] = useState(false);
@@ -40,9 +41,10 @@ const Chat = () => {
 
    async function pesquisar(e) {
       e.preventDefault();
+      let _query = searchInputRef.current.value || searchInputRefMobile.current.value;
 
-      if (searchInputRef.current.value.length > 2) {
-         let txt = searchInputRef.current.value.toString().toLowerCase();
+      if (_query?.length > 2) {
+         let txt = _query.toString().toLowerCase();
          setLoading(true);
          const usersRef = collection(db, "Users");
          const q = query(usersRef, where("nome", ">=", txt), where("nome", "<=", txt + "\uf8ff"));
@@ -269,7 +271,7 @@ const Chat = () => {
                </div>
             </div>
             <form id={styles.form} onSubmit={pesquisar}>
-               <input ref={searchInputRef} type="text" placeholder="Encontre um usuário" />
+               <input ref={searchInputRefMobile} type="text" placeholder="Encontre um usuário" />
                <button type="submit">
                   <FaSearch />
                </button>
